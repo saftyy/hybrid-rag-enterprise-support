@@ -1,0 +1,31 @@
+# --- Core LLM / RAG stack ---
+langchain==0.3.7
+langchain-openai==0.2.9
+langchain-community==0.3.7
+langchain-pinecone==0.2.0
+openai==1.55.3
+
+# --- Retrieval improvement: hybrid search ---
+rank-bm25==0.2.2
+
+# --- Document loading / parsing ---
+pypdf==5.1.0
+pdf2image==1.17.0
+pytesseract==0.3.13
+beautifulsoup4==4.12.3
+unstructured==0.16.9
+markdown==37
+
+# --- Evaluation ---
+ragas==0.2.6
+datasets==3.1.0
+
+# --- Testing ---
+pytest==8.3.3
+pytest-mock==3.14.0
+
+# --- Utilities ---
+python-dotenv==1.0.1
+tqdm==4.67.0
+tiktoken==0.8.0
+pydantic==2.9.2

@@ -1,0 +1,11 @@
+{
+  "documents_loaded": 95,
+  "documents_skipped_scanned_pdfs": [
+    "runbooks/csm/onboarding-checklist.pdf",
+    "runbooks/csm/qbr-template.pdf",
+    "runbooks/customer-ops/custom-sla-handling.pdf",
+    "runbooks/customer-ops/plan-downgrade-workflow.pdf",
+    "runbooks/customer-ops/vip-escalation.pdf"
+  ],
+  "chunks_produced": 426
+}

@@ -1,0 +1,912 @@
+{
+  "overall": {
+    "faithfulness": 0.9387586367880485,
+    "answer_relevancy": 0.8166992698384375,
+    "context_precision": 0.7749722221834319
+  },
+  "thresholds": {
+    "faithfulness_threshold": 0.7,
+    "context_precision_threshold": 0.6
+  },
+  "passed": {
+    "faithfulness_pass": true,
+    "context_precision_pass": true
+  },
+  "per_query": [
+    {
+      "id": "Q001",
+      "query": "What's the maximum number of steps allowed in a single workflow?",
+      "difficulty": "easy",
+      "category": "workflows",
+      "answer": "The maximum number of steps allowed in a single workflow is 100.",
+      "sources_cited": [
+        "product-docs/workflows/creating-workflows.md"
+      ],
+      "expected_sources": [
+        "product-docs/workflows/creating-workflows.md"
+      ],
+      "confidence": "high",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.9935221405148136,
+      "context_precision": 0.9999999999
+    },
+    {
+      "id": "Q002",
+      "query": "How long can a workflow run before it times out?",
+      "difficulty": "easy",
+      "category": "workflows",
+      "answer": "A workflow can run for a maximum of 30 minutes before it times out.",
+      "sources_cited": [
+        "tickets/ticket-1234-workflow-timeout.html"
+      ],
+      "expected_sources": [
+        "product-docs/workflows/creating-workflows.md"
+      ],
+      "confidence": "high",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.896361698545327,
+      "context_precision": 0.9999999999
+    },
+    {
+      "id": "Q003",
+      "query": "How much does the Pro plan cost?",
+      "difficulty": "easy",
+      "category": "billing",
+      "answer": "The Pro plan costs $299 per month.",
+      "sources_cited": [
+        "product-docs/getting-started/welcome.md"
+      ],
+      "expected_sources": [
+        "product-docs/billing/plans.md"
+      ],
+      "confidence": "high",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.9330796856417688,
+      "context_precision": 0.7499999999625
+    },
+    {
+      "id": "Q004",
+      "query": "What's the API rate limit on the Pro plan?",
+      "difficulty": "easy",
+      "category": "api",
+      "answer": "The API rate limit on the Pro plan is 1000 requests per minute.",
+      "sources_cited": [
+        "product-docs/api/rate-limits.md"
+      ],
+      "expected_sources": [
+        "product-docs/api/rate-limits.md"
+      ],
+      "confidence": "high",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.9816114047315464,
+      "context_precision": 0.9999999999666667
+    },
+    {
+      "id": "Q005",
+      "query": "What HTTP status code does Helix return when you hit a rate limit?",
+      "difficulty": "easy",
+      "category": "api",
+      "answer": "Helix returns a **429** status code when you hit a rate limit.",
+      "sources_cited": [
+        "product-docs/api/rate-limits.md"
+      ],
+      "expected_sources": [
+        "product-docs/api/rate-limits.md"
+      ],
+      "confidence": "high",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.9464278258461718,
+      "context_precision": 0.5333333333155555
+    },
+    {
+      "id": "Q006",
+      "query": "What's the base URL for the Helix API?",
+      "difficulty": "easy",
+      "category": "api",
+      "answer": "The base URL for the Helix API is `https://api.helix.io/v2`.",
+      "sources_cited": [
+        "product-docs/api/overview.md"
+      ],
+      "expected_sources": [
+        "product-docs/api/overview.md"
+      ],
+      "confidence": "high",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.9901965207220741,
+      "context_precision": 0.99999999995
+    },
+    {
+      "id": "Q007",
+      "query": "What signing algorithm does Helix use for webhook signatures?",
+      "difficulty": "easy",
+      "category": "api",
+      "answer": "Helix uses the HMAC-SHA256 signing algorithm for webhook signatures.",
+      "sources_cited": [
+        "doc_id: tickets/ticket-1212-webhook-not-firing.html",
+        "doc_id: product-docs/integrations/custom-webhooks.md"
+      ],
+      "expected_sources": [
+        "product-docs/api/webhooks.md"
+      ],
+      "confidence": "high",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.9999144358647589,
+      "context_precision": 0.99999999995
+    },
+    {
+      "id": "Q008",
+      "query": "Which header contains the webhook signature?",
+      "difficulty": "easy",
+      "category": "api",
+      "answer": "The header that contains the webhook signature is **X-Helix-Signature**.",
+      "sources_cited": [
+        "product-docs/api/webhooks.md",
+        "product-docs/integrations/custom-webhooks.md"
+      ],
+      "expected_sources": [
+        "product-docs/api/webhooks.md",
+        "product-docs/integrations/custom-webhooks.md"
+      ],
+      "confidence": "high",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.947780611812509,
+      "context_precision": 0.99999999995
+    },
+    {
+      "id": "Q009",
+      "query": "How many user roles does Helix have?",
+      "difficulty": "easy",
+      "category": "admin",
+      "answer": "Helix has four user roles: Owner, Admin, Editor, and Viewer.",
+      "sources_cited": [
+        "product-docs/admin/roles-and-permissions.md"
+      ],
+      "expected_sources": [
+        "product-docs/admin/roles-and-permissions.md"
+      ],
+      "confidence": "high",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.9148690048525284,
+      "context_precision": 0.49999999995
+    },
+    {
+      "id": "Q010",
+      "query": "Which plan includes SSO?",
+      "difficulty": "easy",
+      "category": "admin",
+      "answer": "SSO via SAML 2.0 is available on the Enterprise plan.",
+      "sources_cited": [
+        "product-docs/admin/sso.md"
+      ],
+      "expected_sources": [
+        "product-docs/admin/sso.md"
+      ],
+      "confidence": "high",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.7840685328283558,
+      "context_precision": 0.249999999975
+    },
+    {
+      "id": "Q011",
+      "query": "How long is the audit log retained?",
+      "difficulty": "easy",
+      "category": "admin",
+      "answer": "Audit log entries are retained for **365 days**.",
+      "sources_cited": [
+        "product-docs/admin/audit-log.md"
+      ],
+      "expected_sources": [
+        "product-docs/admin/audit-log.md"
+      ],
+      "confidence": "high",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.9389117352322338,
+      "context_precision": 0.49999999995
+    },
+    {
+      "id": "Q012",
+      "query": "How long are run logs retained on the Pro plan?",
+      "difficulty": "easy",
+      "category": "data",
+      "answer": "Run logs are retained for **90 days** on the Pro plan.",
+      "sources_cited": [
+        "product-docs/api/runs-endpoint.md"
+      ],
+      "expected_sources": [
+        "product-docs/data/retention-policy.md",
+        "product-docs/data/run-logs.md"
+      ],
+      "confidence": "high",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.999999566143,
+      "context_precision": 0.99999999995
+    },
+    {
+      "id": "Q013",
+      "query": "How long is a download URL for an export valid?",
+      "difficulty": "easy",
+      "category": "data",
+      "answer": "A download URL for an export is valid for **24 hours**.",
+      "sources_cited": [
+        "product-docs/data/exporting-data.md",
+        "runbooks/customer-ops/data-export-requests.pdf"
+      ],
+      "expected_sources": [
+        "product-docs/data/exporting-data.md"
+      ],
+      "confidence": "high",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.9999996354583393,
+      "context_precision": 0.94999999997625
+    },
+    {
+      "id": "Q014",
+      "query": "How many workflow versions does Helix retain?",
+      "difficulty": "easy",
+      "category": "workflows",
+      "answer": "Helix retains the last **50 versions** of each workflow.",
+      "sources_cited": [
+        "product-docs/workflows/versioning.md"
+      ],
+      "expected_sources": [
+        "product-docs/workflows/versioning.md"
+      ],
+      "confidence": "high",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.958297435520563,
+      "context_precision": 0.9166666666361111
+    },
+    {
+      "id": "Q015",
+      "query": "Are scheduled workflows in UTC or my local time?",
+      "difficulty": "easy",
+      "category": "workflows",
+      "answer": "Scheduled workflows in Helix run in **UTC**. Helix does not currently support per-workflow timezones, so you need to adjust your schedule according to your local timezone if necessary.",
+      "sources_cited": [
+        "product-docs/workflows/scheduling.md"
+      ],
+      "expected_sources": [
+        "product-docs/workflows/scheduling.md"
+      ],
+      "confidence": "high",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.7119990613174831,
+      "context_precision": 0.9166666666361111
+    },
+    {
+      "id": "Q016",
+      "query": "What's the API key format?",
+      "difficulty": "easy",
+      "category": "api",
+      "answer": "The API key formats are as follows:\n- **Live keys**: `hlx_live_<32 hex chars>` \u2014 affects production resources.\n- **Test keys**: `hlx_test_<32 hex chars>` \u2014 sandboxed; safe for development.",
+      "sources_cited": [
+        "doc_id: product-docs/api/overview.md"
+      ],
+      "expected_sources": [
+        "product-docs/api/authentication.md",
+        "product-docs/api/overview.md"
+      ],
+      "confidence": "high",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.8828243955446561,
+      "context_precision": 0.499999999975
+    },
+    {
+      "id": "Q017",
+      "query": "What does HTTP 401 mean from the Helix API?",
+      "difficulty": "easy",
+      "category": "api",
+      "answer": "The provided context doesn't cover this.",
+      "sources_cited": [],
+      "expected_sources": [
+        "product-docs/api/errors.md",
+        "product-docs/api/authentication.md"
+      ],
+      "confidence": "low",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.0,
+      "context_precision": 0.0
+    },
+    {
+      "id": "Q018",
+      "query": "What integrations does Helix support?",
+      "difficulty": "easy",
+      "category": "integrations",
+      "answer": "Helix connects to **10+** business apps out of the box, including Slack, Email, and Webhooks. Additionally, it supports custom webhooks and HTTP for other integrations.",
+      "sources_cited": [
+        "product-docs/integrations/overview.md"
+      ],
+      "expected_sources": [
+        "product-docs/integrations/overview.md"
+      ],
+      "confidence": "high",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.739092284532269,
+      "context_precision": 0.9999999999
+    },
+    {
+      "id": "Q019",
+      "query": "What mobile platforms are supported?",
+      "difficulty": "easy",
+      "category": "mobile",
+      "answer": "The supported mobile platforms are iOS 15+ and Android 9+.",
+      "sources_cited": [
+        "product-docs/notifications/mobile-push.md",
+        "product-docs/mobile/mobile-app-overview.md"
+      ],
+      "expected_sources": [
+        "product-docs/mobile/mobile-app-overview.md"
+      ],
+      "confidence": "high",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.9553963341315064,
+      "context_precision": 0.99999999995
+    },
+    {
+      "id": "Q020",
+      "query": "What's the support response SLA on Pro?",
+      "difficulty": "easy",
+      "category": "billing",
+      "answer": "The support response SLA on the Pro plan is 8 hours.",
+      "sources_cited": [
+        "product-docs/billing/plans.md"
+      ],
+      "expected_sources": [
+        "product-docs/billing/plans.md"
+      ],
+      "confidence": "high",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.9081145709703474,
+      "context_precision": 0.49999999995
+    },
+    {
+      "id": "Q021",
+      "query": "If a workflow step fails, when does Helix retry it?",
+      "difficulty": "medium",
+      "category": "workflows",
+      "answer": "When a workflow step fails, Helix automatically retries the step **3 times** with exponential backoff. The retry schedule is as follows: the first retry occurs after **1 minute**, the second after **5 minutes**, and the third after **25 minutes**. If all retries fail, the run is marked as **Failed** and the workflow's failure handler runs (if configured).",
+      "sources_cited": [
+        "product-docs/workflows/error-handling.md"
+      ],
+      "expected_sources": [
+        "product-docs/workflows/error-handling.md"
+      ],
+      "confidence": "high",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.8634287487408123,
+      "context_precision": 0.499999999975
+    },
+    {
+      "id": "Q022",
+      "query": "How do I verify the signature on incoming Helix webhooks?",
+      "difficulty": "medium",
+      "category": "api",
+      "answer": "To verify the signature on incoming Helix webhooks, you can use the following Python code:\n\n```python\nimport hmac, hashlib\nexpected = hmac.new(secret.encode(), body, hashlib.sha256).hexdigest()\nif not hmac.compare_digest(expected, received_signature):\n    raise Exception(\"Invalid signature\")\n```\n\nMake sure to replace `secret` with your subscription's secret and `body` with the raw request body of the webhook. The signature is included in the `X-Helix-Signature` header of the webhook request.",
+      "sources_cited": [
+        "product-docs/api/webhooks.md"
+      ],
+      "expected_sources": [
+        "product-docs/api/webhooks.md"
+      ],
+      "confidence": "high",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.8931017339224637,
+      "context_precision": 0.9999999999666667
+    },
+    {
+      "id": "Q023",
+      "query": "What's the difference between Pro and Enterprise plans?",
+      "difficulty": "medium",
+      "category": "billing",
+      "answer": "The main differences between the Pro and Enterprise plans are as follows:\n\n1. **Price**: Pro plan costs $299/month, while the Enterprise plan has a custom pricing model.\n2. **Workflow runs/month**: Pro plan allows for 10,000 workflow runs per month, whereas the Enterprise plan offers unlimited workflow runs.\n3. **Users**: The Pro plan supports up to 10 users, while the Enterprise plan allows for unlimited users.\n4. **Data retention**: Run records are retained for 90 days on the Pro plan and for 365 days on the Enterprise plan.\n\nAdditionally, API access is included in both plans, but the rate limits differ: Pro has a limit of 1000 requests per minute, while Enterprise has unlimited requests per minute.",
+      "sources_cited": [
+        "product-docs/getting-started/welcome.md",
+        "product-docs/api/runs-endpoint.md"
+      ],
+      "expected_sources": [
+        "product-docs/billing/plans.md"
+      ],
+      "confidence": "high",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.9458015960287901,
+      "context_precision": 0.499999999975
+    },
+    {
+      "id": "Q024",
+      "query": "Which roles can manage billing?",
+      "difficulty": "medium",
+      "category": "admin",
+      "answer": "Only the Owner role can manage billing. The Admin, Editor, and Viewer roles do not have access to billing settings.",
+      "sources_cited": [
+        "product-docs/admin/roles-and-permissions.md",
+        "tickets/ticket-1455-cant-access-billing.html"
+      ],
+      "expected_sources": [
+        "product-docs/admin/roles-and-permissions.md",
+        "tickets/ticket-1455-cant-access-billing.html"
+      ],
+      "confidence": "high",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.8792153167631801,
+      "context_precision": 0.699999999965
+    },
+    {
+      "id": "Q025",
+      "query": "Why am I getting 429 errors when I'm under the rate limit?",
+      "difficulty": "medium",
+      "category": "api",
+      "answer": "You may be hitting 429 errors even when under the rate limit due to the way the rate limit is enforced. Helix uses a token bucket system for rate limiting. For example, if your plan allows 1000 requests per minute, this limit is enforced as a token bucket that refills at a rate of approximately 17 tokens per second. If you send a burst of requests (e.g., 400 requests in a short period), you can drain the bucket faster than it refills, leading to 429 errors. To avoid this, you should spread your requests more evenly over time and consider adding delays between batches of requests. Additionally, you can monitor your bucket state using the `X-RateLimit-Remaining` header in the API responses.",
+      "sources_cited": [
+        "tickets/ticket-1156-api-rate-limit-confusion.html"
+      ],
+      "expected_sources": [
+        "product-docs/api/rate-limits.md",
+        "tickets/ticket-1156-api-rate-limit-confusion.html"
+      ],
+      "confidence": "high",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.9340905863308545,
+      "context_precision": 0.8666666666377778
+    },
+    {
+      "id": "Q026",
+      "query": "How do I cancel my subscription?",
+      "difficulty": "medium",
+      "category": "billing",
+      "answer": "You can cancel your subscription by going to **Settings \u2192 Billing \u2192 Plan** and selecting the option to cancel your plan.",
+      "sources_cited": [
+        "product-docs/billing/plan-changes.md"
+      ],
+      "expected_sources": [
+        "product-docs/billing/plan-changes.md"
+      ],
+      "confidence": "high",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.972550839578548,
+      "context_precision": 0.49999999995
+    },
+    {
+      "id": "Q027",
+      "query": "What happens when I downgrade from Pro to Starter?",
+      "difficulty": "medium",
+      "category": "billing",
+      "answer": "When you downgrade from Pro to Starter, the downgrade takes effect at the end of your current billing period, meaning you keep Pro features until then. Once the downgrade activates:\n- Your workflow definitions are preserved, and nothing gets deleted.\n- New plan limits apply: you will have a maximum of 100 runs per month (down from 10,000), 1 user seat (down from 10), and only basic integrations will be available.\n- Workflows that depend on Pro-only integrations (like Salesforce, HubSpot, Stripe, etc.) will start failing because those connections will become unavailable.\n- API access will be removed, so any workflows or applications calling the Helix API will stop working.",
+      "sources_cited": [
+        "doc_id: product-docs/billing/plan-changes.md",
+        "doc_id: tickets/ticket-1322-downgrade-question.html"
+      ],
+      "expected_sources": [
+        "product-docs/billing/plan-changes.md",
+        "tickets/ticket-1322-downgrade-question.html"
+      ],
+      "confidence": "high",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.9917499792299495,
+      "context_precision": 0.9999999999666667
+    },
+    {
+      "id": "Q028",
+      "query": "How do I export my data for compliance?",
+      "difficulty": "medium",
+      "category": "data",
+      "answer": "To export your data for compliance, you can initiate a self-service export from the Helix platform. Go to **Settings \u2192 Data \u2192 Export**, choose the data type, date range, and format. If you are dealing with a GDPR data subject access request (DSAR), follow the privacy procedure to compile the necessary data within 7 days, which includes profile data, workspace memberships, workflows authored, and audit log entries. If you are cancelling your account, you can request a full export proactively to reduce post-cancellation support requests. For large workspaces with more than 10 million run records, you may need to file a bulk export through the internal admin tool if self-service exports time out.",
+      "sources_cited": [
+        "runbooks/customer-ops/data-export-requests.pdf",
+        "product-docs/data/exporting-data.md"
+      ],
+      "expected_sources": [
+        "product-docs/data/exporting-data.md",
+        "tickets/ticket-1349-export-stuck.html"
+      ],
+      "confidence": "high",
+      "faithfulness": 0.9,
+      "answer_relevancy": 0.7941458981555113,
+      "context_precision": 0.99999999998
+    },
+    {
+      "id": "Q029",
+      "query": "What's the GDPR deletion process?",
+      "difficulty": "medium",
+      "category": "data",
+      "answer": "To permanently delete a user and all associated data under GDPR, follow these steps:\n1. Navigate to **Settings \u2192 Privacy \u2192 Data subject requests \u2192 New deletion request**.\n2. Enter the data subject's email and confirm the request.\n3. The deletion will occur within **30 days**. During this 30-day window, the request can be canceled. After the 30 days, deletion is irreversible.",
+      "sources_cited": [
+        "product-docs/data/gdpr-exports.md"
+      ],
+      "expected_sources": [
+        "product-docs/data/gdpr-exports.md",
+        "runbooks/customer-ops/account-deletion.pdf"
+      ],
+      "confidence": "high",
+      "faithfulness": 0.5555555555555556,
+      "answer_relevancy": 0.747223193555031,
+      "context_precision": 0.8874999999778125
+    },
+    {
+      "id": "Q030",
+      "query": "How do I set up SCIM provisioning?",
+      "difficulty": "medium",
+      "category": "admin",
+      "answer": "To set up SCIM provisioning, follow these steps:\n\n1. Enable SCIM in **Settings \u2192 Security \u2192 SCIM**.\n2. Helix issues a SCIM token. Copy it.\n3. In your IdP, create a SCIM provisioning app pointing to:\n   - **SCIM URL**: `https://api.helix.io/v2/scim/v2`\n   - **Token**: the token from step 2.\n4. Map your IdP attributes to Helix attributes (email, displayName, role).\n5. Enable provisioning and select which IdP groups sync to Helix.",
+      "sources_cited": [
+        "product-docs/admin/scim.md"
+      ],
+      "expected_sources": [
+        "product-docs/admin/scim.md"
+      ],
+      "confidence": "high",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.9500449192440855,
+      "context_precision": 0.8055555555287036
+    },
+    {
+      "id": "Q031",
+      "query": "What happens if my payment fails?",
+      "difficulty": "medium",
+      "category": "billing",
+      "answer": "If your payment fails, your account will be suspended after the third retry fails. The workspace owner will be emailed about the suspension. The account remains suspended until the payment method is updated and a successful charge occurs. Once a successful payment is made, the account will be re-enabled automatically within one hour.",
+      "sources_cited": [
+        "runbooks/customer-ops/account-suspension.pdf"
+      ],
+      "expected_sources": [
+        "product-docs/billing/payment-methods.md",
+        "runbooks/customer-ops/account-suspension.pdf"
+      ],
+      "confidence": "high",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.9999996242593044,
+      "context_precision": 0.19999999998
+    },
+    {
+      "id": "Q032",
+      "query": "Can I edit workflows from the mobile app?",
+      "difficulty": "medium",
+      "category": "mobile",
+      "answer": "No, you cannot edit workflows from the mobile app. The mobile app is read-and-approve only, and for editing workflows, you need to use the web app.",
+      "sources_cited": [
+        "product-docs/mobile/mobile-limitations.md",
+        "product-docs/notifications/mobile-push.md",
+        "product-docs/mobile/mobile-app-overview.md"
+      ],
+      "expected_sources": [
+        "product-docs/mobile/mobile-app-overview.md",
+        "product-docs/mobile/mobile-limitations.md"
+      ],
+      "confidence": "high",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.9876412271693447,
+      "context_precision": 0.9999999999666667
+    },
+    {
+      "id": "Q033",
+      "query": "How do I rotate an API key safely?",
+      "difficulty": "medium",
+      "category": "api",
+      "answer": "The provided context doesn't cover this.",
+      "sources_cited": [],
+      "expected_sources": [
+        "product-docs/api/authentication.md",
+        "tickets/ticket-1189-401-with-valid-key.html"
+      ],
+      "confidence": "low",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.0,
+      "context_precision": 0.19999999998
+    },
+    {
+      "id": "Q034",
+      "query": "What's idempotency and how do I use it with the Helix API?",
+      "difficulty": "medium",
+      "category": "api",
+      "answer": "Idempotency in the context of the Helix API refers to the ability to safely repeat requests without causing unintended side effects. You can use idempotency by including an optional `Idempotency-Key` header in your requests. This key should be a unique string. When you send multiple requests with the same `Idempotency-Key`, Helix will return the same response for those repeated requests, allowing you to retry requests safely without duplicating actions.\n\nAdditionally, for integrations that may retry steps, it's important to ensure that your integrations are idempotent as well, particularly for HTTP calls, by including the `Idempotency-Key` header to avoid duplicate side effects.",
+      "sources_cited": [
+        "product-docs/api/errors.md",
+        "product-docs/workflows/error-handling.md"
+      ],
+      "expected_sources": [
+        "product-docs/api/errors.md",
+        "product-docs/workflows/error-handling.md"
+      ],
+      "confidence": "high",
+      "faithfulness": 0.8888888888888888,
+      "answer_relevancy": 0.9320985560082707,
+      "context_precision": 0.8333333332916666
+    },
+    {
+      "id": "Q035",
+      "query": "What do I do if I'm locked out by IP allowlist?",
+      "difficulty": "medium",
+      "category": "admin",
+      "answer": "If you're locked out by the IP allowlist, you should ensure that you have included an emergency CIDR (e.g., a backup VPN) in your allowlist configuration. This allows you to regain access if the primary allowlist becomes unreachable.",
+      "sources_cited": [
+        "doc_id: product-docs/admin/ip-allowlist.md"
+      ],
+      "expected_sources": [
+        "product-docs/admin/ip-allowlist.md"
+      ],
+      "confidence": "high",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.9595120753507628,
+      "context_precision": 0.19999999998
+    },
+    {
+      "id": "Q036",
+      "query": "Why does my Salesforce connection keep expiring?",
+      "difficulty": "medium",
+      "category": "integrations",
+      "answer": "Your Salesforce connection may keep expiring due to one of the following reasons: (1) the Salesforce user who authorized the connection has expiring credentials (like password expiry or MFA challenge changes), (2) the Salesforce admin policy is set to revoke long-lived OAuth grants, or (3) the user account is being deactivated and reactivated. In a specific case, a customer had their refresh token policy set to 'expire on first use,' which invalidated the refresh token every time Helix rotated access tokens, leading to repeated disconnections. Changing the refresh token policy to 'refresh until revoked' resolved the issue for them.",
+      "sources_cited": [
+        "tickets/ticket-1267-integration-disconnect.html"
+      ],
+      "expected_sources": [
+        "product-docs/integrations/salesforce.md",
+        "product-docs/integrations/oauth-flow.md",
+        "tickets/ticket-1267-integration-disconnect.html"
+      ],
+      "confidence": "high",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.919255444619732,
+      "context_precision": 0.49999999995
+    },
+    {
+      "id": "Q037",
+      "query": "How do I send a Helix webhook to a custom URL?",
+      "difficulty": "medium",
+      "category": "integrations",
+      "answer": "The provided context doesn't cover this.",
+      "sources_cited": [],
+      "expected_sources": [
+        "product-docs/integrations/custom-webhooks.md"
+      ],
+      "confidence": "low",
+      "faithfulness": 0.0,
+      "answer_relevancy": 0.0,
+      "context_precision": 0.999999999975
+    },
+    {
+      "id": "Q038",
+      "query": "What's the most efficient way to process a large batch in a workflow?",
+      "difficulty": "medium",
+      "category": "workflows",
+      "answer": "The most efficient way to process a large batch in a workflow is to use a **Parallel Loop** step if your loop iterations are independent. This allows you to process up to 10 items concurrently, which can significantly reduce the total processing time compared to executing loops sequentially. Additionally, be mindful of potential pitfalls such as hitting rate limits when calling external APIs and managing memory issues with very large loops.",
+      "sources_cited": [
+        "product-docs/workflows/loops.md"
+      ],
+      "expected_sources": [
+        "product-docs/workflows/loops.md",
+        "product-docs/workflows/parallel-execution.md",
+        "tickets/ticket-1234-workflow-timeout.html"
+      ],
+      "confidence": "high",
+      "faithfulness": 0.625,
+      "answer_relevancy": 0.9917837479894307,
+      "context_precision": 0.7499999999625
+    },
+    {
+      "id": "Q039",
+      "query": "How is overage usage billed on the Pro plan?",
+      "difficulty": "medium",
+      "category": "billing",
+      "answer": "On the Pro plan, overage runs are allowed at a rate of $0.01 per additional run, which is billed at the end of the month.",
+      "sources_cited": [
+        "product-docs/billing/usage-and-overages.md"
+      ],
+      "expected_sources": [
+        "product-docs/billing/usage-and-overages.md",
+        "tickets/ticket-1301-unexpected-charge.html"
+      ],
+      "confidence": "high",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.8669878902736244,
+      "context_precision": 0.8055555555287036
+    },
+    {
+      "id": "Q040",
+      "query": "What does Helix do when a webhook delivery fails?",
+      "difficulty": "medium",
+      "category": "api",
+      "answer": "When a webhook delivery fails, Helix retries the delivery up to 3 times with exponential backoff. If all retries fail, the delivery is marked as permanently failed, and a notification is sent to the workspace owner.",
+      "sources_cited": [
+        "product-docs/api/webhooks.md"
+      ],
+      "expected_sources": [
+        "product-docs/api/webhooks.md",
+        "tickets/ticket-1212-webhook-not-firing.html"
+      ],
+      "confidence": "high",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.9364643823908696,
+      "context_precision": 0.9999999999666667
+    },
+    {
+      "id": "Q041",
+      "query": "Our team is migrating from Okta to Azure AD this weekend. What do we need to know to avoid a redirect loop?",
+      "difficulty": "hard",
+      "category": "admin",
+      "answer": "To avoid a redirect loop during your migration from Okta to Azure AD, ensure the following:\n1. Update the SAML metadata in Helix to reference the Azure AD endpoints. You can check this in Settings \u2192 Security \u2192 SSO. The metadata should point to login.microsoftonline.com instead of okta.com.\n2. Configure the NameID format in your Azure AD enterprise app to be 'emailAddress' instead of 'persistent'. This is crucial because Helix uses the SAML NameID to look up or provision user accounts. If the NameID is set to 'persistent', it sends an opaque ID that Helix cannot match with any email on file, leading to a redirect loop.\n\nFor best practices, always test the configuration with one user before applying it organization-wide. This information is documented in the SSO guide.",
+      "sources_cited": [
+        "tickets/ticket-1042-sso-redirect-loop.html",
+        "product-docs/admin/sso.md"
+      ],
+      "expected_sources": [
+        "product-docs/admin/sso.md",
+        "tickets/ticket-1042-sso-redirect-loop.html"
+      ],
+      "confidence": "high",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.8566593098119974,
+      "context_precision": 0.9999999999
+    },
+    {
+      "id": "Q042",
+      "query": "I'm seeing my workflow run time slowly creep up over the last two weeks even though I haven't changed anything. What should I look at?",
+      "difficulty": "hard",
+      "category": "workflows",
+      "answer": "You should check the specific steps in your workflow to identify any that may be taking longer to execute. For example, if your workflow includes queries or API calls, look at their performance over time. Additionally, consider whether any external factors, such as changes in data volume or structure, could be affecting execution time. If you have a SOQL query, for instance, check if the result set size has increased, as this can significantly impact run time. If you find that a particular step is slowing down, you may need to optimize it or adjust your workflow accordingly.",
+      "sources_cited": [
+        "tickets/ticket-1402-slow-execution.html"
+      ],
+      "expected_sources": [
+        "tickets/ticket-1402-slow-execution.html",
+        "product-docs/workflows/creating-workflows.md",
+        "product-docs/integrations/salesforce.md"
+      ],
+      "confidence": "medium",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.7154712693971987,
+      "context_precision": 0.8041666666465626
+    },
+    {
+      "id": "Q043",
+      "query": "Our auditor is asking for 18 months of run history. How do we get that?",
+      "difficulty": "hard",
+      "category": "data",
+      "answer": "To obtain 18 months of run history, you would need to upgrade to the Enterprise plan, which retains run records for 365 days. Since the Pro plan only retains records for 90 days, you won't be able to access run history older than that on the current plan. After upgrading, you can ensure that you have the necessary data for future audits by either regularly exporting your run data or relying on the longer retention period of the Enterprise plan.",
+      "sources_cited": [
+        "tickets/ticket-1378-missing-data-in-export.html",
+        "product-docs/api/runs-endpoint.md"
+      ],
+      "expected_sources": [
+        "product-docs/data/retention-policy.md",
+        "product-docs/data/run-logs.md",
+        "product-docs/data/exporting-data.md",
+        "tickets/ticket-1378-missing-data-in-export.html"
+      ],
+      "confidence": "high",
+      "faithfulness": 0.8333333333333334,
+      "answer_relevancy": 0.7745188489480328,
+      "context_precision": 0.6999999999766667
+    },
+    {
+      "id": "Q044",
+      "query": "We're getting paged at 3am because production is failing on 401s but the API key wasn't rotated. What's the standard runbook?",
+      "difficulty": "hard",
+      "category": "api",
+      "answer": "The provided context doesn't cover a specific runbook for handling 401 errors related to API keys. However, based on the resolved ticket HX-1189, a common cause for 401 errors is that the API key may have been deleted. In that case, the recommended steps would be to check the audit log for any deletions and generate a new API key if necessary. For a more comprehensive response protocol, you may want to refer to the P0 Incident Response Procedure if the issue is impacting multiple customers or core functionality.",
+      "sources_cited": [
+        "tickets/ticket-1189-401-with-valid-key.html",
+        "runbooks/incident-response/p0-incident-response.pdf"
+      ],
+      "expected_sources": [
+        "product-docs/api/authentication.md",
+        "product-docs/admin/audit-log.md",
+        "runbooks/incident-response/auth-service-degradation.pdf",
+        "tickets/ticket-1189-401-with-valid-key.html"
+      ],
+      "confidence": "medium",
+      "faithfulness": 0.8571428571428571,
+      "answer_relevancy": 0.0,
+      "context_precision": 0.9999999999
+    },
+    {
+      "id": "Q045",
+      "query": "Our customer just renewed but we're hearing rumblings their champion left. What should we do?",
+      "difficulty": "hard",
+      "category": "csm",
+      "answer": "If your customer has just renewed but their primary champion has left, you should take the following steps:\n\n1. Document the change in the account record.\n2. Reach out to the customer to discuss the situation, specifically asking about the impact of the champion's departure on their usage and satisfaction with Helix.\n3. Identify who the new decision-maker is for the account and establish a relationship with them.\n4. Monitor the account closely for any signs of churn risk, such as changes in usage or sentiment.",
+      "sources_cited": [
+        "runbooks/csm/churn-risk-indicators.pdf"
+      ],
+      "expected_sources": [
+        "runbooks/csm/churn-risk-indicators.pdf",
+        "runbooks/customer-ops/renewal-at-risk.pdf",
+        "runbooks/csm/health-score-methodology.pdf"
+      ],
+      "confidence": "high",
+      "faithfulness": 0.7142857142857143,
+      "answer_relevancy": 0.7781440171333894,
+      "context_precision": 0.999999999975
+    },
+    {
+      "id": "Q046",
+      "query": "Customer says they were charged for an overage but they're sure they were under their limit. How do we investigate?",
+      "difficulty": "hard",
+      "category": "billing",
+      "answer": "To investigate a customer's claim of being charged for an overage while believing they were under their limit, follow these steps:\n\n1. **Check the Customer's Plan**: Confirm the customer's subscription plan and the included number of workflow runs per month.\n\n2. **Review Usage History**: Look at the customer's usage history to determine the total number of workflow runs for the billing period in question. This can help identify if they indeed exceeded their limit.\n\n3. **Analyze Charge Breakdown**: Examine the invoice details to see the breakdown of charges, including any overage fees. Ensure that the calculation aligns with the customer's usage.\n\n4. **Identify Top Contributors**: If the usage is high, identify which workflows are contributing to the increased run count. This can help pinpoint any workflows that may be running more frequently than expected.\n\n5. **Check for Duplicates or Errors**: Investigate if there are any duplicate webhook subscriptions or misconfigurations that could cause workflows to run excessively, leading to overage charges.\n\n6. **Communicate Findings**: Once you have gathered all relevant information, communicate your findings to the customer, explaining the reasons for the charges and any potential solutions or adjustments that can be made.",
+      "sources_cited": [
+        "doc_id: tickets/ticket-1301-unexpected-charge.html"
+      ],
+      "expected_sources": [
+        "product-docs/billing/usage-and-overages.md",
+        "product-docs/billing/invoices.md",
+        "runbooks/customer-ops/refund-processing.pdf",
+        "tickets/ticket-1301-unexpected-charge.html"
+      ],
+      "confidence": "high",
+      "faithfulness": 0.6470588235294118,
+      "answer_relevancy": 0.8029851953436163,
+      "context_precision": 0.9999999999666667
+    },
+    {
+      "id": "Q047",
+      "query": "We need to fail over to our Postgres replica. What's the procedure and what are the gotchas?",
+      "difficulty": "hard",
+      "category": "incident-response",
+      "answer": "To manually fail over to your Postgres replica, follow these steps:\n\n1. **Stop writes**: Execute the command `kubectl scale deployment/api-server --replicas=0` to stop new writes from reaching the primary database. Note that any workflow runs in flight will fail during this time, which is acceptable for the duration of the failover.\n\n2. **Wait for replication to catch up**: Run the command `psql -c 'SELECT pg_last_wal_receive_lsn(), pg_last_wal_replay_lsn();'` on the replica until both values match. This ensures that all writes have been replicated.\n\n3. **Promote the replica**: Run `pg_ctl promote -D /var/lib/postgresql/data` on the replica to promote it to primary.\n\n4. **Update DNS**: Update the `db-primary.helix.io` DNS record to point to the new primary's IP address. The TTL is 60 seconds, so allow 90 seconds for propagation.\n\n5. **Resume writes**: Scale the API server back up using `kubectl scale deployment/api-server --replicas=20`. Monitor error rates closely for the next 15 minutes.\n\n6. **Provision a new replica**: Since the promoted replica is now the primary, provision a new replica from the latest snapshot. Until the new replica is in sync, you will not have failover capacity.\n\n**Gotchas**:\n- Ensure that the replica is healthy and that the replication lag is under 5 seconds before starting the failover process.\n- Be aware that if the failover fails or causes more impact, you may need to fail back by stopping writes again and pointing the DNS back to the original primary if it is still healthy. If the original primary is unhealthy, you will need to restore from the most recent backup.",
+      "sources_cited": [
+        "runbooks/incident-response/database-failover.pdf"
+      ],
+      "expected_sources": [
+        "runbooks/incident-response/database-failover.pdf"
+      ],
+      "confidence": "high",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.820159092763555,
+      "context_precision": 0.99999999995
+    },
+    {
+      "id": "Q048",
+      "query": "We've decided to roll back a bad deploy mid-incident. Walk me through it.",
+      "difficulty": "hard",
+      "category": "incident-response",
+      "answer": "To roll back a bad deploy mid-incident, follow these steps:\n\n1. **Identify the bad deploy**: From the deploys dashboard, find the deploy that correlates with the symptoms you are experiencing. Helix records every deploy with its commit SHA, deployer, and timestamp.\n\n2. **Confirm rollback is safe**: Check if the bad deploy ran a database migration that is not backward-compatible. If it did, rolling back the code will not roll back the schema, and you should stop and engage the on-call DBA.\n\n3. **Execute rollback**: Use the command `helix deploy rollback <service-name>` from the deploy CLI. Make sure to specify the service name. The CLI will confirm the target version (the previous successful deploy) and proceed upon your confirmation.\n\n4. **Monitor**: After executing the rollback, watch the error rates and latency dashboards. The rollback should reduce error rates within 60 seconds. If it does not, check the pod status as the rollback may have failed.\n\n5. **Communicate**: Update the #incidents channel with the rollback action taken. If customers were impacted, ensure to update the status page accordingly.\n\n6. **Block re-deploy**: Lock the service in the deploy CLI using `helix deploy lock <service-name>`. This prevents any re-deploys until you manually unlock it. Do not unlock until the root cause of the issue is fixed and verified.\n\n7. **Postmortem**: Every rollback triggers a postmortem within 5 business days to analyze why the bug got past CI, even if the rollback resolved the issue cleanly.",
+      "sources_cited": [
+        "runbooks/engineering/deploy-rollback.pdf"
+      ],
+      "expected_sources": [
+        "runbooks/engineering/deploy-rollback.pdf",
+        "runbooks/engineering/postmortem-template.pdf"
+      ],
+      "confidence": "high",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.8270970900598709,
+      "context_precision": 0.99999999998
+    },
+    {
+      "id": "Q049",
+      "query": "Customer's webhooks aren't being delivered to their endpoint and we suspect signature verification is failing. What's the diagnostic flow and what's the most common gotcha?",
+      "difficulty": "hard",
+      "category": "api",
+      "answer": "To diagnose webhook delivery issues related to signature verification, follow this flow:\n\n1. **Check the webhook delivery dashboard** for the failure pattern:\n   - If the failure is for a specific destination URL, it is likely a customer-side issue.\n   - If multiple destinations are failing, it may indicate a Helix-side issue.\n   - If a specific event type is failing, it could be due to a code regression in the publisher.\n\n2. **Check the response codes** from the customer's endpoint:\n   - A 4xx response indicates that the customer's endpoint is rejecting the payloads, which could be due to an authentication issue or a schema change.\n   - A 5xx response indicates that the customer's endpoint is down.\n\n3. **Email the workspace owner** with the failure rate and the last 3 error responses if you identify a customer-side failure.\n\nThe most common gotcha is that customers may not have implemented signature verification correctly. Helix uses the **X-Helix-Signature** header with **HMAC-SHA256** over the raw request body. If customers are not verifying against the raw bytes or are using a different signing method, it will lead to failed deliveries due to invalid signatures.",
+      "sources_cited": [
+        "runbooks/incident-response/webhook-delivery-failure.pdf",
+        "product-docs/integrations/custom-webhooks.md"
+      ],
+      "expected_sources": [
+        "product-docs/api/webhooks.md",
+        "tickets/ticket-1212-webhook-not-firing.html"
+      ],
+      "confidence": "high",
+      "faithfulness": 0.9166666666666666,
+      "answer_relevancy": 0.7198338333855016,
+      "context_precision": 0.99999999998
+    },
+    {
+      "id": "Q050",
+      "query": "A customer is escalating because they hit a P0-level outage on our side but haven't seen any communication from us. What's our obligation?",
+      "difficulty": "hard",
+      "category": "incident-response",
+      "answer": "For any P0 incident lasting longer than 30 minutes, we are obligated to send an email update to all paying customers using a pre-approved template. Additionally, we must update the status page every 15 minutes until resolution. CS leadership must approve the email before sending it.",
+      "sources_cited": [
+        "runbooks/incident-response/p0-incident-response.pdf"
+      ],
+      "expected_sources": [
+        "runbooks/incident-response/p0-incident-response.pdf",
+        "runbooks/customer-ops/custom-sla-handling.pdf"
+      ],
+      "confidence": "high",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.492532195257891,
+      "context_precision": 0.6791666666496875
+    }
+  ]
+}

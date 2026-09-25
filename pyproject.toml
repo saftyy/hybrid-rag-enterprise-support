@@ -1,0 +1,66 @@
+[project]
+name = "helix-checkpoint-rag"
+version = "0.3.0"
+description = "Helix CSM support assistant: RAG (Module 1) + operational maturity layer (Module 3)"
+requires-python = ">=3.10,<3.13"
+
+# Every version is pinned. The ops stack was resolved against the Module 1 pins:
+#  - langchain 0.3.7 caps langsmith < 0.2, so langsmith is 0.1.147.
+#  - langchain-community 0.3.7 caps SQLAlchemy < 2.0.36; the newest Phoenix needs >= 2.0.46,
+#    so Phoenix is pinned to 13.23.0 (the last release accepting SQLAlchemy 2.0.35).
+#  - Phoenix 13.23 needs arize-phoenix-evals/-client 2.x and a graphql-core pre-release that
+#    still exports ExecutionContext (3.3.0a12).
+#  - Great Expectations 1.x would pull numpy 2 / scipy 1.16+, which langchain 0.3.7 rejects,
+#    so numpy < 2 and scipy 1.13.1 are pinned explicitly.
+dependencies = [
+  # --- Module 1: LLM / RAG stack (unchanged) ---
+  "langchain==0.3.7",
+  "langchain-openai==0.2.9",
+  "langchain-community==0.3.7",
+  "langchain-pinecone==0.2.0",
+  "openai==1.55.3",
+  "pinecone-client==5.0.1",
+  "rank-bm25==0.2.2",
+  "pypdf==5.1.0",
+  "pdf2image==1.17.0",
+  "pytesseract==0.3.13",
+  "beautifulsoup4==4.12.3",
+  "unstructured==0.16.9",
+  "markdown==3.7",
+  "ragas==0.2.6",
+  "datasets==3.1.0",
+  "python-dotenv==1.0.1",
+  "tqdm==4.67.0",
+  "tiktoken==0.8.0",
+  "pydantic==2.9.2",
+
+  # --- Module 3: tracing + evaluation ---
+  "langsmith==0.1.147",
+
+  # --- Module 3: observability ---
+  "arize-phoenix==13.23.0",
+  "arize-phoenix-client==2.13.0",
+  "arize-phoenix-evals==2.13.0",
+  "arize-phoenix-otel==0.17.1",
+  "openinference-instrumentation-langchain==0.1.76",
+  "openinference-semantic-conventions==0.1.39",
+  "opentelemetry-sdk==1.45.0",
+  "opentelemetry-exporter-otlp-proto-http==1.45.0",
+  "graphql-core==3.3.0a12",
+  "strawberry-graphql==0.287.3",
+  "SQLAlchemy==2.0.35",
+
+  # --- Module 3: data quality ---
+  "great-expectations==1.23.2",
+  "pandas==2.2.3",
+  "numpy==1.26.4",
+  "scipy==1.13.1",
+
+  # --- Tests ---
+  "pytest==8.3.3",
+  "pytest-mock==3.14.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+filterwarnings = ["ignore::DeprecationWarning", "ignore::UserWarning"]

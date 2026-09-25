@@ -1,31 +1,39 @@
-# --- Core LLM / RAG stack ---
+# Generated from pyproject.toml — keep the two in sync.
+# Install: pip install -r requirements.txt
 langchain==0.3.7
 langchain-openai==0.2.9
 langchain-community==0.3.7
 langchain-pinecone==0.2.0
 openai==1.55.3
-
-# --- Retrieval improvement: hybrid search ---
+pinecone-client==5.0.1
 rank-bm25==0.2.2
-
-# --- Document loading / parsing ---
 pypdf==5.1.0
 pdf2image==1.17.0
 pytesseract==0.3.13
 beautifulsoup4==4.12.3
 unstructured==0.16.9
-markdown==37
-
-# --- Evaluation ---
+markdown==3.7
 ragas==0.2.6
 datasets==3.1.0
-
-# --- Testing ---
-pytest==8.3.3
-pytest-mock==3.14.0
-
-# --- Utilities ---
 python-dotenv==1.0.1
 tqdm==4.67.0
 tiktoken==0.8.0
 pydantic==2.9.2
+langsmith==0.1.147
+arize-phoenix==13.23.0
+arize-phoenix-client==2.13.0
+arize-phoenix-evals==2.13.0
+arize-phoenix-otel==0.17.1
+openinference-instrumentation-langchain==0.1.76
+openinference-semantic-conventions==0.1.39
+opentelemetry-sdk==1.45.0
+opentelemetry-exporter-otlp-proto-http==1.45.0
+graphql-core==3.3.0a12
+strawberry-graphql==0.287.3
+SQLAlchemy==2.0.35
+great-expectations==1.23.2
+pandas==2.2.3
+numpy==1.26.4
+scipy==1.13.1
+pytest==8.3.3
+pytest-mock==3.14.0

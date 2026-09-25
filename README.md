@@ -208,3 +208,123 @@ Ranked by expected impact:
 6. **Add basic production monitoring**: per-query latency (p95), retrieval hit-rate against a
    sampled ground truth, and a "low confidence" rate alert — right now there's no signal on any of
    these outside a manual eval run.
+
+---
+
+# Module 3 — Operational Maturity (Ops & Evaluation Checkpoint)
+
+**LangSmith project:** ⟨paste URL printed by `python -m ops.langsmith.setup`⟩
+**Loom walkthrough:** ⟨paste public/unlisted Loom link⟩
+
+## Operational maturity summary
+
+On top of the Module 1 RAG (unchanged in `src/`) I added an `ops/` layer that turns "it
+demos well" into evidence. **Tracing:** every ingestion and query run is a LangSmith trace
+(retrieval as a retriever span with doc ids and scores, generation via LangChain
+auto-tracing). **Evaluation:** a versioned 50-query LangSmith dataset scored by three
+LLM judges (faithfulness, answer relevance, and a custom *CSM Resolution Quality* judge)
+plus four free deterministic diagnostics. **Observability:** Phoenix spans with retrieval
+and LLM latency, token usage and retrieved document ids, which exposed the main weakness
+(heading-only chunks). **Data quality:** a Great Expectations contract that gates
+ingestion before anything reaches Pinecone. **Monitoring:** a spec with thresholds and
+actions an SRE can implement. Every pipeline variant is a named config (`v1` = Module 1
+baseline, `v2`, `v2-vector`), so each number in the report traces back to exactly what
+produced it. The v1 baseline is never overwritten (v2 lives in its own Pinecone namespace).
+
+## Eval methodology
+
+| Evaluator | Type | What it catches | How it scores |
+|---|---|---|---|
+| `faithfulness` | LLM judge (standard) | Hallucination: claims not in the retrieved context | Judge lists atomic claims and marks each supported/unsupported; score = supported / total. No claims (abstention) = 1.0 |
+| `answer_relevance` | LLM judge (standard) | On-topic but not answering the actual question | 1–5 anchored rubric, reasoning before score, normalised to 0–1 |
+| `csm_resolution_quality` | LLM judge (**custom**) | Right-sounding answer with the wrong key fact; answers a CSM can't act on; **promises to customers no document authorises** | Judge makes 3 categorical calls (key facts vs. reference + test-set `notes`; actionability; unauthorised commitment). Python combines them: 0.7·facts + 0.3·actionability, capped at 0.25 if a commitment is invented |
+| `source_hit`, `source_recall` | deterministic | Retrieval failures | expected sources ∩ retrieved docs |
+| `abstained`, `citation_valid` | deterministic | Over-abstention; citing docs that weren't retrieved | regex / set check |
+
+**Why these three judges together:** faithfulness alone can be gamed by abstaining (an
+"I don't know" is perfectly faithful). Relevance and the custom judge both punish
+unnecessary abstention, and the abstention rate is reported separately.
+
+**Non-obvious decisions:** the judge (`gpt-4o`) is stronger than the generator
+(`gpt-4o-mini`); the LLM makes categorical calls and code computes the number (LLMs are
+bad at choosing "0.73", decent at "is this claim supported?"); the custom judge uses the
+test set's `notes` field, which Module 1 never used.
+
+**Reproducibility and versioning:** dataset name carries the test-set version and its
+description stores a content hash; changing questions without bumping the version is
+refused. Each experiment records config, git commit, judge model, generator model and a
+hash of all prompts. Judge and generator run at temperature 0.
+
+**Calibration against ground truth:** I hand-scored 15 stratified answers (6 easy /
+6 medium / 3 hard, including the known failures) *before* looking at judge scores, then
+ran `python -m ops.langsmith.calibrate_judge`. Result: MAE ⟨ ⟩, agreement at the 0.75
+gate ⟨ ⟩%, Cohen's κ ⟨ ⟩. ⟨What disagreed and what I changed.⟩
+
+| Metric | v1 (Module 1 baseline) | v2 | Δ |
+|---|---|---|---|
+| Faithfulness | ⟨ ⟩ | ⟨ ⟩ | ⟨ ⟩ (gate ≥ +0.05) |
+| Answer relevance | ⟨ ⟩ | ⟨ ⟩ | |
+| CSM resolution quality | ⟨ ⟩ | ⟨ ⟩ | (gate ≥ 0.75) |
+
+## Observability findings
+
+Full write-up: `ops/phoenix/analysis.md`. The RETRIEVER spans showed the right documents
+being retrieved but the wrong *chunks*: Q037 retrieved `custom-webhooks.md` yet the chunk
+was a heading with no instructions. Root cause: header-splitting left **232 of 426 chunks
+(54%) under 200 characters**. Fix (v2): merge Markdown sections to ≥ 400 chars within a
+document and fold orphan fragments → 176 chunks, median 186 → 637 chars. Measured before
+vs after: retrieved chunks < 200 chars ⟨ ⟩% → ⟨ ⟩%, abstention ⟨ ⟩ → ⟨ ⟩, faithfulness
+⟨ ⟩ → ⟨ ⟩, prompt tokens per query ⟨+ ⟩% (the cost of the fix).
+
+## Data quality contract
+
+`ops/data_quality/expectations.py` — 18 expectations on the chunk table, run inside
+ingestion **after embedding and before upsert**.
+
+| Expectation group | Guards against |
+|---|---|
+| Chunk length: 95% within 200–3000 chars; median 300–1500; hard bounds 20–4000 | Heading-only fragments that win retrieval with no content; runaway chunks that bloat the prompt |
+| Metadata: required fields non-null, unique ids, valid category/doc_type, doc_id path format, ≥ 90 distinct documents | Uncitable answers; a loader silently dropping a whole folder |
+| Embeddings: every vector 1536-dim, no NaN | `EMBEDDING_MODEL` changed without rebuilding the index |
+| PII: no email (company domains allow-listed), phone, SSN, card number | Customer PII embedded and quoted back |
+
+**When one fails:** `ops.ingest` writes the report, upserts **nothing**, and exits 1, so a
+CI job or scheduler fails loudly while the previous namespace keeps serving.
+`run_validations` also exits 1, so it can be a CI step. On the Module 1 chunks the suite
+fails 4 of 18 (fragmentation, the median, a 19-char orphan chunk, and 2 tickets with
+customer emails); on v2 it passes 18 of 18.
+
+## Monitoring plan summary
+
+Full spec: `ops/monitoring/monitoring_spec.md`.
+
+| Metric | Threshold → alert | Rationale |
+|---|---|---|
+| Unauthorised commitments (nightly eval) | ≥ 1 → page | The one failure that directly costs money with a customer |
+| Online faithfulness (20% sampled) | 24h mean < baseline − 0.05 → ticket; < 0.80 → page | Hallucination early warning without references |
+| Abstention rate | 1h > 3× baseline (⟨ ⟩%) with ≥ 10 queries → page | Cheapest signal that retrieval is broken (empty namespace, wrong embedding model) |
+| End-to-end p95 latency | > 10 s for 15 min → ticket | Used live on calls; baseline p95 ⟨ ⟩ ms |
+| Prompt tokens / query p95 | > 1.5× baseline (⟨ ⟩) → ticket | Context bloat shows up here before it shows up on the bill |
+
+## Production readiness verdict
+
+**⟨SHIP / HOLD / KILL⟩** — full report: `reports/production_readiness.md`.
+Evidence that would change my mind: ⟨1⟩ · ⟨2⟩ · ⟨3⟩
+
+## How to run (Module 3)
+
+```bash
+pip install -r requirements.txt              # pins resolved in pyproject.toml
+copy .env.example .env                       # add LANGSMITH_API_KEY
+
+python -m pytest tests/                      # Module 1 + ops tests (ops tests are offline)
+python -m ops.langsmith.setup                # project + versioned dataset, prints URLs
+python -m ops.langsmith.run_evals --config v1                    # 1. baseline FIRST
+python -m ops.phoenix.instrument --config v1                     # 2. find the weakness
+python -m ops.data_quality.run_validations --config v1           # 3. contract fails on v1
+python -m ops.ingest --corpus "../corpus" --config v2            # 4. fixed ingestion (gated)
+python -m ops.data_quality.run_validations --config v2           # 5. contract passes
+python -m ops.langsmith.run_evals --config v2 --compare-to v1    # 6. measure the fix
+python -m ops.phoenix.instrument --config v2                     # 7. before/after traces
+python -m ops.langsmith.calibrate_judge --config v1              # 8. after hand-labelling
+```

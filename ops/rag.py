@@ -145,12 +145,13 @@ def retrieve(query: str, config_name: str = "v1") -> list[dict]:
 @traceable(run_type="chain", name="rag_pipeline")
 def answer_query(query: str, config_name: str = "v1") -> dict:
     """End-to-end: retrieve -> generate. Returns a plain dict (JSON-safe for LangSmith)."""
-    from src.generate import generate
+    from ops.generation import generate_for
 
     t0 = time.perf_counter()
     chunks = retrieve(query, config_name)
     t1 = time.perf_counter()
-    result = generate(query, [{"doc_id": c["doc_id"], "text": c["text"]} for c in chunks])
+    result = generate_for(get_config(config_name).prompt, query,
+                          [{"doc_id": c["doc_id"], "text": c["text"]} for c in chunks])
     t2 = time.perf_counter()
 
     return {

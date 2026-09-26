@@ -280,7 +280,7 @@ def test_faithfulness_is_fraction_of_supported_claims():
         ClaimCheck(claim="timeout 30 min", supported=True, reason="ctx 1"),
         ClaimCheck(claim="costs $99", supported=False, reason="not in context")])
     out = score_faithfulness("answer", ["ctx"], judge=fake_judge(v))
-    assert out["key"] == "faithfulness" and out["score"] == pytest.approx(2 / 3)
+    assert out["key"] == "faithfulness" and out["score"] == pytest.approx(2 / 3, abs=1e-4)
     assert "costs $99" in out["comment"]
 
 
@@ -410,3 +410,97 @@ def test_phoenix_local_stats():
     s = local_stats(rows)
     assert s["source_hit_rate"] == 0.5 and s["abstention_rate"] == 0.5
     assert s["retrieved_chunks_under_200_pct"] == 0.5
+
+
+def test_crashed_evaluators_are_counted_not_silently_dropped():
+    from ops.langsmith.run_evals import aggregate, gates, row_from_result
+    ok = _fake_result("Q1", "easy", {"faithfulness": 1.0, "csm_resolution_quality": 1.0})
+    bad = _fake_result("Q2", "easy", {"csm_resolution_quality": 0.8})
+    bad["evaluation_results"]["results"].append(
+        SimpleNamespace(key="faithfulness", score=None, comment="RateLimitError", extra={"error": True}))
+    rows = [row_from_result(ok), row_from_result(bad)]
+    assert rows[1]["evaluator_errors"] == ["faithfulness"]
+    s = aggregate(rows)
+    assert s["scored_n"]["faithfulness"] == 1 and s["n"] == 2
+    assert gates(s, None)["all_examples_scored"] is False
+
+
+def test_scores_are_rounded_for_langsmith():
+    v = FaithfulnessVerdict(claims=[ClaimCheck(claim=c, supported=s, reason="r")
+                                    for c, s in [("a", True), ("b", True), ("c", False)]])
+    assert score_faithfulness("x", ["ctx"], judge=fake_judge(v))["score"] == 0.6667
+    ref = {"expected_sources": ["a", "b", "c"]}
+    assert source_recall({}, {"retrieved_doc_ids": ["a"]}, ref)["score"] == 0.3333
+
+
+def test_ingest_fails_fast_on_wrong_corpus_path(tmp_path):
+    from ops.ingest import load_and_chunk
+    with pytest.raises(SystemExit, match="Corpus not found"):
+        load_and_chunk(str(tmp_path / "nope"))
+
+
+# ---------------------------------------------------------------------------------------
+# v3: prompt variants + comparison tool
+# ---------------------------------------------------------------------------------------
+
+def test_module1_configs_keep_module1_prompt():
+    for name in ("v1", "v2", "v2-vector"):
+        assert get_config(name).prompt == "module1"
+    assert get_config("v3").prompt == "grounded"
+    assert get_config("v3").namespace == get_config("v2").namespace  # no re-ingestion needed
+
+
+def test_grounded_prompt_extends_module1_prompt_without_dropping_rules():
+    from src.generate import SYSTEM_PROMPT
+    from ops.generation import GROUNDED_SYSTEM_PROMPT
+    for rule in ("1. Base your answer strictly", "2. If the context does not contain",
+                 "3. In `sources`", "4. Set `confidence`"):
+        assert rule in GROUNDED_SYSTEM_PROMPT
+    assert "5. Every step" in GROUNDED_SYSTEM_PROMPT and "{context}" in GROUNDED_SYSTEM_PROMPT
+    assert GROUNDED_SYSTEM_PROMPT.index("7.") < GROUNDED_SYSTEM_PROMPT.index("{context}")
+    assert len(GROUNDED_SYSTEM_PROMPT) > len(SYSTEM_PROMPT)
+
+
+def test_module1_variant_routes_to_unchanged_src_generate(monkeypatch):
+    import ops.generation as G
+    calls = []
+    monkeypatch.setattr(G, "module1_generate", lambda q, c: calls.append(q) or "ok")
+    assert G.generate_for("module1", "q?", []) == "ok" and calls == ["q?"]
+    with pytest.raises(ValueError):
+        G.generate_for("nope", "q", [])
+
+
+def test_compare_runs_shows_zero_scores():
+    from ops.langsmith.compare_runs import diff_rows
+    a = {"Q1": {"scores": {"faithfulness": 0.0}, "comments": {}},
+         "Q2": {"scores": {"faithfulness": 1.0}, "comments": {}}}
+    b = {"Q1": {"scores": {"faithfulness": 1.0}, "comments": {"faithfulness": "3/3"}},
+         "Q2": {"scores": {"faithfulness": 1.0}, "comments": {}}}
+    rows = diff_rows(a, b, "faithfulness")
+    assert [r[0] for r in rows] == ["Q1"] and rows[0][1] == 0.0
+
+
+# ---------------------------------------------------------------------------------------
+# faithfulness: abstentions are never counted as unsupported claims
+# ---------------------------------------------------------------------------------------
+
+def test_abstention_statement_extracted_as_claim_scores_one():
+    """Regression: the judge scored Q017/Q033/Q044's abstention as 0/1 claims supported."""
+    v = FaithfulnessVerdict(claims=[ClaimCheck(
+        claim="The provided context doesn't cover this.", supported=False, reason="not in context")])
+    out = score_faithfulness("The provided context doesn't cover this.", ["ctx"], judge=fake_judge(v))
+    assert out["score"] == 1.0 and "ignored" in out["comment"]
+
+
+def test_partial_answer_ignores_only_the_abstention_part():
+    v = FaithfulnessVerdict(claims=[
+        ClaimCheck(claim="Pro includes SSO.", supported=True, reason="ctx"),
+        ClaimCheck(claim="Pro costs $500.", supported=False, reason="no"),
+        ClaimCheck(claim="The context does not mention the Enterprise price.", supported=False, reason="n/a")])
+    out = score_faithfulness("...", ["ctx"], judge=fake_judge(v))
+    assert out["score"] == 0.5
+
+
+def test_real_unsupported_claims_still_count():
+    v = FaithfulnessVerdict(claims=[ClaimCheck(claim="Go to account settings.", supported=False, reason="no")])
+    assert score_faithfulness("...", ["ctx"], judge=fake_judge(v))["score"] == 0.0

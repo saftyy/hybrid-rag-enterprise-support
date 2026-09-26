@@ -1,0 +1,1586 @@
+[
+  {
+    "id": "product-docs/admin/audit-log.md::0",
+    "text": "# Audit Log  \nTrack every administrative action in your workspace. Available on the Enterprise plan.\n\n## What is logged  \n- User invitations, role changes, removals\n- Workflow create/update/delete\n- Integration connections, disconnections\n- API key creation and deletion\n- Settings changes (SSO config, IP allowlist, etc.)\n- Billing events  \nWorkflow runs and integration data flow are not in the audit log; see Run logs for those.",
+    "doc_id": "product-docs/admin/audit-log.md",
+    "source": "product-docs/admin/audit-log.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/admin/audit-log.md::1",
+    "text": "## Accessing the log  \n**Settings \u2192 Audit Log**. Each entry includes:  \n- Timestamp (UTC)\n- Actor (user or API key)\n- Action (e.g., `workflow.update`)\n- Target (the resource affected)\n- IP address and user agent\n\n## Searching and filtering  \nFilter by date range, actor, action type, or target. Free-text search matches across all fields.\n\n## Retention  \nAudit log entries are retained for **365 days**.\n\n## Export  \nExport the audit log to CSV or JSON for compliance or external SIEM ingestion. Exports are generated asynchronously and emailed when ready.\n\n## SIEM streaming  \nFor real-time SIEM integration, configure a webhook destination in **Settings \u2192 Audit Log \u2192 Stream**. Events are delivered within 60 seconds of occurrence.",
+    "doc_id": "product-docs/admin/audit-log.md",
+    "source": "product-docs/admin/audit-log.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/admin/ip-allowlist.md::0",
+    "text": "# IP Allowlist  \nRestrict workspace access to specific IP ranges. Available on the Enterprise plan.\n\n## How it works  \nWhen IP allowlisting is enabled, Helix rejects any request \u2014 UI login, API call, or webhook \u2014 that originates from outside the allowed CIDR ranges.\n\n## Configuring  \n**Settings \u2192 Security \u2192 IP Allowlist**  \n- Add CIDR blocks (IPv4 or IPv6)\n- Maximum **50 CIDR ranges** per workspace\n- Toggle **Enforce** to activate",
+    "doc_id": "product-docs/admin/ip-allowlist.md",
+    "source": "product-docs/admin/ip-allowlist.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/admin/ip-allowlist.md::1",
+    "text": "## What is restricted  \n- Web app login\n- API requests\n- Webhook delivery (inbound) \u2014 your webhook senders must be in the allowlist\n- SAML SSO endpoints\n\n## What is NOT restricted  \n- Outbound webhooks from Helix to your services (Helix's egress IPs are documented separately)\n- Status page access\n- Marketing site\n\n## Best practices  \n**Allowlist your office VPN** rather than individual IPs. VPN ranges are more stable than individual user IPs.  \n**Allowlist webhook senders explicitly**. If you trigger workflows from third-party services, add their documented webhook IP ranges.  \n**Do not lock yourself out**. Always include an emergency CIDR (e.g., a backup VPN) in case the primary allowlist becomes unreachable.\n\n## Recovery  \nIf you accidentally lock yourself out, contact support@helix.io from the email of any Owner or Admin. We can disable enforcement after identity verification.",
+    "doc_id": "product-docs/admin/ip-allowlist.md",
+    "source": "product-docs/admin/ip-allowlist.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/admin/roles-and-permissions.md::0",
+    "text": "# Roles and Permissions  \nHelix uses role-based access control. Every user in a workspace has exactly one role.\n\n## Available roles  \n- **Owner**\n- **Admin**\n- **Editor**\n- **Viewer**\n\n## What each role can do  \n| Capability | Owner | Admin | Editor | Viewer |\n|------------|-------|-------|--------|--------|\n| View workflows | \u2713 | \u2713 | \u2713 | \u2713 |\n| Run workflows manually | \u2713 | \u2713 | \u2713 |  |\n| Create / edit workflows | \u2713 | \u2713 | \u2713 |  |\n| Manage integrations | \u2713 | \u2713 | \u2713 |  |\n| Invite users | \u2713 | \u2713 |  |  |\n| Manage roles | \u2713 | \u2713 |  |  |\n| Manage billing | \u2713 |  |  |  |\n| Delete workspace | \u2713 |  |  |  |\n| Transfer ownership | \u2713 |  |  |  |",
+    "doc_id": "product-docs/admin/roles-and-permissions.md",
+    "source": "product-docs/admin/roles-and-permissions.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/admin/roles-and-permissions.md::1",
+    "text": "## The Owner role  \nEach workspace has exactly one Owner. The Owner has all permissions including billing and workspace deletion. To change Owner, the current Owner must transfer ownership in **Settings \u2192 Workspace \u2192 Transfer ownership**.\n\n## Changing a user's role  \nAdmins and Owners can change roles in **Settings \u2192 Team**. Click a user's row to see role options.\n\n## Custom roles  \nCustom roles are available on Enterprise plans. Contact your account team to define roles with specific scopes.",
+    "doc_id": "product-docs/admin/roles-and-permissions.md",
+    "source": "product-docs/admin/roles-and-permissions.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/admin/scim.md::0",
+    "text": "# SCIM Provisioning  \nAutomate user lifecycle with SCIM 2.0. Available on the Enterprise plan.\n\n## What SCIM does  \nSCIM lets your identity provider automatically:  \n- Create Helix users when added to your IdP.\n- Update user attributes (name, email, role) on changes.\n- Deactivate users when removed from your IdP.\n\n## Supported providers  \n- Okta\n- Azure AD / Microsoft Entra\n- OneLogin\n- JumpCloud\n- Any SCIM 2.0-compliant provider",
+    "doc_id": "product-docs/admin/scim.md",
+    "source": "product-docs/admin/scim.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/admin/scim.md::1",
+    "text": "## Setup  \n1. Enable SCIM in **Settings \u2192 Security \u2192 SCIM**.\n2. Helix issues a SCIM token. Copy it.\n3. In your IdP, create a SCIM provisioning app pointing to:\n- **SCIM URL**: `https://api.helix.io/v2/scim/v2`\n- **Token**: the token from step 2.\n4. Map your IdP attributes to Helix attributes (email, displayName, role).\n5. Enable provisioning and select which IdP groups sync to Helix.\n\n## Role mapping  \nBy default, all SCIM-provisioned users get the **Editor** role. To map roles, set the SCIM `userType` attribute to one of: `Owner`, `Admin`, `Editor`, `Viewer`. The Owner role cannot be assigned via SCIM \u2014 use the Helix UI for that.\n\n## Deactivation  \nWhen SCIM marks a user as inactive, Helix:  \n1. Revokes all active sessions.\n2. Disables API keys created by that user (within 1 hour).\n3. Marks the user as deactivated but does not delete their data.  \nTo fully delete a user, an Admin must do so from the Helix UI.",
+    "doc_id": "product-docs/admin/scim.md",
+    "source": "product-docs/admin/scim.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/admin/security-settings.md::0",
+    "text": "# Security Settings  \nWorkspace-wide security controls available under **Settings \u2192 Security**.\n\n## Password requirements  \nFor non-SSO users, configure password policy:  \n- Minimum length: 8 to 32 characters\n- Require uppercase, lowercase, numbers, special characters\n- Disallow recent passwords (last 5)\n- Maximum age: 30 to 365 days\n\n## Session timeout  \nConfigure how long a session lasts before re-authentication is required:  \n- Web sessions: 1 hour to 30 days\n- API keys do not expire automatically; rotate manually",
+    "doc_id": "product-docs/admin/security-settings.md",
+    "source": "product-docs/admin/security-settings.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/admin/security-settings.md::1",
+    "text": "## Two-factor authentication  \nEnforce 2FA for all users via **Require 2FA**. Users without 2FA configured will be prompted to set it up on next login.  \nSupported 2FA methods:\n- TOTP apps (Authy, Google Authenticator, 1Password)\n- WebAuthn / hardware keys (YubiKey, Titan)\n- SMS (not recommended; TOTP and WebAuthn are stronger)\n\n## Login monitoring  \nThe **Login activity** page shows successful and failed login attempts for every user. Filter by user, location, or status.\n\n## Session revocation  \nAdmins can revoke individual sessions or all sessions for a user under **Team \u2192 User \u2192 Sessions**. Useful when a user reports a lost device.",
+    "doc_id": "product-docs/admin/security-settings.md",
+    "source": "product-docs/admin/security-settings.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/admin/sso.md::0",
+    "text": "# Single Sign-On (SSO)  \nSSO via SAML 2.0 is available on the Enterprise plan.\n\n## Supported identity providers  \n- Okta\n- Azure AD / Microsoft Entra\n- Google Workspace\n- OneLogin\n- Auth0\n- Any SAML 2.0-compliant IdP\n\n## Setup steps  \n1. Contact your account team to enable SSO for your workspace.\n2. In **Settings \u2192 Security \u2192 SSO**, you'll find the Helix-side SAML metadata.\n3. Configure your IdP with this metadata:\n- **Entity ID**: provided in settings\n- **ACS URL**: provided in settings\n- **NameID format**: emailAddress\n4. Upload your IdP's metadata XML to Helix.\n5. Test with a single user before rolling out to the team.",
+    "doc_id": "product-docs/admin/sso.md",
+    "source": "product-docs/admin/sso.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/admin/sso.md::1",
+    "text": "## Just-in-time provisioning  \nWhen a new user signs in via SSO and doesn't yet have a Helix account, Helix automatically provisions one with the **Editor** role. To change the default role, configure **JIT default role** in security settings.\n\n## Forcing SSO  \nTo require all users to sign in via SSO (no password fallback), enable **Enforce SSO** in security settings. Existing password-based sessions are invalidated; users must re-authenticate via SSO.\n\n## Service accounts and SSO  \nService accounts (used for API keys) bypass SSO. They authenticate via API key only.\n\n## Common issues  \n**\"User not found\" after SSO redirect**: The IdP is not sending the user's email in the NameID field. Adjust your IdP's NameID format.  \n**Loop redirect to IdP**: Browser cookies are blocked. Check third-party cookie settings.",
+    "doc_id": "product-docs/admin/sso.md",
+    "source": "product-docs/admin/sso.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/admin/teams.md::0",
+    "text": "# Teams  \nGroup users into teams for easier permission management.\n\n## Creating teams  \n**Settings \u2192 Teams \u2192 New team**. Provide a name and an optional description.\n\n## Adding members  \nClick a team and use **Add members** to assign users. A user can belong to multiple teams.\n\n## Team-scoped permissions  \nUse teams to:  \n- Restrict workflow visibility (only members of Team X can see Team X's workflows)\n- Restrict connection usage (only members of Team Y can use Team Y's integrations)\n- Send team-wide notifications\n\n## Default behavior  \nBy default, all workflows and connections are workspace-wide visible. Team scoping must be explicitly enabled per resource.\n\n## Team admins  \nEach team can have one or more team admins. Team admins can manage team membership but do not gain workspace-level admin permissions.",
+    "doc_id": "product-docs/admin/teams.md",
+    "source": "product-docs/admin/teams.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/admin/user-provisioning.md::0",
+    "text": "# User Provisioning  \nAdd users to your workspace via invitation, SSO, or SCIM.\n\n## Invitation flow  \n1. **Settings \u2192 Team \u2192 Invite users**\n2. Enter email addresses (comma-separated for bulk)\n3. Choose a role for the invitees\n4. Send invitations  \nInvitees receive an email with a join link. Links expire after 7 days. To resend, click the user row in **Pending invitations** and select **Resend**.\n\n## SSO auto-provisioning  \nIf SSO is enabled, new users authenticated by your IdP are auto-provisioned. The default role is Editor; configure under **Settings \u2192 Security \u2192 SSO**.",
+    "doc_id": "product-docs/admin/user-provisioning.md",
+    "source": "product-docs/admin/user-provisioning.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/admin/user-provisioning.md::1",
+    "text": "## SCIM auto-provisioning  \nWith SCIM, users in selected IdP groups are automatically provisioned and deprovisioned. See SCIM documentation for setup.\n\n## Bulk invitation via API  \n```\nPOST /v2/users/invite\n{\n\"users\": [\n{\"email\": \"alice@company.com\", \"role\": \"Editor\"},\n{\"email\": \"bob@company.com\", \"role\": \"Viewer\"}\n]\n}\n```\n\n## Domain capture  \nEnterprise customers can claim email domains so all users with matching emails are auto-provisioned to your workspace on first sign-in. Contact your account team.",
+    "doc_id": "product-docs/admin/user-provisioning.md",
+    "source": "product-docs/admin/user-provisioning.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/api/api-versioning.md::0",
+    "text": "# API Versioning  \nHelix's API is versioned in the URL path: `https://api.helix.io/v2`.\n\n## Current version  \n**v2** is the current stable version.\n\n## Backwards compatibility  \nWithin a major version, the following changes will not be made:  \n- Removing endpoints\n- Removing fields from responses\n- Adding required fields to requests\n- Changing the type of an existing field  \nThe following changes are considered backwards compatible:  \n- Adding new endpoints\n- Adding new optional fields to requests\n- Adding new fields to responses (your client should ignore unknown fields)\n- Adding new error codes (handle unknown codes generically)",
+    "doc_id": "product-docs/api/api-versioning.md",
+    "source": "product-docs/api/api-versioning.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/api/api-versioning.md::1",
+    "text": "## Deprecation policy  \nWhen we deprecate an endpoint or field:  \n1. Documentation is updated to mark it deprecated.\n2. Responses include a `Deprecation` header.\n3. The deprecated feature continues to work for at least 12 months.\n4. We send email notices to API key owners 30 days before removal.\n\n## Version history  \n- **v2** (current): Released 2023. Adds webhooks, scoped API keys, GraphQL endpoint.\n- **v1** (deprecated): Released 2020. Sunset date 2024-12-31.",
+    "doc_id": "product-docs/api/api-versioning.md",
+    "source": "product-docs/api/api-versioning.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/api/authentication.md::0",
+    "text": "# API Authentication  \nThe Helix API uses bearer token authentication.\n\n## Generating API keys  \n1. Go to **Settings \u2192 API Keys**.\n2. Click **Create new key**.\n3. Choose **Live** or **Test**.\n4. Name the key (for your reference).\n5. Copy the key immediately \u2014 Helix shows it once and never again.\n\n## Using the key  \nInclude the key in the `Authorization` header of every request:  \n```\nAuthorization: Bearer hlx_live_a1b2c3d4...\n```",
+    "doc_id": "product-docs/api/authentication.md",
+    "source": "product-docs/api/authentication.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/api/authentication.md::1",
+    "text": "## Key permissions  \nBy default, API keys have full access to your workspace. To restrict a key, configure **Scoped keys** under **Settings \u2192 API Keys \u2192 Advanced**:  \n- `workflows:read`\n- `workflows:write`\n- `runs:read`\n- `runs:trigger`\n- `integrations:read`\n\n## Rotating keys  \nTo rotate:  \n1. Generate a new key.\n2. Update your applications to use the new key.\n3. Once you've verified the new key works, delete the old key.  \nDeleted keys cannot be recovered.\n\n## Common authentication errors  \n- **Invalid or expired API key** \u2014 Returned as 401. The key is missing, malformed, or has been deleted.\n- **Insufficient permissions for this resource** \u2014 Returned as 403. The key is valid but doesn't have the scope to perform this action.",
+    "doc_id": "product-docs/api/authentication.md",
+    "source": "product-docs/api/authentication.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/api/errors.md::0",
+    "text": "# API Errors  \nHelix uses standard HTTP status codes and returns structured error bodies.\n\n## Error codes  \n| Code | Meaning |\n|------|---------|\n| 400 | Bad request \u2014 malformed JSON or missing required fields |\n| 401 | Invalid or expired API key |\n| 403 | Insufficient permissions for this resource |\n| 404 | Resource not found |\n| 422 | Validation error \u2014 check request body |\n| 429 | Rate limit exceeded |\n| 500 | Internal server error |\n| 503 | Service temporarily unavailable |",
+    "doc_id": "product-docs/api/errors.md",
+    "source": "product-docs/api/errors.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/api/errors.md::1",
+    "text": "## Error body format  \n```json\n{\n\"error\": {\n\"type\": \"validation_error\",\n\"message\": \"Workflow name must be between 1 and 64 characters\",\n\"field\": \"name\",\n\"request_id\": \"req_abc123\"\n}\n}\n```  \nAlways log `request_id` \u2014 our support team can use it to investigate issues.\n\n## Retrying  \n- 5xx errors should be retried with exponential backoff.\n- 429 errors should be retried after the `Retry-After` delay.\n- 4xx errors (except 429) should NOT be retried \u2014 they indicate a permanent problem with your request.\n\n## Idempotency  \nMutating endpoints support an optional `Idempotency-Key` header. Pass any unique string. Helix will return the same response for repeated requests with the same key, allowing safe retries.",
+    "doc_id": "product-docs/api/errors.md",
+    "source": "product-docs/api/errors.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/api/overview.md::0",
+    "text": "# API Overview  \nThe Helix API lets you manage workflows, runs, and integrations programmatically.\n\n## Base URL  \nAll API requests go to:  \n```\nhttps://api.helix.io/v2\n```\n\n## Authentication  \nAll requests require an API key in the **Authorization** header:  \n```\nAuthorization: Bearer hlx_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n```\n\n## API key formats  \n- **Live keys**: `hlx_live_<32 hex chars>` \u2014 affects production resources.\n- **Test keys**: `hlx_test_<32 hex chars>` \u2014 sandboxed; safe for development.  \nGenerate API keys from **Settings \u2192 API Keys**. Keep keys secret \u2014 never commit them to version control.",
+    "doc_id": "product-docs/api/overview.md",
+    "source": "product-docs/api/overview.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/api/overview.md::1",
+    "text": "## Plan requirements  \nAPI access is included on Pro and Enterprise plans. Starter plans do not include API access.\n\n## Versioning  \nThe current version is **v2**. We maintain backwards compatibility within a major version. Breaking changes will be released as v3 with at least 12 months of overlap.\n\n## Quick start  \n```bash\ncurl https://api.helix.io/v2/workflows \\\n-H \"Authorization: Bearer hlx_live_xxxxxxxx\"\n```",
+    "doc_id": "product-docs/api/overview.md",
+    "source": "product-docs/api/overview.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/api/pagination.md::0",
+    "text": "# Pagination  \nHelix uses cursor-based pagination for all list endpoints.\n\n## How it works  \nList responses include a `next_cursor` field. To fetch the next page, pass this value as the `cursor` query parameter.  \n```json\n{\n\"data\": [...],\n\"next_cursor\": \"eyJpZCI6Imxhc3RfaXRlbV9pZCJ9\",\n\"has_more\": true\n}\n```  \nWhen `has_more` is `false`, you have reached the end. The `next_cursor` field will be omitted.",
+    "doc_id": "product-docs/api/pagination.md",
+    "source": "product-docs/api/pagination.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/api/pagination.md::1",
+    "text": "## Page size  \nUse the `limit` query parameter to control page size. The default is 25 and the maximum is 100.  \n```\nGET https://api.helix.io/v2/runs?limit=100\n```\n\n## Stable ordering  \nPagination is stable: items added or removed during paging will not cause duplicates or skips. Items are ordered by creation time descending unless otherwise documented.\n\n## Common mistake  \nDo not infer the cursor from the data. The `next_cursor` is opaque \u2014 its format may change. Always use the value returned by the previous response.",
+    "doc_id": "product-docs/api/pagination.md",
+    "source": "product-docs/api/pagination.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/api/rate-limits.md::0",
+    "text": "# API Rate Limits  \nHelix enforces rate limits to ensure platform stability and fair use.\n\n## Limits by plan  \n| Plan | Requests per minute |\n|------|---------------------|\n| Starter | API access not included |\n| Pro | **1000** |\n| Enterprise | **unlimited** |  \nLimits are per-workspace, not per-API-key. All keys in the same workspace share the budget.\n\n## Rate limit headers  \nEvery API response includes these headers:  \n```\nX-RateLimit-Limit: 1000\nX-RateLimit-Remaining: 847\nX-RateLimit-Reset: 1714515600\n```  \n`X-RateLimit-Reset` is a Unix timestamp indicating when the budget refills.",
+    "doc_id": "product-docs/api/rate-limits.md",
+    "source": "product-docs/api/rate-limits.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/api/rate-limits.md::1",
+    "text": "## When you hit the limit  \nHelix returns **429 with Retry-After header**. The Retry-After header indicates how many seconds to wait before retrying.  \n```\nHTTP/1.1 429 Too Many Requests\nRetry-After: 23\n```\n\n## Best practices  \n- **Respect Retry-After**: Pause your client when you receive 429 and resume after the indicated delay.\n- **Implement exponential backoff**: For repeated 429s, double the wait between retries.\n- **Batch where possible**: Some endpoints support bulk operations to reduce request count.\n- **Use webhooks instead of polling**: If you're polling for changes, switch to webhooks.\n\n## Exemptions  \nEnterprise customers can request a custom rate limit by contacting their account team.",
+    "doc_id": "product-docs/api/rate-limits.md",
+    "source": "product-docs/api/rate-limits.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/api/runs-endpoint.md::0",
+    "text": "# Runs Endpoint  \nTrigger and inspect workflow runs.\n\n## Trigger a run  \n```\nPOST https://api.helix.io/v2/workflows/{workflow_id}/runs\nContent-Type: application/json\n\n{\n\"input\": { \"any\": \"json data\" }\n}\n```  \nReturns immediately with a `run_id`. The run executes asynchronously.\n\n## Get a run  \n```\nGET https://api.helix.io/v2/runs/{run_id}\n```  \nReturns the run's current state including:\n- `status`: `pending`, `running`, `succeeded`, `failed`, `cancelled`\n- `started_at`, `finished_at`\n- `steps`: array of step executions with their inputs and outputs\n- `error`: details if the run failed",
+    "doc_id": "product-docs/api/runs-endpoint.md",
+    "source": "product-docs/api/runs-endpoint.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/api/runs-endpoint.md::1",
+    "text": "## List runs  \n```\nGET https://api.helix.io/v2/runs\n```  \nQuery parameters:\n- `workflow_id` (filter by workflow)\n- `status` (filter by status)\n- `started_after`, `started_before` (ISO 8601 timestamps)\n- `limit` (default 25, max 100)\n- `cursor` (pagination)\n\n## Cancel a run  \n```\nPOST https://api.helix.io/v2/runs/{run_id}/cancel\n```  \nCancels a running execution. Already-completed steps are not rolled back.\n\n## Retention  \nRun records are retained for **90 days** on Pro plans and **365 days** on Enterprise plans. Older runs are deleted automatically.",
+    "doc_id": "product-docs/api/runs-endpoint.md",
+    "source": "product-docs/api/runs-endpoint.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/api/sdks.md::0",
+    "text": "# Official SDKs  \nHelix maintains official SDKs for major languages.\n\n## Available SDKs  \n- **Python** \u2014 `pip install helix-sdk`\n- **Node.js** \u2014 `npm install @helix/sdk`\n- **Go** \u2014 `go get github.com/helix/helix-go`\n- **Ruby** \u2014 `gem install helix-sdk`\n\n## Authentication  \nAll SDKs accept an API key via constructor or environment variable.\n\n### Python  \n```python\nfrom helix import Helix\nclient = Helix(api_key=\"hlx_live_xxxxxxxx\")\nworkflows = client.workflows.list()\n```",
+    "doc_id": "product-docs/api/sdks.md",
+    "source": "product-docs/api/sdks.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/api/sdks.md::1",
+    "text": "### Node.js  \n```javascript\nconst { Helix } = require('@helix/sdk');\nconst client = new Helix({ apiKey: 'hlx_live_xxxxxxxx' });\nconst workflows = await client.workflows.list();\n```\n\n## Environment variable  \nIf `HELIX_API_KEY` is set, you can omit the constructor argument:  \n```python\nclient = Helix()  # reads HELIX_API_KEY\n```\n\n## Versioning  \nSDK versions follow semver. The major version matches the API version (e.g., SDK 2.x matches API v2).\n\n## Issues and feedback  \nReport bugs at github.com/helix/helix-{language}. PRs are welcome.",
+    "doc_id": "product-docs/api/sdks.md",
+    "source": "product-docs/api/sdks.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/api/webhooks.md::0",
+    "text": "# Webhooks  \nSubscribe to Helix events in your own services.\n\n## Creating a webhook subscription  \n```\nPOST https://api.helix.io/v2/webhooks\n{\n\"url\": \"https://yourapp.com/helix-webhook\",\n\"events\": [\"run.succeeded\", \"run.failed\"],\n\"secret\": \"your_signing_secret\"\n}\n```\n\n## Available events  \n- `workflow.created`\n- `workflow.updated`\n- `workflow.deleted`\n- `run.started`\n- `run.succeeded`\n- `run.failed`\n- `run.cancelled`",
+    "doc_id": "product-docs/api/webhooks.md",
+    "source": "product-docs/api/webhooks.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/api/webhooks.md::1",
+    "text": "## Verifying signatures  \nEvery webhook delivery includes a **X-Helix-Signature** header containing an **HMAC-SHA256** signature of the body, computed with your subscription's secret.  \nTo verify in Python:  \n```python\nimport hmac, hashlib\nexpected = hmac.new(secret.encode(), body, hashlib.sha256).hexdigest()\nif not hmac.compare_digest(expected, received_signature):\nraise Exception(\"Invalid signature\")\n```",
+    "doc_id": "product-docs/api/webhooks.md",
+    "source": "product-docs/api/webhooks.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/api/webhooks.md::2",
+    "text": "## Delivery and retries  \nHelix POSTs the event to your URL with a **30 seconds** timeout. If your endpoint returns 2xx, the delivery is marked successful.  \nIf your endpoint fails (timeout, 5xx, or non-2xx), Helix retries up to **3** times with exponential backoff.  \nAfter all retries fail, the delivery is marked permanently failed and a notification is sent to the workspace owner.\n\n## Inspecting deliveries  \nThe **Webhook Logs** page shows every delivery attempt with status code, response body, and timing.",
+    "doc_id": "product-docs/api/webhooks.md",
+    "source": "product-docs/api/webhooks.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 2
+  },
+  {
+    "id": "product-docs/api/workflows-endpoint.md::0",
+    "text": "# Workflows Endpoint  \nManage workflows programmatically.\n\n## List workflows  \n```\nGET https://api.helix.io/v2/workflows\n```  \nReturns a paginated list of workflows in the workspace.  \nQuery parameters:\n- `limit` (default 25, max 100)\n- `cursor` (for pagination)\n- `status` (filter by `active` or `inactive`)\n\n## Get a workflow  \n```\nGET https://api.helix.io/v2/workflows/{workflow_id}\n```  \nReturns the full workflow definition including all steps.",
+    "doc_id": "product-docs/api/workflows-endpoint.md",
+    "source": "product-docs/api/workflows-endpoint.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/api/workflows-endpoint.md::1",
+    "text": "## Create a workflow  \n```\nPOST https://api.helix.io/v2/workflows\nContent-Type: application/json\n\n{\n\"name\": \"My new workflow\",\n\"trigger\": { \"type\": \"webhook\" },\n\"steps\": [...]\n}\n```  \nReturns the created workflow with a generated `workflow_id`.\n\n## Update a workflow  \n```\nPATCH https://api.helix.io/v2/workflows/{workflow_id}\nContent-Type: application/json\n\n{\n\"name\": \"Updated name\"\n}\n```  \nUpdates only the fields included. Supplying a full `steps` array creates a new version.\n\n## Delete a workflow  \n```\nDELETE https://api.helix.io/v2/workflows/{workflow_id}\n```  \nSoft-deletes the workflow. Existing runs continue to completion. Hard deletion happens 30 days later.\n\n## Activate / deactivate  \n```\nPOST https://api.helix.io/v2/workflows/{workflow_id}/activate\nPOST https://api.helix.io/v2/workflows/{workflow_id}/deactivate\n```",
+    "doc_id": "product-docs/api/workflows-endpoint.md",
+    "source": "product-docs/api/workflows-endpoint.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/billing/invoices.md::0",
+    "text": "# Invoices and Receipts  \nAccess your billing history and receipts under **Settings \u2192 Billing**.\n\n## Viewing invoices  \n**Settings \u2192 Billing \u2192 Invoices** lists all past invoices with status (paid, pending, overdue) and amount. Click any invoice to download the PDF.\n\n## Invoice contents  \nEach invoice includes:  \n- Invoice number and date\n- Billing period\n- Plan name and seat count\n- Line items (subscription, overage charges, add-ons)\n- Subtotal, tax, total\n- Payment status",
+    "doc_id": "product-docs/billing/invoices.md",
+    "source": "product-docs/billing/invoices.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/billing/invoices.md::1",
+    "text": "## Tax handling  \nHelix collects sales tax in jurisdictions where required. Tax is shown as a line item.  \nFor VAT/GST, provide your VAT/GST number under **Settings \u2192 Billing \u2192 Tax info**. Reverse-charge applies for B2B customers in eligible jurisdictions.\n\n## Custom invoice fields  \nEnterprise customers can add PO numbers, custom remit-to addresses, or custom line item descriptions. Configure these under **Settings \u2192 Billing \u2192 Invoice customization**.\n\n## Downloading historical invoices  \nAll invoices are retained indefinitely. Download in bulk via **Settings \u2192 Billing \u2192 Export all**.",
+    "doc_id": "product-docs/billing/invoices.md",
+    "source": "product-docs/billing/invoices.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/billing/payment-methods.md::0",
+    "text": "# Payment Methods  \nHelix accepts credit cards, ACH transfer, and (Enterprise only) wire transfer or invoice billing.\n\n## Adding a payment method  \n**Settings \u2192 Billing \u2192 Payment methods \u2192 Add new**.  \nWe accept:\n- Visa, Mastercard, American Express, Discover\n- ACH (US bank accounts)\n- Wire transfer (Enterprise)\n\n## Default payment method  \nIf you have multiple payment methods, designate one as default. Subscription charges use the default; you can override per invoice.",
+    "doc_id": "product-docs/billing/payment-methods.md",
+    "source": "product-docs/billing/payment-methods.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/billing/payment-methods.md::1",
+    "text": "## Updating cards  \nTo update a card, add the new card and delete the old one. We do not support direct edits.\n\n## Failed payments  \nIf a charge fails, Helix retries automatically:  \n- 1st retry: 1 day later\n- 2nd retry: 3 days later\n- 3rd retry: 7 days later  \nAfter all retries fail, your account is downgraded to a read-only state. You can still view runs but cannot create or trigger new ones.\n\n## Invoice billing (Enterprise)  \nEnterprise contracts can be billed via invoice with NET-30 or NET-60 terms. Invoices are sent monthly or annually depending on contract.",
+    "doc_id": "product-docs/billing/payment-methods.md",
+    "source": "product-docs/billing/payment-methods.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/billing/plan-changes.md::0",
+    "text": "# Changing Plans  \nUpgrade, downgrade, or cancel your plan from **Settings \u2192 Billing \u2192 Plan**.\n\n## Upgrades  \nUpgrades take effect immediately. Helix prorates the difference between your old and new plan for the remainder of the current billing period.  \nAfter upgrade:\n- New plan limits apply right away.\n- New features (integrations, API access, etc.) are unlocked.\n- Existing data and workflows are preserved.",
+    "doc_id": "product-docs/billing/plan-changes.md",
+    "source": "product-docs/billing/plan-changes.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/billing/plan-changes.md::1",
+    "text": "## Downgrades  \nDowngrades take effect at the end of the current billing period. Until then, you keep your current plan's features.  \nWhen the downgrade activates:\n- New plan limits apply.\n- Features no longer in your plan become unavailable. Workflows that depend on disabled features will fail.\n- We do not delete data when you downgrade.\n\n## Cancellation  \nCancellation takes effect at the end of the current billing period. You retain full access until then.  \nAfter cancellation:\n- Workflows continue running through the end of the period.\n- After the period ends, workflows are paused and the workspace is read-only for 90 days.\n- After 90 days, the workspace is permanently deleted unless you reactivate.\n\n## Annual to monthly  \nSwitching from annual to monthly takes effect at your next renewal. We do not refund prorated amounts on annual plans.\n\n## Refunds  \nWe do not offer refunds for partial months. If you cancel mid-cycle, you continue to have access until the period ends.",
+    "doc_id": "product-docs/billing/plan-changes.md",
+    "source": "product-docs/billing/plan-changes.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/billing/plans.md::0",
+    "text": "# Plans and Pricing  \nHelix offers three plans: Starter, Pro, and Enterprise.\n\n## Starter \u2014 $49/month  \nBest for individuals automating personal or small-team tasks.  \n- **100** workflow runs per month\n- **1** user\n- Basic integrations: Slack, Email, Webhooks, Google Sheets\n- Email support, **48-hour** response SLA\n\n## Pro \u2014 $299/month  \nBest for growing teams that need more integrations and API access.  \n- **10,000** workflow runs per month\n- Up to **10** users\n- All standard integrations\n- API access (1000 req/min)\n- **90-day** run log retention\n- Email + chat support, **8-hour** response SLA",
+    "doc_id": "product-docs/billing/plans.md",
+    "source": "product-docs/billing/plans.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/billing/plans.md::1",
+    "text": "## Enterprise \u2014 Custom pricing  \nBest for organizations with security, compliance, or scale requirements.  \n- Unlimited workflow runs\n- Unlimited users\n- All integrations + custom integrations on request\n- Unlimited API access\n- **365-day** run log retention\n- SAML 2.0 SSO, SCIM, IP allowlist, audit log\n- Dedicated account team, **1-hour** response SLA\n- Custom contracts, MSAs, BAAs available\n\n## Annual discount  \nAnnual billing saves 20% across all plans. Contact your account team for annual quotes on Enterprise.",
+    "doc_id": "product-docs/billing/plans.md",
+    "source": "product-docs/billing/plans.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/billing/usage-and-overages.md::0",
+    "text": "# Usage and Overages  \nTrack your workflow run consumption and understand overage charges.\n\n## Viewing usage  \n**Settings \u2192 Billing \u2192 Usage** shows:  \n- Current month's run count vs plan limit\n- Daily run breakdown\n- Top workflows by run count\n- Projected end-of-month total\n\n## Overage handling  \nIf you exceed your plan's run limit:  \n- **Starter**: Overage runs are blocked. Upgrade to Pro or wait until next month.\n- **Pro**: Overage runs are allowed at $0.01 per additional run, billed at the end of the month.\n- **Enterprise**: Overages are negotiated per contract.",
+    "doc_id": "product-docs/billing/usage-and-overages.md",
+    "source": "product-docs/billing/usage-and-overages.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/billing/usage-and-overages.md::1",
+    "text": "## Run limit alerts  \nBy default, Helix sends email alerts at 80%, 100%, and 125% of your monthly limit. Configure recipients under **Settings \u2192 Billing \u2192 Alerts**.\n\n## What counts as a run  \nA \"run\" is a single execution of a workflow trigger-to-completion. Failed runs count. Test runs do **not** count. Manual triggers count. Cancelled runs are pro-rated based on steps executed.\n\n## Reducing run consumption  \nIf you're consistently near your limit:  \n- Consolidate workflows that always run together.\n- Use conditions to early-exit workflows that don't need the full pipeline.\n- Switch high-frequency triggers to lower-frequency schedules.\n- Upgrade to a higher plan with more headroom.",
+    "doc_id": "product-docs/billing/usage-and-overages.md",
+    "source": "product-docs/billing/usage-and-overages.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/data/custom-reports.md::0",
+    "text": "# Custom Reports  \nBuild and schedule custom reports on top of your workspace data.\n\n## Creating a report  \n**Analytics \u2192 Reports \u2192 New**. Define:  \n- Data source (runs, workflows, audit log, users)\n- Filters (date range, status, workflow)\n- Grouping (by day, week, workflow, user)\n- Metrics (count, sum, average, p95)\n\n## Saving and scheduling  \nSave the report and optionally schedule delivery:  \n- Frequency: daily, weekly, monthly\n- Recipients: any email addresses\n- Format: PDF, CSV, or inline HTML",
+    "doc_id": "product-docs/data/custom-reports.md",
+    "source": "product-docs/data/custom-reports.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/data/custom-reports.md::1",
+    "text": "## Report templates  \nHelix includes pre-built templates:  \n- Weekly run volume by workflow\n- Monthly cost report (Pro+)\n- Failed run summary\n- User activity\n\n## Programmatic access  \nRun reports via API:  \n```\nPOST /v2/reports/{report_id}/run\n```  \nThe response is a job ID; poll until complete.\n\n## Plan availability  \n- Starter: default dashboards only\n- Pro: custom dashboards and reports\n- Enterprise: all of the above plus scheduled streaming to S3 / Snowflake / BigQuery",
+    "doc_id": "product-docs/data/custom-reports.md",
+    "source": "product-docs/data/custom-reports.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/data/dashboards.md::0",
+    "text": "# Dashboards  \nVisualize workflow performance and run metrics.\n\n## Default dashboards  \nEvery workspace gets these out of the box:  \n- **Run volume** \u2014 runs per day, per workflow\n- **Run success rate** \u2014 % succeeded vs failed\n- **Run duration** \u2014 p50, p95, p99 latency\n- **Top failures** \u2014 workflows with most failures, with sample errors\n\n## Custom dashboards  \n**Analytics \u2192 Dashboards \u2192 New**. Drag widgets from the library:  \n- Run count\n- Success rate\n- Duration histograms\n- Step-level breakdowns\n- Custom metrics (defined via the API)\n\n## Filters  \nApply filters at the dashboard level (date range, workflow, user) or per-widget.\n\n## Sharing dashboards  \nDashboards are workspace-visible by default. To share externally, use **Share** to generate a public read-only link with optional password protection.\n\n## Exporting  \nDashboards can be exported as PNG, PDF, or scheduled email digests.",
+    "doc_id": "product-docs/data/dashboards.md",
+    "source": "product-docs/data/dashboards.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/data/exporting-data.md::0",
+    "text": "# Exporting Data  \nExport your workflow runs, audit logs, and workspace metadata.\n\n## What can be exported  \n- Workflow definitions (JSON)\n- Workflow runs (JSON or CSV)\n- Audit log (CSV or JSON, Enterprise only)\n- User list (CSV)\n\n## Initiating an export  \n**Settings \u2192 Data \u2192 Export**. Choose the data type, date range, and format.\n\n## How exports are delivered  \nExports are generated asynchronously. When ready, you receive an email with a signed download URL. The URL is valid for **24 hours**.  \nFor programmatic access, use the API:  \n```\nPOST /v2/exports\n{\n\"type\": \"runs\",\n\"format\": \"csv\",\n\"started_after\": \"2024-01-01\"\n}\n```  \nThe response returns an `export_id`. Poll `/v2/exports/{export_id}` until status is `complete`, then download via the included URL.\n\n## Large exports  \nExports over 1 GB are split into multiple files (one per 1 GB). The email contains a manifest listing all parts.\n\n## Export limits  \n- Maximum 5 active exports per workspace at a time.\n- Exports requesting more than 1 year of data may take several hours.\n\n## GDPR / DSAR exports  \nFor data subject access requests, see the GDPR documentation.",
+    "doc_id": "product-docs/data/exporting-data.md",
+    "source": "product-docs/data/exporting-data.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/data/gdpr-exports.md::0",
+    "text": "# GDPR Data Subject Requests  \nHelix supports the rights granted to data subjects under GDPR, CCPA, and similar regulations.\n\n## Right to access  \nTo export all personal data Helix holds about a specific user:  \n1. **Settings \u2192 Privacy \u2192 Data subject requests \u2192 New access request**\n2. Enter the data subject's email\n3. Confirm the request  \nHelix compiles a JSON archive within 7 days containing:  \n- The user's profile and authentication data\n- Workspaces they belong to\n- Workflows they created or last modified\n- Runs they triggered manually\n- Audit log entries where they were the actor  \nThe archive is delivered via signed URL valid for **24 hours**.",
+    "doc_id": "product-docs/data/gdpr-exports.md",
+    "source": "product-docs/data/gdpr-exports.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/data/gdpr-exports.md::1",
+    "text": "## Right to deletion  \nTo permanently delete a user and all associated data:  \n1. **Settings \u2192 Privacy \u2192 Data subject requests \u2192 New deletion request**\n2. Enter the data subject's email and confirm\n3. The deletion happens within **30 days**  \nThe 30-day window allows you to cancel the request. After the window, deletion is irreversible.\n\n## What is deleted vs anonymized  \n- **Deleted**: profile, authentication, personal preferences\n- **Anonymized**: audit log entries (the actor field becomes `[deleted-user]`)\n- **Retained**: workflows the user created (transferred to the workspace owner)\n\n## Data Processing Agreements  \nHelix offers a standard DPA. Sign at **Settings \u2192 Compliance \u2192 DPA**. Custom DPAs are available for Enterprise.\n\n## Sub-processors  \nA complete list of Helix sub-processors is at https://helix.io/legal/subprocessors.",
+    "doc_id": "product-docs/data/gdpr-exports.md",
+    "source": "product-docs/data/gdpr-exports.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/data/retention-policy.md::0",
+    "text": "# Data Retention Policy  \nHelix retains data only as long as needed for product functionality and legal compliance.\n\n## Retention periods  \n| Data type | Pro | Enterprise |\n|-----------|-----|------------|\n| Workflow definitions | Indefinite | Indefinite |\n| Workflow runs (logs + step data) | **90 days** | **365 days** |\n| Audit log | N/A | **365 days** |\n| Failed login attempts | 90 days | 90 days |\n| Deleted workflows | 30 days (then hard-deleted) | 30 days |\n| Deleted workspaces | 90 days | 90 days |",
+    "doc_id": "product-docs/data/retention-policy.md",
+    "source": "product-docs/data/retention-policy.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/data/retention-policy.md::1",
+    "text": "## Custom retention (Enterprise)  \nEnterprise customers can configure custom retention windows for runs and audit logs. Common configurations:  \n- Reduced retention for compliance (e.g., delete runs after 30 days)\n- Extended retention for audit purposes (e.g., 7 years for audit log)  \nCustom retention is configured in your contract; contact your account team.\n\n## Hard deletion  \nWhen data passes its retention window:  \n- Workflow runs: hard-deleted within 7 days\n- Audit log: hard-deleted within 30 days\n- Workspaces: hard-deleted on day 91 after deletion request  \nHard-deleted data is irrecoverable.\n\n## Backups  \nHelix maintains encrypted backups for disaster recovery. Backup retention is 35 days. Backup data inherits the same retention policy as production data; once data is hard-deleted in production, it is also removed from backups within the next backup cycle.",
+    "doc_id": "product-docs/data/retention-policy.md",
+    "source": "product-docs/data/retention-policy.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/data/run-logs.md::0",
+    "text": "# Run Logs  \nEvery workflow run is logged with full step-by-step detail.\n\n## What is logged  \nFor each run:  \n- Trigger payload\n- Each step's input and output\n- Errors and stack traces (if any)\n- Timing for each step\n- Total run duration\n- Status transitions\n\n## Accessing run logs  \n**Runs** in the sidebar shows a unified list. Filter by workflow, status, date.  \nClick any run to see step-by-step detail. Each step is expandable to show its inputs and outputs in JSON.",
+    "doc_id": "product-docs/data/run-logs.md",
+    "source": "product-docs/data/run-logs.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/data/run-logs.md::1",
+    "text": "## Sensitive data  \nBy default, all run data is logged including any secrets passed through the workflow. To redact specific fields:  \n1. Open a workflow\n2. **Settings \u2192 Sensitive fields**\n3. Add field names that should be redacted in logs (e.g., `password`, `ssn`, `credit_card`)  \nRedacted fields appear as `[redacted]` in run logs. Note: this only affects log display; the data itself is still passed through the workflow at runtime.\n\n## Retention  \n- Pro: **90 days**\n- Enterprise: **365 days**  \nAfter retention expires, runs are permanently deleted.\n\n## Searching logs  \nSearch by run ID, workflow name, status, or any text contained in step input/output. Search is full-text and case-insensitive.\n\n## Exporting logs  \nSee \"Exporting Data\" for full export options.",
+    "doc_id": "product-docs/data/run-logs.md",
+    "source": "product-docs/data/run-logs.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/getting-started/account-setup.md::0",
+    "text": "# Account Setup  \nThis guide walks you through creating and configuring your Helix account for the first time.\n\n## 1. Create your account  \nVisit https://app.helix.io/signup and enter your work email. You will receive a verification email within 2 minutes. If it does not arrive, check your spam folder or contact support@helix.io.\n\n## 2. Verify your email  \nClick the verification link in the email. The link expires after 24 hours. If your link expires, return to the signup page and request a new one.",
+    "doc_id": "product-docs/getting-started/account-setup.md",
+    "source": "product-docs/getting-started/account-setup.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/getting-started/account-setup.md::1",
+    "text": "## 3. Create your workspace  \nAfter verification, you will be prompted to create a workspace. Workspace names must be:  \n- Between 3 and 32 characters\n- Lowercase letters, numbers, and hyphens only\n- Unique across Helix  \nYou cannot rename a workspace after creation, so choose carefully.\n\n## 4. Invite teammates  \nOnce your workspace is created, navigate to **Settings \u2192 Team** to invite teammates. The number of users you can invite depends on your plan:  \n- Starter: 1 user\n- Pro: up to 10 users\n- Enterprise: unlimited users\n\n## 5. Connect your first integration  \nHead to **Integrations** and connect any app from our supported list. Most integrations use OAuth and take less than a minute.",
+    "doc_id": "product-docs/getting-started/account-setup.md",
+    "source": "product-docs/getting-started/account-setup.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/getting-started/first-workflow.md::0",
+    "text": "# Your First Workflow  \nThis tutorial walks you through creating your first workflow in Helix.\n\n## What you will build  \nA workflow that posts a Slack message every time a new row is added to a Google Sheet.\n\n## Prerequisites  \n- Connected Slack integration\n- Connected Google Drive integration\n- A Google Sheet with at least one column\n\n## Steps  \n### 1. Create the workflow  \nFrom the dashboard, click **New Workflow**. Give it a name like \"New row to Slack\".",
+    "doc_id": "product-docs/getting-started/first-workflow.md",
+    "source": "product-docs/getting-started/first-workflow.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/getting-started/first-workflow.md::1",
+    "text": "### 2. Add a trigger  \nClick **Add Trigger** and select Google Sheets. Choose \"New row added\" as the event. Select your spreadsheet and the worksheet within it.\n\n### 3. Add an action  \nClick the **+** below the trigger to add an action. Select Slack and choose \"Send channel message\". Pick the channel and write your message. You can reference data from the trigger using `{{trigger.row.column_name}}` syntax.",
+    "doc_id": "product-docs/getting-started/first-workflow.md",
+    "source": "product-docs/getting-started/first-workflow.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/getting-started/first-workflow.md::2",
+    "text": "### 4. Test the workflow  \nClick **Test** in the top right. Helix will run the workflow with sample data so you can verify the output before going live.\n\n### 5. Activate  \nToggle the workflow to **Active** in the top right. Your workflow is now live.\n\n## What happens next  \nEvery time a new row is added to your sheet, Helix will post to Slack within 60 seconds. You can view every run under the **Runs** tab.",
+    "doc_id": "product-docs/getting-started/first-workflow.md",
+    "source": "product-docs/getting-started/first-workflow.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 2
+  },
+  {
+    "id": "product-docs/getting-started/glossary.md::0",
+    "text": "# Glossary  \nKey terms used throughout Helix documentation.  \n**Workflow** \u2014 An automated sequence of steps that runs when a trigger fires.  \n**Trigger** \u2014 The event that starts a workflow. Can be a webhook, schedule, app event, or manual run.  \n**Step** \u2014 A single action within a workflow. Steps run in order and can pass data to subsequent steps.  \n**Run** \u2014 A single execution of a workflow. Each run is logged and can be inspected after the fact.  \n**Integration** \u2014 A connection to a third-party service like Slack or Salesforce.  \n**Workspace** \u2014 Your team's container for workflows, integrations, and settings. Each workspace is isolated.  \n**Connection** \u2014 A specific authenticated link to an integration. You can have multiple connections for the same integration (e.g., two Slack workspaces).  \n**Schedule** \u2014 A cron expression that runs a workflow at fixed intervals.  \n**Manual approval** \u2014 A step that pauses a workflow until a designated user approves or rejects it.\n\n**Manual approval** \u2014 A step that pauses a workflow until a designated user approves or rejects it.  \n**Audit log** \u2014 A record of every administrative action in your workspace. Available on Enterprise plans.",
+    "doc_id": "product-docs/getting-started/glossary.md",
+    "source": "product-docs/getting-started/glossary.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/getting-started/navigation.md::0",
+    "text": "# Navigating Helix  \nThe Helix interface is organized into five main sections, accessible from the left sidebar.\n\n## Workflows  \nYour library of workflows. From here you can create new workflows, edit existing ones, view run history, and toggle workflows on or off.\n\n## Runs  \nA unified view of every workflow run across your workspace. Filter by status (success, failure, running), workflow name, or date range. Click any run to see step-by-step execution details.",
+    "doc_id": "product-docs/getting-started/navigation.md",
+    "source": "product-docs/getting-started/navigation.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/getting-started/navigation.md::1",
+    "text": "## Integrations  \nManage connections to third-party services. Connect new integrations, view authorization status, and rotate credentials.\n\n## Templates  \nPre-built workflows you can install with one click. Templates are organized by use case (sales, support, ops, marketing).\n\n## Settings  \nWorkspace, team, billing, and security settings. Only Admins and Owners see all settings; Editors and Viewers see a reduced set.\n\n## Top bar  \nThe top bar contains the workspace switcher (if you belong to multiple workspaces), notifications, and your profile menu.",
+    "doc_id": "product-docs/getting-started/navigation.md",
+    "source": "product-docs/getting-started/navigation.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/getting-started/welcome.md::0",
+    "text": "# Welcome to Helix  \nHelix is a workflow automation platform that connects your apps, automates repetitive tasks, and helps your team focus on what matters.\n\n## What you can do with Helix  \n- Connect 50+ business apps including Slack, Salesforce, HubSpot, Stripe, Google Drive, and more.\n- Build workflows visually with our drag-and-drop builder.\n- Schedule workflows with cron expressions.\n- Trigger workflows from webhooks, app events, or manual approvals.\n- Monitor every workflow run with detailed logs.\n\n## Plans at a glance  \n| Plan | Price | Workflow runs/month | Users |\n|------|-------|---------------------|-------|\n| Starter | $49/mo | 100 | 1 |\n| Pro | $299/mo | 10,000 | 10 |\n| Enterprise | Custom | Unlimited | Unlimited |\n\n## Getting help  \n- Email: support@helix.io\n- Status page: https://status.helix.io\n- Documentation: docs.helix.io",
+    "doc_id": "product-docs/getting-started/welcome.md",
+    "source": "product-docs/getting-started/welcome.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/integrations/connection-management.md::0",
+    "text": "# Managing Connections  \nConnections are the authenticated links between Helix and your external apps.\n\n## Viewing connections  \n**Integrations \u2192 All connections** lists every active and inactive connection in your workspace.\n\n## Renaming connections  \nClick a connection's name to edit it. Names appear in the workflow builder, so use descriptive labels for multi-account setups (e.g., \"Salesforce \u2014 Sandbox\" vs \"Salesforce \u2014 Production\").",
+    "doc_id": "product-docs/integrations/connection-management.md",
+    "source": "product-docs/integrations/connection-management.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/integrations/connection-management.md::1",
+    "text": "## Reconnecting  \nIf a connection expires, click **Reconnect** to re-run the OAuth flow. Existing workflows will resume using the renewed connection.\n\n## Deleting connections  \nDeleting a connection is permanent. Workflows that reference the deleted connection will fail until updated to use a different connection. Helix shows you a list of impacted workflows before confirming deletion.\n\n## Sharing connections  \nBy default, connections are shared across the entire workspace. Anyone with permission to build workflows can use any connection. To restrict this, contact your account admin about Connection Permissions (Enterprise feature).\n\n## Connection rotation  \nFor security-sensitive integrations, rotate credentials periodically. The recommended frequency is every 90 days. To rotate:  \n1. Disconnect the existing connection.\n2. Reconnect with refreshed credentials.\n3. Workflows will pick up the new credentials automatically.",
+    "doc_id": "product-docs/integrations/connection-management.md",
+    "source": "product-docs/integrations/connection-management.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/integrations/custom-webhooks.md::0",
+    "text": "# Custom Webhooks  \nTrigger Helix workflows from any service that can send an HTTP POST request.\n\n## Creating a webhook trigger  \n1. In the workflow editor, add a Webhook trigger.\n2. Helix generates a unique URL: `https://hooks.helix.io/wf/<workflow-id>/<token>`.\n3. Configure your external service to POST to this URL when the event occurs.\n\n## Request format  \nHelix accepts any JSON body. The body is parsed and made available as `{trigger.body}` in subsequent steps.  \nHeaders and query parameters are also accessible:\n- `{trigger.headers}`\n- `{trigger.query}`",
+    "doc_id": "product-docs/integrations/custom-webhooks.md",
+    "source": "product-docs/integrations/custom-webhooks.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/integrations/custom-webhooks.md::1",
+    "text": "## Authentication  \nBy default, webhook URLs are unauthenticated \u2014 anyone with the URL can trigger your workflow. For sensitive workflows, enable signature verification:  \n1. In the trigger settings, enable **Verify signature**.\n2. Helix generates a webhook secret. Copy it.\n3. Configure your external service to sign requests with **HMAC-SHA256** using the secret.\n4. Send the signature in the **X-Helix-Signature** header.  \nHelix will reject requests with invalid or missing signatures.",
+    "doc_id": "product-docs/integrations/custom-webhooks.md",
+    "source": "product-docs/integrations/custom-webhooks.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/integrations/custom-webhooks.md::2",
+    "text": "## Timeouts and retries  \n- Helix webhook endpoints respond within **30 seconds** of receiving a request.\n- If your service expects a synchronous response, your workflow's first step's output will be returned. Otherwise, Helix returns 200 immediately and processes the workflow asynchronously.\n- If Helix's endpoint is temporarily unavailable, callers should retry with backoff. We recommend **3** retries.\n\n## Outbound webhooks  \nTo send a webhook from a workflow, use the **HTTP** action. You can sign outbound webhooks by computing an HMAC over the body and adding it as a header.",
+    "doc_id": "product-docs/integrations/custom-webhooks.md",
+    "source": "product-docs/integrations/custom-webhooks.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 2
+  },
+  {
+    "id": "product-docs/integrations/github.md::0",
+    "text": "# GitHub Integration  \nAutomate development workflows with GitHub triggers and actions.\n\n## Connecting  \nGitHub uses OAuth. You can connect either a personal account or a GitHub App installation. For org-level access, GitHub App is recommended.\n\n## Triggers  \n- **New issue**: Fires when an issue is opened.\n- **Issue closed**: Fires when an issue is closed.\n- **New pull request**: Fires when a PR is opened.\n- **PR merged**: Fires when a PR is merged.\n- **New comment on issue/PR**: Fires when someone comments.\n- **Push to branch**: Fires on every push to a specified branch.",
+    "doc_id": "product-docs/integrations/github.md",
+    "source": "product-docs/integrations/github.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/integrations/github.md::1",
+    "text": "## Actions  \n- **Create issue**: Open a new issue with title, body, labels, and assignees.\n- **Comment on issue**: Add a comment to an existing issue or PR.\n- **Add label**: Apply a label to an issue or PR.\n- **Close issue**: Close an issue with optional comment.\n- **Create branch**: Create a branch from a specified base.\n- **Get file contents**: Read a file from a repository.\n\n## Repository scope  \nEach connection covers all repositories the authorizing user can access. To limit scope, use a service account or a GitHub App with restricted permissions.\n\n## Webhook setup  \nHelix automatically configures webhooks on connected repositories for the triggers you use. You can see the active webhooks in your repo settings.",
+    "doc_id": "product-docs/integrations/github.md",
+    "source": "product-docs/integrations/github.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/integrations/google-drive.md::0",
+    "text": "# Google Drive Integration  \nRead, write, and watch files in Google Drive from your workflows.\n\n## Connecting  \nOAuth via your Google account. Helix requests these scopes:  \n- `drive.file` \u2014 Access only files Helix creates or that the user explicitly opens with Helix.\n- `drive.readonly` \u2014 Read access to all files (optional, requested only if you opt in).  \nWe default to the narrower scope unless you specifically need to read files Helix did not create.",
+    "doc_id": "product-docs/integrations/google-drive.md",
+    "source": "product-docs/integrations/google-drive.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/integrations/google-drive.md::1",
+    "text": "## Triggers  \n- **New file in folder**: Fires when a file is added to a watched folder.\n- **File modified**: Fires when a watched file is updated.\n- **New row in Sheet**: Fires when a row is appended to a Google Sheet.\n\n## Actions  \n- **Create file**: Upload a new file to Drive.\n- **Read file**: Download file contents.\n- **Update file**: Replace a file's contents.\n- **Move file**: Move a file between folders.\n- **Append row to Sheet**: Add a row to the bottom of a Sheet.\n- **Update cell**: Set a specific cell's value.",
+    "doc_id": "product-docs/integrations/google-drive.md",
+    "source": "product-docs/integrations/google-drive.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/integrations/google-drive.md::2",
+    "text": "## File size limits  \nFiles up to 50 MB can be passed as data through workflows. For larger files, use the file's Drive ID and download/upload via the HTTP integration to avoid memory issues.\n\n## Sheets pagination  \nWhen reading large Sheets, results are paginated at 1,000 rows per page. Use the **Read all rows** action with care on Sheets larger than 50,000 rows; consider filtering at the source.",
+    "doc_id": "product-docs/integrations/google-drive.md",
+    "source": "product-docs/integrations/google-drive.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 2
+  },
+  {
+    "id": "product-docs/integrations/oauth-flow.md::0",
+    "text": "# OAuth Connection Flow  \nMost Helix integrations use OAuth 2.0 for authentication. This page explains what happens during the connection flow and how to troubleshoot common issues.\n\n## Connection steps  \n1. **You click Connect** in Helix. Helix records a connection attempt.\n2. **Helix redirects to the provider** (e.g., Google, Salesforce). The redirect includes Helix's client ID and the requested scopes.\n3. **You authorize** the connection on the provider's site.\n4. **Provider redirects back** to Helix with an authorization code.\n5. **Helix exchanges the code** for an access token and refresh token.\n6. **Helix stores credentials** in encrypted storage and marks the connection as Active.",
+    "doc_id": "product-docs/integrations/oauth-flow.md",
+    "source": "product-docs/integrations/oauth-flow.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/integrations/oauth-flow.md::1",
+    "text": "## Token refresh  \nMost providers issue access tokens that expire (usually after 1 hour). Helix uses the refresh token to obtain new access tokens automatically. You should not need to reconnect unless the refresh token itself expires (typically after 60\u201390 days of inactivity, depending on the provider).\n\n## Troubleshooting  \n**\"Invalid scope\" error during authorization**\nCheck that the provider account has access to the resource type you are connecting (e.g., Google Drive vs Google Workspace).  \n**\"Connection expired\" status in Helix**\nThe refresh token has been revoked or expired. Click **Reconnect** to refresh.  \n**Provider asks \"Helix is requesting access to your account\"**\nExpected. Helix is requesting the scopes needed for the specific integration. We do not request scopes we don't use.  \n**Connection works in Helix but actions fail with 401**\nLikely a permissions issue at the provider. The connected user may have lost access to the resource. Check provider-side permissions.",
+    "doc_id": "product-docs/integrations/oauth-flow.md",
+    "source": "product-docs/integrations/oauth-flow.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/integrations/overview.md::0",
+    "text": "# Integrations Overview  \nHelix connects to **10+** business apps out of the box, plus custom webhooks and HTTP for anything else.\n\n## Supported integrations  \n- Slack\n- Salesforce\n- HubSpot\n- Stripe\n- Google Drive\n- GitHub\n- Jira\n- Zendesk\n- Notion\n- Asana\n\n## Connecting an integration  \n1. Navigate to **Integrations** in the sidebar.\n2. Click **Connect** on the integration you want.\n3. Authorize via OAuth (most apps) or paste your API key (some apps).\n4. Name the connection and save.",
+    "doc_id": "product-docs/integrations/overview.md",
+    "source": "product-docs/integrations/overview.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/integrations/overview.md::1",
+    "text": "## Multiple connections  \nYou can have multiple connections to the same integration. For example, two Slack workspaces or two Salesforce orgs. When building a workflow, you choose which connection to use.\n\n## Connection health  \nHelix periodically checks each connection. If a connection has expired or been revoked, you will see a red dot next to it and any workflows using it will pause until the connection is restored.\n\n## Plan availability  \n- **Starter** plan includes a limited set of integrations (Slack, Email, Webhooks).\n- **Pro** plan includes all standard integrations.\n- **Enterprise** plan includes all integrations plus custom integrations built by Helix engineering on request.",
+    "doc_id": "product-docs/integrations/overview.md",
+    "source": "product-docs/integrations/overview.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/integrations/salesforce.md::0",
+    "text": "# Salesforce Integration  \nRead and write Salesforce records from your workflows.\n\n## Connecting  \nSalesforce uses OAuth. Click **Connect** on the Salesforce integration page and log in with your Salesforce credentials. You may need to grant your Helix workspace access to the Salesforce org.  \nFor sandbox orgs, toggle **Sandbox** before clicking Connect.\n\n## Supported objects  \nAll standard objects (Account, Contact, Lead, Opportunity, Case, Task, Event) plus any custom objects in your org.",
+    "doc_id": "product-docs/integrations/salesforce.md",
+    "source": "product-docs/integrations/salesforce.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/integrations/salesforce.md::1",
+    "text": "## Actions  \n- **Create record**: Insert a new record into any object.\n- **Update record**: Update an existing record by ID.\n- **Find record**: Look up a record by any field.\n- **Run SOQL query**: Execute an arbitrary SOQL query and return results.\n- **Bulk operation**: Insert/update up to 10,000 records via the Bulk API.\n\n## Triggers  \n- **New record**: Fires when a new record is created in a specified object.\n- **Field changed**: Fires when a specific field on a record changes value.\n\n## Permissions  \nThe connection runs with the permissions of the Salesforce user who authorized it. If you need to access fields, configure FLS (Field-Level Security) for that user in Salesforce.\n\n## Bulk API quotas  \nSalesforce limits Bulk API to 10,000 requests per 24 hours. Helix surfaces 429 errors when you hit this limit; consider batching large updates.",
+    "doc_id": "product-docs/integrations/salesforce.md",
+    "source": "product-docs/integrations/salesforce.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/integrations/slack.md::0",
+    "text": "# Slack Integration  \nConnect Helix to Slack to post messages, read channels, and trigger workflows from Slack events.\n\n## Connecting  \n1. Go to **Integrations \u2192 Slack \u2192 Connect**.\n2. You will be redirected to Slack's authorization page.\n3. Grant Helix the requested scopes (channels:read, chat:write, im:write).\n4. Confirm. The connection is now ready.\n\n## Triggers  \n- **New message in channel**: Fires when a message is posted in a specified channel.\n- **Reaction added**: Fires when a user adds an emoji reaction.\n- **Slash command**: Fires when a user runs a custom slash command.",
+    "doc_id": "product-docs/integrations/slack.md",
+    "source": "product-docs/integrations/slack.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/integrations/slack.md::1",
+    "text": "## Actions  \n- **Send channel message**: Post a message to a channel. Supports markdown and Slack Block Kit JSON.\n- **Send DM**: Direct message a user. Requires the user's Slack ID or email.\n- **Update message**: Edit a previously-sent message by timestamp.\n- **Add reaction**: Add an emoji reaction to a message.\n\n## Block Kit support  \nFor rich messages, paste Slack Block Kit JSON into the message body. Helix will substitute `{{variables}}` before sending.\n\n## Bot vs user posting  \nMessages are posted by the Helix bot user. To make messages appear from a specific user, use the user's Slack token directly via the HTTP integration.",
+    "doc_id": "product-docs/integrations/slack.md",
+    "source": "product-docs/integrations/slack.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/integrations/stripe.md::0",
+    "text": "# Stripe Integration  \nProcess payments, manage subscriptions, and react to billing events from Stripe.\n\n## Connecting  \n1. Go to **Integrations \u2192 Stripe \u2192 Connect**.\n2. You will be redirected to Stripe's OAuth flow.\n3. Choose the Stripe account to connect (live or test).\n4. Approve and return.\n\n## Triggers  \n- **Payment succeeded**: A payment was successfully captured.\n- **Payment failed**: A payment attempt failed.\n- **Subscription created**: A new subscription started.\n- **Subscription cancelled**: A subscription was cancelled.\n- **Invoice paid**: An invoice was paid.\n- **Customer created**: A new customer record was created.",
+    "doc_id": "product-docs/integrations/stripe.md",
+    "source": "product-docs/integrations/stripe.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/integrations/stripe.md::1",
+    "text": "## Actions  \n- **Create customer**: Add a new customer to Stripe.\n- **Create subscription**: Subscribe a customer to a price.\n- **Charge a payment method**: One-time charge against a saved payment method.\n- **Issue refund**: Refund a previous payment, fully or partially.\n- **Look up customer**: Find a customer by email or ID.\n\n## Test mode  \nIf you connect a Stripe test account, all events use Stripe's test data. Helix labels test connections with a yellow badge so you don't confuse them with live.\n\n## Webhook reliability  \nStripe events are delivered to Helix via webhooks. If our webhook endpoint is down, Stripe retries with exponential backoff for up to 3 days. Missed events during longer outages can be backfilled via the **Sync events** action.",
+    "doc_id": "product-docs/integrations/stripe.md",
+    "source": "product-docs/integrations/stripe.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/integrations/zendesk.md::0",
+    "text": "# Zendesk Integration  \nSync tickets, automate responses, and react to support events from Zendesk.\n\n## Connecting  \nOAuth via your Zendesk subdomain. You will need an admin or agent role in Zendesk to authorize.\n\n## Triggers  \n- **New ticket**: A new ticket was created.\n- **Ticket updated**: A ticket's status, priority, or assignee changed.\n- **Ticket solved**: A ticket was marked as solved.\n- **New comment**: A comment was added to a ticket (private or public).",
+    "doc_id": "product-docs/integrations/zendesk.md",
+    "source": "product-docs/integrations/zendesk.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/integrations/zendesk.md::1",
+    "text": "## Actions  \n- **Create ticket**: Open a new ticket with subject, description, and assignee.\n- **Update ticket**: Change status, priority, or assign to a user.\n- **Add comment**: Post a comment to a ticket (public or internal).\n- **Find user**: Look up a Zendesk user by email or external ID.\n- **Search tickets**: Run a Zendesk search query and return matching tickets.\n\n## SLA awareness  \nWhen triggered by an SLA breach, you will receive a payload that includes the SLA target, time remaining, and the ticket's current state. This is useful for escalation workflows.\n\n## API rate limits  \nZendesk's API allows 700 requests per minute for most plans. Helix queues requests above this rate to avoid 429 errors but will not retry indefinitely; persistent overload causes runs to fail.",
+    "doc_id": "product-docs/integrations/zendesk.md",
+    "source": "product-docs/integrations/zendesk.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/mobile/mobile-app-overview.md::0",
+    "text": "# Mobile App Overview  \nThe Helix mobile app gives you on-the-go visibility into your workflows.\n\n## Platforms  \n- iOS 15+\n- Android 9+  \nDownload from the App Store or Google Play.\n\n## What you can do  \nThe mobile app is intentionally focused. You can:  \n- View runs\n- Approve manual steps\n- Receive notifications\n\n## What you cannot do  \nBy design, the mobile app does not include:  \n- Cannot edit workflows\n- Cannot manage integrations\n- Cannot manage billing  \nFor these, use the web app.",
+    "doc_id": "product-docs/mobile/mobile-app-overview.md",
+    "source": "product-docs/mobile/mobile-app-overview.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/mobile/mobile-app-overview.md::1",
+    "text": "## Why this design  \nWe've found that workflow editing on a small screen leads to errors. Approval, monitoring, and visibility are well-suited to mobile; design and configuration are not.\n\n## Authentication  \nThe mobile app supports the same auth methods as the web app: email/password, SSO, and 2FA.\n\n## Biometric login  \nOnce signed in, enable Face ID (iOS) or fingerprint (Android) for quick re-authentication. Sessions last 30 days before requiring full credentials.",
+    "doc_id": "product-docs/mobile/mobile-app-overview.md",
+    "source": "product-docs/mobile/mobile-app-overview.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/mobile/mobile-limitations.md::0",
+    "text": "# Mobile App Limitations  \nKnown limitations of the Helix mobile app, by design and by current state.\n\n## Cannot edit workflows  \nThe workflow builder is web-only. To edit a workflow on mobile, you would need an external browser; Helix does not redirect to the builder from the mobile app.\n\n## Cannot manage integrations  \nConnecting or disconnecting integrations must be done in the web app. The mobile app shows your existing connections but does not allow changes.",
+    "doc_id": "product-docs/mobile/mobile-limitations.md",
+    "source": "product-docs/mobile/mobile-limitations.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/mobile/mobile-limitations.md::1",
+    "text": "## Cannot manage billing  \nBilling settings, plan changes, and payment methods are web-only.\n\n## Cannot view audit log  \nAudit log access is web-only. This is an Enterprise feature, and we expect customers needing audit log access to be on a desktop for compliance review.\n\n## Limited search  \nMobile search currently covers workflow names and run IDs only. Full-text search across run logs is web-only.\n\n## Limited dashboards  \nDashboards are view-only on mobile and limited to the default dashboards. Custom dashboards are web-only.\n\n## Roadmap  \nSome of these limitations are planned to be removed:  \n- Audit log mobile view (planned Q2)\n- Custom dashboard mobile rendering (planned Q3)  \nWorkflow editing on mobile is **not** on the roadmap. We've heard the request and decided against it.",
+    "doc_id": "product-docs/mobile/mobile-limitations.md",
+    "source": "product-docs/mobile/mobile-limitations.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/notifications/email-notifications.md::0",
+    "text": "# Email Notifications  \nConfigure when Helix emails you about workflow events.\n\n## Personal notification settings  \n**Settings \u2192 Notifications \u2192 Email** lets each user configure:  \n- Workflow run failures (mine, my team's, all)\n- Run failures for specific workflows\n- Daily/weekly summaries\n- Billing events\n- Security events (login from new device, password change, etc.)\n\n## Workspace-wide notifications  \nAdmins can configure workspace defaults that apply to all users unless individually overridden.",
+    "doc_id": "product-docs/notifications/email-notifications.md",
+    "source": "product-docs/notifications/email-notifications.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/notifications/email-notifications.md::1",
+    "text": "## Failure notifications  \nFor workflow failures, the email includes:  \n- Workflow name and link to the run\n- Trigger payload (truncated to 1 KB)\n- Error message and step name\n- Suggested next steps\n\n## Frequency limits  \nTo prevent inbox flooding, Helix throttles failure notifications. If a workflow fails 10+ times within an hour, subsequent failures are batched into a single email.\n\n## Disabling all email  \nTo disable all Helix email except mandatory account / billing emails, toggle **Pause all email** in notification settings. This is useful during long maintenance windows.",
+    "doc_id": "product-docs/notifications/email-notifications.md",
+    "source": "product-docs/notifications/email-notifications.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/notifications/in-app.md::0",
+    "text": "# In-App Notifications  \nThe bell icon in the top right shows your in-app notification feed.\n\n## What appears in the feed  \n- Workflow runs you triggered manually (success or failure)\n- Runs awaiting your approval (manual approval steps)\n- Mentions in workflow comments\n- Team invitations and role changes\n- Billing alerts\n\n## Mark as read / unread  \nClick any notification to mark it read. Read notifications are dimmed but not removed. Click **Clear all** to remove all read notifications.",
+    "doc_id": "product-docs/notifications/in-app.md",
+    "source": "product-docs/notifications/in-app.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/notifications/in-app.md::1",
+    "text": "## Notification settings  \n**Settings \u2192 Notifications \u2192 In-app** lets you choose which event types appear in your feed.\n\n## Real-time updates  \nThe feed updates in real-time without page reload. The bell icon shows a count of unread notifications.\n\n## Audio alerts  \nOptionally enable audio alerts for high-priority notifications (workflow failures, approvals waiting). Configure under **Settings \u2192 Notifications \u2192 Audio**.",
+    "doc_id": "product-docs/notifications/in-app.md",
+    "source": "product-docs/notifications/in-app.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/notifications/mobile-push.md::0",
+    "text": "# Mobile Push Notifications  \nReceive push notifications on the Helix mobile app.\n\n## Supported platforms  \n- iOS 15+\n- Android 9+\n\n## Setup  \n1. Install the Helix mobile app from the App Store or Google Play.\n2. Sign in with your Helix credentials.\n3. Allow notifications when prompted.\n\n## What you can receive  \n- View runs\n- Approve manual steps\n- Receive notifications\n\n## What mobile cannot do  \nThe mobile app is read-and-approve only:  \n- Cannot edit workflows\n- Cannot manage integrations\n- Cannot manage billing  \nFor these actions, use the web app.\n\n## Quiet hours  \nSet quiet hours under **Mobile app \u2192 Settings \u2192 Quiet hours** to suppress notifications during specified times.\n\n## Notification grouping  \nMultiple notifications from the same workflow are grouped on iOS and Android to avoid notification floods.",
+    "doc_id": "product-docs/notifications/mobile-push.md",
+    "source": "product-docs/notifications/mobile-push.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/notifications/slack-notifications.md::0",
+    "text": "# Slack Notifications  \nSend Helix events to Slack channels for team-wide visibility.\n\n## Setup  \n1. Connect your Slack workspace in **Integrations \u2192 Slack**.\n2. Go to **Settings \u2192 Notifications \u2192 Slack**.\n3. Add a channel destination \u2014 choose the channel and event types.\n\n## Event types  \n- All workflow failures (workspace-wide)\n- Specific workflow failures\n- Daily summary digest\n- High-priority alerts (downtime, security events)\n- Custom events via webhook",
+    "doc_id": "product-docs/notifications/slack-notifications.md",
+    "source": "product-docs/notifications/slack-notifications.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/notifications/slack-notifications.md::1",
+    "text": "## Message format  \nHelix Slack messages use Block Kit. Each message includes:  \n- Workflow name and link\n- Status (succeeded / failed)\n- Trigger summary\n- Action buttons (Re-run, View logs, Acknowledge)\n\n## Channel vs DM  \nNotifications can go to channels (visible to all members) or DMs (private to a user). DM destinations require the recipient to have authorized the Helix Slack app.\n\n## Threading  \nTo reduce channel noise, enable **Thread updates**. Subsequent updates to the same workflow run are posted as replies to the original message instead of new messages.",
+    "doc_id": "product-docs/notifications/slack-notifications.md",
+    "source": "product-docs/notifications/slack-notifications.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/workflows/conditions-and-branching.md::0",
+    "text": "# Conditions and Branching  \nConditional logic lets your workflow take different paths based on data.\n\n## Condition steps  \nInsert a **Condition** step between any two steps. A condition evaluates an expression and routes the workflow to the True branch or False branch.\n\n## Expression syntax  \nConditions support comparison operators (`==`, `!=`, `>`, `<`, `>=`, `<=`), logical operators (`and`, `or`, `not`), and string functions (`contains`, `starts_with`, `ends_with`).  \nExamples:\n- `{{trigger.amount}} > 1000`\n- `{{trigger.email}} ends_with \"@enterprise.com\"`\n- `{{step1.status}} == \"approved\" and {{trigger.priority}} != \"low\"`",
+    "doc_id": "product-docs/workflows/conditions-and-branching.md",
+    "source": "product-docs/workflows/conditions-and-branching.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/workflows/conditions-and-branching.md::1",
+    "text": "## Branching strategies  \n### Two-way branching\nStandard if-else. The Condition step has two outputs: True and False.\n\n### Multi-way branching\nChain Condition steps for if-else-if logic. Each subsequent condition is reached only if the prior one was False.\n\n### Parallel branches\nUse a **Split** step to run multiple branches simultaneously. The workflow waits for all branches to complete before continuing.\n\n## Common patterns  \n- **Approval routing**: Route to different approvers based on amount or category.\n- **Customer segmentation**: Send different emails to free vs paid users.\n- **Escalation**: Skip first-tier handling for high-priority items.",
+    "doc_id": "product-docs/workflows/conditions-and-branching.md",
+    "source": "product-docs/workflows/conditions-and-branching.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/workflows/creating-workflows.md::0",
+    "text": "# Creating Workflows  \nWorkflows are the core of Helix. This guide covers everything you need to know about building them.\n\n## Workflow structure  \nEvery workflow has exactly one trigger and one or more steps. Steps run sequentially by default but can be branched, looped, or run in parallel.\n\n## Creating a new workflow  \nFrom the **Workflows** page, click **New Workflow**. You will be taken to the workflow builder.",
+    "doc_id": "product-docs/workflows/creating-workflows.md",
+    "source": "product-docs/workflows/creating-workflows.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/workflows/creating-workflows.md::1",
+    "text": "## Workflow limits  \n- Maximum steps per workflow: **100**\n- Maximum runtime per run: **30 minutes**\n- Workflow versions retained: **50** (older versions are deleted automatically)  \nIf your workflow exceeds these limits, the run will be terminated and marked as failed.\n\n## Naming conventions  \nWhile not required, we recommend descriptive workflow names with action verbs (e.g., \"Post new leads to #sales\" rather than \"Slack workflow\"). Names are searchable in the dashboard.\n\n## Activating workflows  \nA workflow does not run until it is set to Active. Toggle the **Active** switch in the workflow editor. Inactive workflows can still be tested manually.\n\n## Cloning workflows  \nRight-click any workflow and select **Clone** to create a copy. The clone is created in Inactive state to prevent accidental duplicate runs.",
+    "doc_id": "product-docs/workflows/creating-workflows.md",
+    "source": "product-docs/workflows/creating-workflows.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/workflows/error-handling.md::0",
+    "text": "# Error Handling and Retries  \nWhen a workflow step fails, Helix automatically retries before marking the run as failed.\n\n## Default retry behavior  \nFailed steps retry **3 times** with exponential backoff:  \n- 1st retry: after **1 minute**\n- 2nd retry: after **5 minutes**\n- 3rd retry: after **25 minutes**  \nIf all retries fail, the run is marked as **Failed** and the workflow's failure handler runs (if configured).",
+    "doc_id": "product-docs/workflows/error-handling.md",
+    "source": "product-docs/workflows/error-handling.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/workflows/error-handling.md::1",
+    "text": "## What counts as a failure  \n- Network errors (timeouts, connection refused)\n- HTTP 5xx responses from integrated apps\n- HTTP 429 (rate limit) responses\n- Explicit step errors (e.g., a Code step throwing an exception)  \nHTTP 4xx responses (except 429) are **not** retried because they typically indicate a permanent problem (bad request, unauthorized).\n\n## Custom retry configuration  \nYou can override the default retry settings on individual steps:  \n- **Retry count**: 0 to 5\n- **Backoff strategy**: Fixed, Linear, or Exponential\n- **Initial delay**: 0s to 5min",
+    "doc_id": "product-docs/workflows/error-handling.md",
+    "source": "product-docs/workflows/error-handling.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/workflows/error-handling.md::2",
+    "text": "## Failure handlers  \nConfigure a failure handler at the workflow level under **Settings \u2192 Failure handler**. The handler can:  \n- Send a Slack or email notification\n- Trigger another workflow\n- Write to a Failures collection for later review\n\n## Idempotency  \nBecause steps may retry, your integrations should be idempotent. For HTTP calls, include an `Idempotency-Key` header to avoid duplicate side effects.",
+    "doc_id": "product-docs/workflows/error-handling.md",
+    "source": "product-docs/workflows/error-handling.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 2
+  },
+  {
+    "id": "product-docs/workflows/loops.md::0",
+    "text": "# Loops  \nLoops let you process collections of data \u2014 for example, sending an email to every user in a list.\n\n## Loop step  \nInsert a **Loop** step. Connect it to a list \u2014 typically the output of a previous step that returned an array.\n\n## Loop variables  \nInside a loop, the following variables are available:  \n- `{{loop.item}}` \u2014 The current item being processed.\n- `{{loop.index}}` \u2014 The current 0-based index.\n- `{{loop.total}}` \u2014 The total number of items.",
+    "doc_id": "product-docs/workflows/loops.md",
+    "source": "product-docs/workflows/loops.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/workflows/loops.md::1",
+    "text": "## Performance considerations  \nLoops execute sequentially by default. For 100 items at 1 second each, that's 100 seconds. If your loop iterations are independent, use a **Parallel Loop** step to process up to 10 items concurrently.\n\n## Limits  \n- Maximum iterations per loop: 1,000\n- Maximum nested loop depth: 3\n- Total workflow runtime still capped at 30 minutes regardless of loop count\n\n## Common pitfalls  \n**Hitting rate limits**: If your loop calls an external API, you may hit rate limits. Add a delay step inside the loop or use parallelism cautiously.  \n**Memory issues**: Very large loops accumulate state. If you don't need data from prior iterations, clear it explicitly.",
+    "doc_id": "product-docs/workflows/loops.md",
+    "source": "product-docs/workflows/loops.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/workflows/parallel-execution.md::0",
+    "text": "# Parallel Execution  \nRun independent branches of your workflow concurrently to reduce total runtime.\n\n## Split step  \nInsert a **Split** step. Each output line from the Split is a parallel branch. Branches execute simultaneously and the workflow waits for all of them to finish before continuing.\n\n## When to use parallelism  \n- Calling multiple independent APIs (e.g., enrich a contact from Clearbit and FullContact in parallel).\n- Sending notifications to multiple channels.\n- Aggregating data from multiple sources.",
+    "doc_id": "product-docs/workflows/parallel-execution.md",
+    "source": "product-docs/workflows/parallel-execution.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/workflows/parallel-execution.md::1",
+    "text": "## When not to use parallelism  \n- Sequential dependencies \u2014 if step B needs the output of step A, they must run sequentially.\n- Rate-sensitive operations \u2014 running 10 calls in parallel can trigger rate limits faster than running them sequentially.\n\n## Combining branches  \nAfter parallel branches, use a **Join** step to merge their outputs. The Join exposes each branch's output as `{{branch_name.last_step.output}}`.\n\n## Limits  \n- Maximum parallel branches per Split: 10\n- Maximum nested Split depth: 2",
+    "doc_id": "product-docs/workflows/parallel-execution.md",
+    "source": "product-docs/workflows/parallel-execution.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/workflows/scheduling.md::0",
+    "text": "# Scheduling Workflows  \nHelix supports scheduled workflows using standard 5-field cron expressions.\n\n## Cron format  \nA cron expression has 5 fields:  \n```\nminute (0-59)  hour (0-23)  day-of-month (1-31)  month (1-12)  day-of-week (0-6, 0=Sunday)\n```\n\n## Common patterns  \n| Schedule | Cron expression |\n|----------|----------------|\n| Every hour | `0 * * * *` |\n| Every day at 9am | `0 9 * * *` |\n| Weekdays at 9am | `0 9 * * 1-5` |\n| Every 15 minutes | `*/15 * * * *` |\n| First of the month | `0 0 1 * *` |\n| Every Sunday at midnight | `0 0 * * 0` |",
+    "doc_id": "product-docs/workflows/scheduling.md",
+    "source": "product-docs/workflows/scheduling.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/workflows/scheduling.md::1",
+    "text": "## Timezone handling  \nAll schedules run in **UTC**. Helix does not currently support per-workflow timezones. To run at 9am in your local time, calculate the UTC offset and adjust accordingly.\n\n## Schedule precision  \nScheduled workflows are dispatched within 60 seconds of their scheduled time. Do not rely on cron for sub-minute precision \u2014 use webhook triggers if precise timing is critical.\n\n## Daylight saving time  \nBecause Helix uses UTC, DST does not affect your schedules. If your local time observes DST, your workflow's local trigger time will shift by one hour twice a year.",
+    "doc_id": "product-docs/workflows/scheduling.md",
+    "source": "product-docs/workflows/scheduling.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/workflows/templates.md::0",
+    "text": "# Workflow Templates  \nHelix offers pre-built templates for common use cases. Use them as a starting point or learning resource.\n\n## Browsing templates  \nNavigate to **Templates** in the sidebar. Templates are organized by category:  \n- **Sales**: Lead routing, deal stage automation, follow-up reminders\n- **Support**: Ticket triage, SLA monitoring, escalation\n- **Ops**: New employee onboarding, equipment requests, time-off approvals\n- **Marketing**: Campaign syndication, lead nurturing, social posting\n- **Finance**: Invoice processing, expense approvals, vendor management",
+    "doc_id": "product-docs/workflows/templates.md",
+    "source": "product-docs/workflows/templates.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/workflows/templates.md::1",
+    "text": "## Installing a template  \nClick **Install** on any template. You will be prompted to:  \n1. Choose a workspace (if you belong to multiple)\n2. Connect required integrations (or use existing connections)\n3. Customize step configurations  \nThe installed workflow appears in your Workflows list, in Inactive state. Review and activate when ready.\n\n## Modifying templates  \nInstalled templates are full workflows \u2014 you can edit them like any other. Changes you make do not affect the original template.\n\n## Submitting templates  \nIf you have built a workflow you think would help others, submit it via **Templates \u2192 Submit yours**. Approved submissions are credited to your workspace.",
+    "doc_id": "product-docs/workflows/templates.md",
+    "source": "product-docs/workflows/templates.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/workflows/testing.md::0",
+    "text": "# Testing Workflows  \nTest before you ship. Helix provides several mechanisms for validating workflows without affecting production data.\n\n## Test mode  \nIn the workflow editor, click **Test**. Helix will:  \n1. Prompt you for sample trigger data (or use the most recent real trigger).\n2. Run every step with that data.\n3. Show you the inputs and outputs of each step.  \nTest runs do not count toward your monthly run quota.",
+    "doc_id": "product-docs/workflows/testing.md",
+    "source": "product-docs/workflows/testing.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/workflows/testing.md::1",
+    "text": "## Step-level testing  \nEach step has a **Test this step** button. This is useful when debugging a specific step without re-running the whole workflow.\n\n## Test data sources  \nYou can provide test data via:  \n- **Manual entry**: Type a JSON payload.\n- **Sample data**: Use a recent real run as the input.\n- **Stored fixtures**: Save commonly-used test payloads under **Settings \u2192 Test data**.\n\n## Production safety  \nBy default, test runs **do** call external services. If your workflow sends emails or charges credit cards, test runs will perform those actions. To disable side effects, enable **Dry run mode** in the test panel \u2014 Helix will mock external calls and return synthesized responses.\n\n## Continuous testing  \nFor Enterprise customers, Helix supports scheduled workflow tests via the API. You can set up monitoring that runs your critical workflows nightly with known inputs and alerts you if outputs drift.",
+    "doc_id": "product-docs/workflows/testing.md",
+    "source": "product-docs/workflows/testing.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/workflows/triggers.md::0",
+    "text": "# Triggers  \nA trigger is the event that starts a workflow. Every workflow has exactly one trigger.\n\n## Trigger types  \n### Webhook trigger\nHelix generates a unique URL for your workflow. Send a POST request to this URL to trigger a run. The request body is available as `{{trigger.body}}` in subsequent steps.\n\n### Schedule trigger\nRun a workflow on a fixed schedule using cron syntax. The format is the standard 5-field cron expression: `minute hour day-of-month month day-of-week`.  \nExamples:\n- `0 9 * * 1-5` \u2014 Every weekday at 9am UTC\n- `*/15 * * * *` \u2014 Every 15 minutes\n- `0 0 1 * *` \u2014 First day of every month  \nAll schedules run in UTC.",
+    "doc_id": "product-docs/workflows/triggers.md",
+    "source": "product-docs/workflows/triggers.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/workflows/triggers.md::1",
+    "text": "### App event trigger\nTrigger when something happens in a connected app \u2014 for example, \"new row in Google Sheets\" or \"new contact in HubSpot\". Available events depend on the integration.\n\n### Manual trigger\nRun only when manually started from the dashboard or API. Useful for ad-hoc workflows.\n\n## Trigger data  \nTrigger data is available throughout your workflow via the `trigger` object. The exact shape depends on the trigger type. You can inspect the trigger payload in the Runs view.",
+    "doc_id": "product-docs/workflows/triggers.md",
+    "source": "product-docs/workflows/triggers.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "product-docs/workflows/versioning.md::0",
+    "text": "# Workflow Versioning  \nEvery change to a workflow creates a new version. Helix retains the last **50 versions** of each workflow.\n\n## How versions are created  \nA new version is created when you click **Save** in the workflow editor with at least one change. Minor edits like renaming or comment changes are batched into a single version if saved within 5 minutes.\n\n## Viewing version history  \nIn the workflow editor, click **Version History** in the top right. You will see a list of versions with timestamps and the user who made each change.",
+    "doc_id": "product-docs/workflows/versioning.md",
+    "source": "product-docs/workflows/versioning.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 0
+  },
+  {
+    "id": "product-docs/workflows/versioning.md::1",
+    "text": "## Reverting to a prior version  \nClick any version and select **Restore**. This creates a new version that matches the selected one \u2014 it does not delete the versions in between. Active runs are not affected; they continue using the version they started on.\n\n## Comparing versions  \nClick **Compare** to see a side-by-side diff of two versions. Added, modified, and removed steps are highlighted.\n\n## Production vs draft  \nHelix has a single live version per workflow. There is no separate \"production\" and \"staging\" environment within a workflow. To stage changes, clone the workflow and test the clone before promoting changes to the original.\n\n## Version retention  \nVersions older than the 50-version limit are deleted automatically. To preserve historical state beyond this, export the workflow as JSON via the API.",
+    "doc_id": "product-docs/workflows/versioning.md",
+    "source": "product-docs/workflows/versioning.md",
+    "category": "product-docs",
+    "doc_type": "markdown",
+    "chunk_index": 1
+  },
+  {
+    "id": "runbooks/csm/churn-risk-indicators.pdf::0",
+    "text": "Churn Risk Indicators\nINTERNAL \u2014 Helix Engineering / CS Operations\nOVERVIEW\nIdentifying churn risk early lets us intervene while there's still time to save the account. Indicators are\nweighted; multiple together strongly predict churn.\nSTRONG INDICATORS\nPrimary champion has left the customer. Significant usage drop (>40% YoY, sustained 60+ days).\nCustomer has explicitly mentioned a competitor. Renewal date is within 90 days and no QBR has been\nscheduled.\nMEDIUM INDICATORS\nSustained ticket volume increase. Failed integration with a strategic third-party. Sentiment dropping in\nsupport interactions. Plan downgrade in the last 6 months.\nWEAK BUT NOTABLE INDICATORS\nLong gap since last login by primary users. Decreased engagement at QBRs. Champion changed roles\ninternally. Internal restructure announced (M&A;, layoffs).\nWHAT TO DO WHEN INDICATORS APPEAR\n(1) Document in the account record. (2) Reach out to the customer with a specific reason for the call",
+    "doc_id": "runbooks/csm/churn-risk-indicators.pdf",
+    "source": "runbooks/csm/churn-risk-indicators.pdf",
+    "category": "runbooks",
+    "doc_type": "pdf",
+    "chunk_index": 0
+  },
+  {
+    "id": "runbooks/csm/churn-risk-indicators.pdf::1",
+    "text": "WHAT TO DO WHEN INDICATORS APPEAR\n(1) Document in the account record. (2) Reach out to the customer with a specific reason for the call\n(not 'just checking in'). (3) Schedule a discovery conversation to understand the underlying cause. (4)\nFile a save plan if churn risk is moderate or higher.\nWHEN TO ESCALATE\nMultiple strong indicators. Customer >$50K ARR. Strategic logo. Champion explicitly stated intent to\nevaluate alternatives. Loop in CS leadership and account team within 24 hours.\nFALSE POSITIVES\nSome indicators are seasonal or cyclical. Usage drops in December for many B2B customers. Don't\npattern-match without context.",
+    "doc_id": "runbooks/csm/churn-risk-indicators.pdf",
+    "source": "runbooks/csm/churn-risk-indicators.pdf",
+    "category": "runbooks",
+    "doc_type": "pdf",
+    "chunk_index": 1
+  },
+  {
+    "id": "runbooks/csm/customer-feedback-intake.pdf::0",
+    "text": "Customer Feedback Intake Process\nINTERNAL \u2014 Helix Engineering / CS Operations\nOVERVIEW\nCustomer feedback drives product roadmap. CSMs are the primary intake channel and are responsible\nfor capturing, categorizing, and routing feedback.\nFORMS OF FEEDBACK\n(1) Feature requests. (2) Bug reports (route to support, not feedback). (3) UX complaints. (4) Pricing or\npackaging feedback. (5) Sales process feedback. (6) Strategic feedback (positioning, competitive).\nINTAKE METHODS\n(1) During calls \u2014 capture in CRM in real time. (2) Async via Slack #feedback channel. (3) NPS\nsurveys. (4) Post-incident retrospectives.\nREQUIRED FIELDS\nCustomer name. Date received. Verbatim quote (when possible). Categorization. CSM's interpretation\nof the underlying need. Estimated impact (small/medium/large) on the customer's ability to get value.\nROUTING\nFeature requests \u2192 product management triage queue. Bug reports \u2192 engineering issue tracker. UX",
+    "doc_id": "runbooks/csm/customer-feedback-intake.pdf",
+    "source": "runbooks/csm/customer-feedback-intake.pdf",
+    "category": "runbooks",
+    "doc_type": "pdf",
+    "chunk_index": 0
+  },
+  {
+    "id": "runbooks/csm/customer-feedback-intake.pdf::1",
+    "text": "ROUTING\nFeature requests \u2192 product management triage queue. Bug reports \u2192 engineering issue tracker. UX\ncomplaints \u2192 design team. Pricing feedback \u2192 revenue strategy team. Strategic feedback \u2192 CS\nleadership for executive review.\nFOLLOWING UP WITH CUSTOMERS\nAcknowledge receipt of feedback within 48 hours. If the request goes on the roadmap, communicate\nthe timeline. If it doesn't, communicate why (politely) and offer alternatives.\nAGGREGATING THEMES\nIndividual feedback is noisy. Quarterly, the CS team reviews all feedback for emerging themes.\nThemes with >5 customer mentions and >$100K aggregate ARR are surfaced to product leadership.",
+    "doc_id": "runbooks/csm/customer-feedback-intake.pdf",
+    "source": "runbooks/csm/customer-feedback-intake.pdf",
+    "category": "runbooks",
+    "doc_type": "pdf",
+    "chunk_index": 1
+  },
+  {
+    "id": "runbooks/csm/expansion-playbook.pdf::0",
+    "text": "Expansion Playbook\nINTERNAL \u2014 Helix Engineering / CS Operations\nOVERVIEW\nNet revenue retention is driven by expansion within existing accounts. Most healthy customers will\nexpand if asked at the right moment about the right opportunity.\nEXPANSION VECTORS\n(1) Seat expansion \u2014 more users on existing plan. (2) Plan upgrade \u2014 Pro to Enterprise. (3) Add-ons\n\u2014 premium support, dedicated environment, additional integrations. (4) Multi-product \u2014 cross-sell into\nother Helix products.\nSIGNALS THAT EXPANSION IS APPROPRIATE\nCustomer is approaching plan limits. New teams within the customer organization are inquiring about\nHelix. Customer mentions wanting features available only on a higher plan. Customer's own business is\ngrowing (raised funding, hiring, new offices).\nTIMING\nBest windows: shortly after a successful QBR; after a major win the customer attributes to Helix; during\ncontract renewal discussions; after a successful incident handling that built trust.\nBAD TIMES TO PROPOSE EXPANSION",
+    "doc_id": "runbooks/csm/expansion-playbook.pdf",
+    "source": "runbooks/csm/expansion-playbook.pdf",
+    "category": "runbooks",
+    "doc_type": "pdf",
+    "chunk_index": 0
+  },
+  {
+    "id": "runbooks/csm/expansion-playbook.pdf::1",
+    "text": "contract renewal discussions; after a successful incident handling that built trust.\nBAD TIMES TO PROPOSE EXPANSION\nRight after a major incident or extended outage. During contract dispute. When the customer has just\ndowngraded. When the champion has just left.\nDISCOVERY APPROACH\nDon't pitch product. Ask about goals. 'What would help your team get more value from Helix?' is better\nthan 'Have you considered upgrading to Enterprise?'\nPROPOSAL FRAMING\nFrame expansion as a natural progression of value, not a sales pitch. Show usage data. Quantify the\nupgrade in business terms (saved hours, reduced errors, faster turnaround).\nWHEN TO LOOP IN ACCOUNT EXECUTIVE\nFor seat expansions and add-ons, CSM closes solo. For plan upgrades and multi-product, the AE\nleads. CSM remains involved as the trusted advisor.",
+    "doc_id": "runbooks/csm/expansion-playbook.pdf",
+    "source": "runbooks/csm/expansion-playbook.pdf",
+    "category": "runbooks",
+    "doc_type": "pdf",
+    "chunk_index": 1
+  },
+  {
+    "id": "runbooks/csm/health-score-methodology.pdf::0",
+    "text": "Customer Health Score Methodology\nINTERNAL \u2014 Helix Engineering / CS Operations\nOVERVIEW\nHealth scores quantify customer health on a 0-100 scale. They are inputs to renewal forecasts and\nat-risk detection.\nINPUTS\n(1) Product usage (40%): runs per month, workflow count, integration count, active users. (2)\nEngagement (20%): champion responsiveness, attendance at QBRs, training participation. (3) Support\n(20%): ticket volume, severity, resolution satisfaction. (4) Commercial (20%): payment timeliness,\nexpansion vs contraction signals, contract type.\nUSAGE COMPONENT\nCalculated against the customer's plan size, not absolute. A Pro customer using 5,000 of 10,000\nmonthly runs scores higher than an Enterprise customer using 50,000 of unlimited because the relative\nengagement is higher.\nENGAGEMENT COMPONENT\nDetected from CRM activity logs. Champion responding to emails within 48 hours, attending scheduled\nmeetings, accepting calendar invites. Lack of engagement is a strong negative signal.",
+    "doc_id": "runbooks/csm/health-score-methodology.pdf",
+    "source": "runbooks/csm/health-score-methodology.pdf",
+    "category": "runbooks",
+    "doc_type": "pdf",
+    "chunk_index": 0
+  },
+  {
+    "id": "runbooks/csm/health-score-methodology.pdf::1",
+    "text": "meetings, accepting calendar invites. Lack of engagement is a strong negative signal.\nSUPPORT COMPONENT\nHigh ticket volume can be a positive (engaged) or negative (frustrated) signal. We use sentiment\nanalysis on ticket text to differentiate. Resolved-positive tickets boost score; unresolved-frustrated\ntickets reduce it.\nSCORE BANDS\n85-100: Healthy. 70-84: Stable. 60-69: Watch. 40-59: At risk. 0-39: Critical.\nUSAGE\nCSMs should look at scores weekly. Significant changes (>10 points down in a week) trigger immediate\nreview. Trends over multiple weeks matter more than single-week movements.",
+    "doc_id": "runbooks/csm/health-score-methodology.pdf",
+    "source": "runbooks/csm/health-score-methodology.pdf",
+    "category": "runbooks",
+    "doc_type": "pdf",
+    "chunk_index": 1
+  },
+  {
+    "id": "runbooks/csm/renewal-forecasting.pdf::0",
+    "text": "Renewal Forecasting\nINTERNAL \u2014 Helix Engineering / CS Operations\nOVERVIEW\nRenewal forecasts predict whether each customer will renew, downgrade, expand, or churn at their\nrenewal date. Forecasts feed into corporate planning.\nFORECAST CATEGORIES\n(1) Commit \u2014 confirmed renewal, with paperwork in motion. (2) Best case \u2014 likely to renew but not yet\nconfirmed. (3) Pipeline \u2014 probable to renew with normal handling. (4) At risk \u2014 material risk of churn.\n(5) Lost \u2014 confirmed non-renewal.\nFORECAST CADENCE\nUpdated weekly by CSMs. Reviewed by CS leadership in Friday CS leadership meeting. Final monthly\nforecasts presented to executive team in board prep.\nINPUTS\nHealth score. Recent customer interactions. Champion status. Usage trend. Outstanding issues.\nPricing or contract negotiations in progress. Competitive evaluations the customer has mentioned.\nFORECAST RIGOR\nAvoid happy ears. If a customer says 'we'll probably renew', that is best case at most, not commit.",
+    "doc_id": "runbooks/csm/renewal-forecasting.pdf",
+    "source": "runbooks/csm/renewal-forecasting.pdf",
+    "category": "runbooks",
+    "doc_type": "pdf",
+    "chunk_index": 0
+  },
+  {
+    "id": "runbooks/csm/renewal-forecasting.pdf::1",
+    "text": "FORECAST RIGOR\nAvoid happy ears. If a customer says 'we'll probably renew', that is best case at most, not commit.\nCommit requires a written confirmation or paperwork in motion.\nFORECASTING EXPANSION\nForecast separately from base renewal. An account renewing flat is different from one renewing with\n$50K expansion. Both should be tracked.\nQUARTERLY ACCURACY\nCS leadership reviews forecast accuracy quarterly. CSMs whose forecasts are systematically optimistic\nor pessimistic get coaching.\nWHAT NOT TO DO\nDo not adjust forecasts purely to match a leadership target. The forecast must reflect actual reality. If\nreality and target diverge, the gap is the conversation, not the data.",
+    "doc_id": "runbooks/csm/renewal-forecasting.pdf",
+    "source": "runbooks/csm/renewal-forecasting.pdf",
+    "category": "runbooks",
+    "doc_type": "pdf",
+    "chunk_index": 1
+  },
+  {
+    "id": "runbooks/customer-ops/account-deletion.pdf::0",
+    "text": "Account Deletion (GDPR Compliant)\nINTERNAL \u2014 Helix Engineering / CS Operations\nOVERVIEW\nAccount deletion is a permanent, irreversible action. Helix complies with GDPR's right to erasure with a\n30-day deletion window during which the request can be cancelled.\nWHO CAN INITIATE\n(1) The workspace owner (full account deletion). (2) Individual users (their own user account; does not\ndelete the workspace). (3) DSAR requests under GDPR (specific user's personal data).\nPROCEDURE FOR FULL ACCOUNT DELETION\n(1) Verify the requestor is the workspace owner. (2) Confirm understanding: deletion is permanent, all\ndata is removed within 30 days, no recovery is possible. (3) Customer initiates from Settings \u2192\nWorkspace \u2192 Delete. (4) Confirmation email is sent. (5) Customer must confirm via email link to start\nthe 30-day countdown.\nDURING THE WINDOW\nThe workspace is read-only. Workflows do not run. Customer can cancel deletion by signing in and",
+    "doc_id": "runbooks/customer-ops/account-deletion.pdf",
+    "source": "runbooks/customer-ops/account-deletion.pdf",
+    "category": "runbooks",
+    "doc_type": "pdf",
+    "chunk_index": 0
+  },
+  {
+    "id": "runbooks/customer-ops/account-deletion.pdf::1",
+    "text": "the 30-day countdown.\nDURING THE WINDOW\nThe workspace is read-only. Workflows do not run. Customer can cancel deletion by signing in and\nclicking Cancel deletion. After 30 days, deletion proceeds automatically.\nWHAT IS DELETED\nProfile data, workflow definitions, run logs, audit log entries (anonymized to comply with retention\nrequirements), payment methods, integrations, API keys, sessions.\nWHAT IS RETAINED\nAnonymized aggregate metrics (no PII). Financial records as required by tax law (typically 7 years).\nBackup snapshots are purged within 35 days.\nEDGE CASES\nIf the workspace has unpaid invoices, deletion cannot proceed until invoices are settled or written off. If\nthe customer has active legal holds, deletion is blocked until the hold is released; legal must approve.",
+    "doc_id": "runbooks/customer-ops/account-deletion.pdf",
+    "source": "runbooks/customer-ops/account-deletion.pdf",
+    "category": "runbooks",
+    "doc_type": "pdf",
+    "chunk_index": 1
+  },
+  {
+    "id": "runbooks/customer-ops/account-suspension.pdf::0",
+    "text": "Account Suspension and Reinstatement\nINTERNAL \u2014 Helix Engineering / CS Operations\nREASONS FOR SUSPENSION\n(1) Failed payment after all retries. (2) Terms of service violation. (3) Detected security incident on the\ncustomer's account. (4) Customer-requested suspension.\nSUSPENSION EFFECTS\nWhen an account is suspended: workflows pause at end of current run. New runs do not start. UI\ndisplays a banner with the reason. API returns 403 with `account_suspended` error code. Data is\nretained.\nFAILED PAYMENT SUSPENSION\nTriggered automatically after the 3rd retry fails. Workspace owner is emailed. Account remains\nsuspended until payment method is updated and a successful charge occurs. Re-enabled automatically\nwithin 1 hour of payment.\nToS VIOLATION SUSPENSION\nManual suspension by Trust & Safety. Common reasons: spam, abuse, illegal content. Send the\ncustomer the violation notice with details. Reinstatement requires their attestation that the issue is\nresolved.\nSECURITY INCIDENT SUSPENSION",
+    "doc_id": "runbooks/customer-ops/account-suspension.pdf",
+    "source": "runbooks/customer-ops/account-suspension.pdf",
+    "category": "runbooks",
+    "doc_type": "pdf",
+    "chunk_index": 0
+  },
+  {
+    "id": "runbooks/customer-ops/account-suspension.pdf::1",
+    "text": "customer the violation notice with details. Reinstatement requires their attestation that the issue is\nresolved.\nSECURITY INCIDENT SUSPENSION\nIf we detect compromised credentials or unusual API activity suggesting account takeover, we suspend\nimmediately and contact the workspace owner via the verified email of record. Reinstatement requires\nidentity verification.\nCUSTOMER-REQUESTED SUSPENSION\nCustomers can request a temporary pause (e.g., during a hiring freeze or seasonal lull). They retain\ndata but stop being charged. Maximum suspension period is 6 months.\nREINSTATEMENT\nReinstatement is logged in the audit log with the approver. Always confirm the reason for original\nsuspension is resolved before reinstating.",
+    "doc_id": "runbooks/customer-ops/account-suspension.pdf",
+    "source": "runbooks/customer-ops/account-suspension.pdf",
+    "category": "runbooks",
+    "doc_type": "pdf",
+    "chunk_index": 1
+  },
+  {
+    "id": "runbooks/customer-ops/data-export-requests.pdf::0",
+    "text": "Customer Data Export Requests\nINTERNAL \u2014 Helix Engineering / CS Operations\nTYPES OF EXPORT REQUESTS\n(1) Self-service exports via the UI (most common). (2) Bulk exports for large workspaces. (3) DSAR\nexports for GDPR compliance. (4) Pre-cancellation full exports.\nSELF-SERVICE EXPORTS\nCustomers initiate from Settings \u2192 Data \u2192 Export. Helix generates the export asynchronously and\nemails a signed URL. The URL is valid for 24 hours. CSMs do not need to be involved.\nBULK EXPORTS\nFor workspaces with >10M run records, self-service may time out. CSM files a backend export job via\nthe internal admin tool. Provide: workspace ID, date range, formats. Backend completes within 24\nhours and emails the customer directly.\nDSAR EXPORTS\nFor GDPR data subject access requests, follow the privacy procedure. Compile within 7 days. Include\nprofile data, workspace memberships, workflows authored, and audit log entries. Delete the source\ndata per the GDPR deletion procedure if requested (30-day window).",
+    "doc_id": "runbooks/customer-ops/data-export-requests.pdf",
+    "source": "runbooks/customer-ops/data-export-requests.pdf",
+    "category": "runbooks",
+    "doc_type": "pdf",
+    "chunk_index": 0
+  },
+  {
+    "id": "runbooks/customer-ops/data-export-requests.pdf::1",
+    "text": "data per the GDPR deletion procedure if requested (30-day window).\nPRE-CANCELLATION EXPORTS\nCustomers cancelling their account often want a complete dump. Offer the bulk export proactively when\nhandling cancellations. This reduces post-cancellation support requests.\nURL EXPIRY\nAll export URLs expire after 24 hours. If a customer's link expires, regenerate from the admin panel \u2014\nthe export file is retained for 7 days.\nFORMAT SUPPORT\nJSON for workflows and full data dumps. CSV for tabular data (runs, audit log). PDF only for invoices.",
+    "doc_id": "runbooks/customer-ops/data-export-requests.pdf",
+    "source": "runbooks/customer-ops/data-export-requests.pdf",
+    "category": "runbooks",
+    "doc_type": "pdf",
+    "chunk_index": 1
+  },
+  {
+    "id": "runbooks/customer-ops/refund-processing.pdf::0",
+    "text": "Refund Processing\nINTERNAL \u2014 Helix Engineering / CS Operations\nPOLICY\nHelix does not offer refunds for partial months. Cancellations take effect at end of billing period;\ncustomer retains access through that period. Exceptions are limited and require approval.\nEXCEPTIONS WHERE REFUNDS ARE OFFERED\n(1) Customer was billed in error (duplicate charge, wrong plan). (2) Outage materially impacted the\ncustomer's ability to use the service for >25% of the billing period. (3) Plan change took effect\nincorrectly. (4) Account was charged after a cancellation request was confirmed.\nAPPROVAL REQUIRED FOR\nAny refund over $1,000. Any refund for an Enterprise customer. Any refund involving a credit card\nchargeback dispute.\nPROCEDURE\n(1) Verify the customer's claim against billing records. (2) Confirm the refund category from the\nexceptions list. (3) For amounts under $500 and clear billing errors, the CSM can issue directly. For",
+    "doc_id": "runbooks/customer-ops/refund-processing.pdf",
+    "source": "runbooks/customer-ops/refund-processing.pdf",
+    "category": "runbooks",
+    "doc_type": "pdf",
+    "chunk_index": 0
+  },
+  {
+    "id": "runbooks/customer-ops/refund-processing.pdf::1",
+    "text": "exceptions list. (3) For amounts under $500 and clear billing errors, the CSM can issue directly. For\nlarger amounts, file a refund approval ticket with billing-leads@helix.io.\nISSUING THE REFUND\nFrom the admin panel: Customer \u2192 Billing \u2192 Issue refund. Choose full or partial. Always include a\nmemo describing the reason. The refund hits the original payment method within 5\u201310 business days.\nDOCUMENTING\nEvery refund must be documented in the customer's account record with the reason and approver. This\nis required for SOC2 audit.\nDECLINING REFUNDS\nWhen declining a refund, use the standard decline template. Offer service credits as an alternative for\ngoodwill cases. Service credits are easier to approve and customer-retained.",
+    "doc_id": "runbooks/customer-ops/refund-processing.pdf",
+    "source": "runbooks/customer-ops/refund-processing.pdf",
+    "category": "runbooks",
+    "doc_type": "pdf",
+    "chunk_index": 1
+  },
+  {
+    "id": "runbooks/customer-ops/renewal-at-risk.pdf::0",
+    "text": "Renewal At Risk Playbook\nINTERNAL \u2014 Helix Engineering / CS Operations\nDEFINITION\nA renewal is at risk when: (1) Customer has indicated they may not renew. (2) Health score has\ndropped below 60. (3) Primary champion has left the customer organization. (4) Major support incident\nin the last quarter. (5) Usage has dropped >40% year over year.\nDETECTION\nHealth score is auto-calculated daily. CSMs receive a Slack alert when scores drop. Champion\ndepartures are detected via integration data; CSM gets notified within 24 hours of detection.\nINITIAL ACTIONS\n(1) Schedule a meeting with the customer ASAP \u2014 not 'in two weeks' but this week. (2) Review the\naccount history: tickets, usage trends, recent changes. (3) Identify the actual decision-maker for the\nrenewal.\nDISCOVERY QUESTIONS\nWhat's changed since you signed up? Are there features you wanted that we don't have? How is your\nteam using Helix today vs at start? Who are the primary users? What would success look like in the\nnext 6 months?",
+    "doc_id": "runbooks/customer-ops/renewal-at-risk.pdf",
+    "source": "runbooks/customer-ops/renewal-at-risk.pdf",
+    "category": "runbooks",
+    "doc_type": "pdf",
+    "chunk_index": 0
+  },
+  {
+    "id": "runbooks/customer-ops/renewal-at-risk.pdf::1",
+    "text": "team using Helix today vs at start? Who are the primary users? What would success look like in the\nnext 6 months?\nOFFER STRATEGY\nTailor offers to the actual concern: cost \u2192 multi-year discount; features \u2192 roadmap commitment;\nadoption \u2192 success engineer engagement; champion left \u2192 meet new stakeholders.\nESCALATION\nLoop in CS leadership for accounts >$50K ARR or strategic logos. Loop in product leadership for\nfeature-driven concerns where roadmap commitments are needed.\nDOCUMENTATION\nEvery at-risk account gets a save plan document: situation, risks, actions, owners, timeline. Update\nweekly until renewal closes.",
+    "doc_id": "runbooks/customer-ops/renewal-at-risk.pdf",
+    "source": "runbooks/customer-ops/renewal-at-risk.pdf",
+    "category": "runbooks",
+    "doc_type": "pdf",
+    "chunk_index": 1
+  },
+  {
+    "id": "runbooks/engineering/deploy-rollback.pdf::0",
+    "text": "Deploy Rollback Procedure\nINTERNAL \u2014 Helix Engineering / CS Operations\nWHEN TO ROLL BACK\nRoll back when a deploy has caused: (1) elevated error rate, (2) increased latency, (3) any data\ncorruption, or (4) security regression. Don't try to debug forward in production during an active incident;\nroll back first.\nSTEP 1 \u2014 Identify the bad deploy\nFrom the deploys dashboard, identify the deploy that correlates with the symptom. Helix records every\ndeploy with its commit SHA, deployer, and timestamp.\nSTEP 2 \u2014 Confirm rollback is safe\nDatabase migrations: if the bad deploy ran a migration that is not backward-compatible, rolling back the\ncode will not roll back the schema. Stop and engage the on-call DBA.\nSTEP 3 \u2014 Execute rollback\nRun `helix deploy rollback ` from the deploy CLI. Specify the service name. The CLI confirms the target\nversion (the previous successful deploy) and proceeds on confirmation.\nSTEP 4 \u2014 Monitor",
+    "doc_id": "runbooks/engineering/deploy-rollback.pdf",
+    "source": "runbooks/engineering/deploy-rollback.pdf",
+    "category": "runbooks",
+    "doc_type": "pdf",
+    "chunk_index": 0
+  },
+  {
+    "id": "runbooks/engineering/deploy-rollback.pdf::1",
+    "text": "version (the previous successful deploy) and proceeds on confirmation.\nSTEP 4 \u2014 Monitor\nWatch error rates and latency dashboards. The rollback should reduce error rates within 60 seconds. If\nnot, the rollback may have failed; check pod status.\nSTEP 5 \u2014 Communicate\nUpdate #incidents with the rollback action. If customers were impacted, update the status page.\nSTEP 6 \u2014 Block re-deploy\nLock the service in the deploy CLI: `helix deploy lock `. This prevents re-deploys until manually\nunlocked. Do not unlock until root cause is fixed and verified.\nPOSTMORTEM\nEvery rollback triggers a postmortem within 5 business days. Even if the rollback resolved the issue\ncleanly, the postmortem captures why the bug got past CI.",
+    "doc_id": "runbooks/engineering/deploy-rollback.pdf",
+    "source": "runbooks/engineering/deploy-rollback.pdf",
+    "category": "runbooks",
+    "doc_type": "pdf",
+    "chunk_index": 1
+  },
+  {
+    "id": "runbooks/engineering/emergency-hotfix.pdf::0",
+    "text": "Emergency Hotfix Procedure\nINTERNAL \u2014 Helix Engineering / CS Operations\nWHEN A HOTFIX IS APPROPRIATE\nWhen a fix is faster than a rollback (e.g., one-line bug fix), or when a rollback isn't possible\n(incompatible migration, data correction needed). Otherwise prefer rollback.\nAUTHORIZATION\nHotfixes bypass normal review. Authorization required from: (1) On-call engineer, (2) Engineering\nmanager or director on call. Two-person rule applies \u2014 never deploy a hotfix solo.\nPROCEDURE\n(1) Branch from the current production tag. (2) Make the minimum change needed. (3) Get the second\nperson to review. Even a quick eyeball review catches typos. (4) Run the hotfix CI pipeline. (5) Deploy\nto production.\nTESTING\nHotfixes skip integration tests but must pass unit tests. If unit tests are failing, do not deploy \u2014 roll back\ninstead.\nMONITORING\nWatch error rates closely after deploy. If errors increase, roll back the hotfix immediately.\nFOLLOW-UP",
+    "doc_id": "runbooks/engineering/emergency-hotfix.pdf",
+    "source": "runbooks/engineering/emergency-hotfix.pdf",
+    "category": "runbooks",
+    "doc_type": "pdf",
+    "chunk_index": 0
+  },
+  {
+    "id": "runbooks/engineering/emergency-hotfix.pdf::1",
+    "text": "instead.\nMONITORING\nWatch error rates closely after deploy. If errors increase, roll back the hotfix immediately.\nFOLLOW-UP\nWithin 24 hours: (1) Cherry-pick the hotfix into main. (2) Add a regression test. (3) Schedule a\npostmortem.\nWHAT NOT TO DO\nDo not include unrelated changes in a hotfix branch. Do not skip the second-person review. Do not\ndeploy a hotfix outside of normal business hours unless required by an active incident.",
+    "doc_id": "runbooks/engineering/emergency-hotfix.pdf",
+    "source": "runbooks/engineering/emergency-hotfix.pdf",
+    "category": "runbooks",
+    "doc_type": "pdf",
+    "chunk_index": 1
+  },
+  {
+    "id": "runbooks/engineering/on-call-rotation.pdf::0",
+    "text": "Engineering On-Call Rotation\nINTERNAL \u2014 Helix Engineering / CS Operations\nOVERVIEW\nEvery engineer in product engineering participates in the on-call rotation. Shifts are weekly, Monday\n9am to following Monday 9am, US Pacific.\nPRIMARY VS SECONDARY\nEach shift has a primary on-call (responds to all pages) and a secondary (escalation backup). Primary\nrotation takes priority over feature work for the duration of the shift.\nPAGING\nPages come from PagerDuty. Acknowledge within 5 minutes for P0/P1, 15 minutes for P2. Sleep\nthrough pages? PagerDuty escalates to secondary, then to engineering manager.\nEXPECTED RESPONSE\n(1) Acknowledge the page. (2) Open the runbook for the alert if it has one. (3) Begin investigation in\n#incidents. (4) For P0/P1, declare an incident and assume IC duties or hand off to a peer.\nCOMPENSATION\nOn-call shifts include a stipend ($500/week primary, $200/week secondary) and comp time for any\nout-of-hours pages.\nSWAPPING SHIFTS",
+    "doc_id": "runbooks/engineering/on-call-rotation.pdf",
+    "source": "runbooks/engineering/on-call-rotation.pdf",
+    "category": "runbooks",
+    "doc_type": "pdf",
+    "chunk_index": 0
+  },
+  {
+    "id": "runbooks/engineering/on-call-rotation.pdf::1",
+    "text": "COMPENSATION\nOn-call shifts include a stipend ($500/week primary, $200/week secondary) and comp time for any\nout-of-hours pages.\nSWAPPING SHIFTS\nYou can swap shifts with any peer who agrees. Update PagerDuty before the shift starts; do not rely on\nSlack agreements alone.\nVACATION COVERAGE\nBlock off vacation in PagerDuty 4 weeks ahead. The on-call manager will arrange coverage. Do not\nstart vacation without confirmed coverage.\nPOST-SHIFT\nAt end of shift, write a handoff doc summarizing any open issues. Drop it in #oncall-handoff.",
+    "doc_id": "runbooks/engineering/on-call-rotation.pdf",
+    "source": "runbooks/engineering/on-call-rotation.pdf",
+    "category": "runbooks",
+    "doc_type": "pdf",
+    "chunk_index": 1
+  },
+  {
+    "id": "runbooks/engineering/postmortem-template.pdf::0",
+    "text": "Postmortem Template\nINTERNAL \u2014 Helix Engineering / CS Operations\nPURPOSE\nPostmortems capture what happened, why, and how we prevent recurrence. They are required for all\nP0/P1 incidents and any deploy rollback.\nTIMING\nSchedule within 5 business days of incident resolution. Hold the meeting within 10 business days. Post\nthe document within 15 days.\nATTENDEES\nIncident commander, on-call engineer(s), engineering manager, anyone with relevant context.\nCustomer-facing teams (CS, support) optional but encouraged for customer-impacting incidents.\nSECTIONS\n(1) Summary. One paragraph: what happened, customer impact, root cause. (2) Timeline. Bullet points\nwith timestamps from detection to resolution. (3) Root cause. Why did this happen? Use the Five Whys.\n(4) Contributing factors. What made this worse than it could have been? (5) What went well. Don't skip\nthis \u2014 celebrating good responses reinforces them. (6) Action items. Specific, owned, with deadlines.\nBLAMELESS CULTURE",
+    "doc_id": "runbooks/engineering/postmortem-template.pdf",
+    "source": "runbooks/engineering/postmortem-template.pdf",
+    "category": "runbooks",
+    "doc_type": "pdf",
+    "chunk_index": 0
+  },
+  {
+    "id": "runbooks/engineering/postmortem-template.pdf::1",
+    "text": "this \u2014 celebrating good responses reinforces them. (6) Action items. Specific, owned, with deadlines.\nBLAMELESS CULTURE\nPostmortems focus on systems, not individuals. 'The deploy lacked a database migration check' is\ngood. 'Engineer X forgot to add a migration' is bad. Even when individual choices are relevant, frame\nthem as system gaps that allowed those choices.\nACTION ITEMS\nEvery action item must have an owner and a due date. Track in the engineering action item board.\nAction items not completed by their due date are escalated to the engineering manager.\nDISTRIBUTION\nInternal postmortems are visible to all employees. For customer-impacting incidents, an external-facing\nsummary (sanitized) is shared with affected customers.",
+    "doc_id": "runbooks/engineering/postmortem-template.pdf",
+    "source": "runbooks/engineering/postmortem-template.pdf",
+    "category": "runbooks",
+    "doc_type": "pdf",
+    "chunk_index": 1
+  },
+  {
+    "id": "runbooks/engineering/service-health-checks.pdf::0",
+    "text": "Service Health Check Standards\nINTERNAL \u2014 Helix Engineering / CS Operations\nOVERVIEW\nEvery Helix service must expose health endpoints. This runbook describes the standards.\nREQUIRED ENDPOINTS\n/health \u2014 Liveness probe. Returns 200 if the process is alive. Should not check downstream\ndependencies. /ready \u2014 Readiness probe. Returns 200 only if the service is fully ready to handle\nrequests, including downstream connectivity.\nWHAT /ready CHECKS\nDatabase connectivity (can the service execute a SELECT 1?). Cache connectivity (can the service hit\nRedis?). Required upstream service connectivity (e.g., auth-service for any service that validates\ntokens).\nTIMEOUTS\n/health must respond in under 100ms. /ready in under 1s. Slower responses cause k8s to mark the pod\nas unhealthy and restart it.\nFAILURE MODES\nIf /ready returns non-200, k8s removes the pod from the load balancer. The pod is not restarted but\nnew traffic is not sent. If /health returns non-200, k8s restarts the pod.\nMONITORING",
+    "doc_id": "runbooks/engineering/service-health-checks.pdf",
+    "source": "runbooks/engineering/service-health-checks.pdf",
+    "category": "runbooks",
+    "doc_type": "pdf",
+    "chunk_index": 0
+  },
+  {
+    "id": "runbooks/engineering/service-health-checks.pdf::1",
+    "text": "new traffic is not sent. If /health returns non-200, k8s restarts the pod.\nMONITORING\nBoth endpoints are scraped by Prometheus. Alerts fire when fewer than 80% of pods report healthy for\n5 minutes.\nDEBUGGING UNHEALTHY PODS\nCheck pod logs for the failing dependency. Use `kubectl describe pod ` to see the readiness probe\nfailure details. Check the dependency's own health.",
+    "doc_id": "runbooks/engineering/service-health-checks.pdf",
+    "source": "runbooks/engineering/service-health-checks.pdf",
+    "category": "runbooks",
+    "doc_type": "pdf",
+    "chunk_index": 1
+  },
+  {
+    "id": "runbooks/incident-response/auth-service-degradation.pdf::0",
+    "text": "Auth Service Degradation\nINTERNAL \u2014 Helix Engineering / CS Operations\nSCOPE\nThis runbook covers degradation of the auth-service \u2014 the service that issues and validates user\nsessions and API tokens. Auth-service downtime locks all users out of the platform.\nDETECTION\nAuth-service exposes /health and /ready endpoints. Synthetic probes alert on degradation.\nCustomer-reported login failures are also a strong signal.\nSTEP 1 \u2014 Confirm scope\nTest login from an internal account. If you cannot log in, the impact is total. If you can log in but specific\nusers cannot, the issue may be data-side (corrupted user record, IdP misconfiguration on customer\nside).\nSTEP 2 \u2014 Check downstream\nAuth-service depends on Postgres (user store) and Redis (session cache). Check both. If Postgres is\ndegraded, see database-failover. If Redis is degraded, restart redis-auth pods one by one.\nSTEP 3 \u2014 Roll back recent deploys",
+    "doc_id": "runbooks/incident-response/auth-service-degradation.pdf",
+    "source": "runbooks/incident-response/auth-service-degradation.pdf",
+    "category": "runbooks",
+    "doc_type": "pdf",
+    "chunk_index": 0
+  },
+  {
+    "id": "runbooks/incident-response/auth-service-degradation.pdf::1",
+    "text": "degraded, see database-failover. If Redis is degraded, restart redis-auth pods one by one.\nSTEP 3 \u2014 Roll back recent deploys\nIf a deploy in the last 30 minutes correlates with the issue, roll back: `helix deploy rollback\nauth-service`. Confirm the rollback completed.\nSTEP 4 \u2014 Engage IdP support\nFor SSO-only failures (password login works, SSO fails): contact the customer's IdP admin if it appears\nIdP-side. Helix supports SAML 2.0 and the issue may be metadata expiration on their side.\nSTEP 5 \u2014 Emergency bypass\nIf you must restore service before root cause is found, you may temporarily disable SAML 2.0\nenforcement workspace-by-workspace. This requires director approval and must be re-enabled within\n24 hours.",
+    "doc_id": "runbooks/incident-response/auth-service-degradation.pdf",
+    "source": "runbooks/incident-response/auth-service-degradation.pdf",
+    "category": "runbooks",
+    "doc_type": "pdf",
+    "chunk_index": 1
+  },
+  {
+    "id": "runbooks/incident-response/database-failover.pdf::0",
+    "text": "Database Failover Procedure\nINTERNAL \u2014 Helix Engineering / CS Operations\nOVERVIEW\nThis runbook describes how to manually fail over the primary Postgres database to its replica. This is a\nhigh-impact procedure; only execute under direction of an incident commander.\nPRECONDITIONS\nVerify that the replica is healthy and replication lag is under 5 seconds. Check the replication monitoring\ndashboard before proceeding.\nSTEP 1 \u2014 Stop writes\nFrom the bastion: `kubectl scale deployment/api-server --replicas=0`. This stops new writes from\nreaching the primary. Workflow runs in flight will fail; this is acceptable for the duration of failover.\nSTEP 2 \u2014 Wait for replication to catch up\nRun `psql -c 'SELECT pg_last_wal_receive_lsn(), pg_last_wal_replay_lsn();'` on the replica until both\nvalues match. This confirms all writes have replicated.\nSTEP 3 \u2014 Promote replica\nRun `pg_ctl promote -D /var/lib/postgresql/data` on the replica. The replica is now a primary.\nSTEP 4 \u2014 Update DNS",
+    "doc_id": "runbooks/incident-response/database-failover.pdf",
+    "source": "runbooks/incident-response/database-failover.pdf",
+    "category": "runbooks",
+    "doc_type": "pdf",
+    "chunk_index": 0
+  },
+  {
+    "id": "runbooks/incident-response/database-failover.pdf::1",
+    "text": "STEP 3 \u2014 Promote replica\nRun `pg_ctl promote -D /var/lib/postgresql/data` on the replica. The replica is now a primary.\nSTEP 4 \u2014 Update DNS\nUpdate the `db-primary.helix.io` DNS record to point at the new primary's IP. TTL is 60 seconds; allow\n90 seconds for propagation.\nSTEP 5 \u2014 Resume writes\nScale API server back up: `kubectl scale deployment/api-server --replicas=20`. Monitor error rates\nclosely for the next 15 minutes.\nSTEP 6 \u2014 Provision new replica\nThe promoted replica is now the primary; you have no replica. Provision a new replica from the latest\nsnapshot. Until the new replica is in sync, you have no failover capacity.\nROLLBACK\nIf the failover fails or causes more impact, fail back: stop writes again, point DNS back to the original\nprimary if it is still healthy. If the original primary is unhealthy, restore from the most recent backup (RPO is 5 minutes).",
+    "doc_id": "runbooks/incident-response/database-failover.pdf",
+    "source": "runbooks/incident-response/database-failover.pdf",
+    "category": "runbooks",
+    "doc_type": "pdf",
+    "chunk_index": 1
+  },
+  {
+    "id": "runbooks/incident-response/p0-incident-response.pdf::0",
+    "text": "P0 Incident Response Procedure\nINTERNAL \u2014 Helix Engineering / CS Operations\nPURPOSE\nDefine the response protocol for P0 incidents \u2014 incidents that materially impact paying customers'\nability to use Helix's core functionality.\nDEFINITION OF P0\nA P0 incident is any of the following: (1) more than 5% of customers cannot log in, (2) workflow runs are\nfailing at >10% rate workspace-wide, (3) data loss has occurred or is occurring, (4) a security breach\nhas been detected, or (5) the API is returning 5xx errors at >5% rate.\nINITIAL RESPONSE\nWithin 5 minutes of detection: (1) Page the on-call engineer via PagerDuty. (2) The on-call declares the\nincident in #incidents Slack and creates an Incident Commander (IC) role. (3) IC opens a Zoom bridge\nand posts the link in #incidents.\nCOMMUNICATION\nThe IC is responsible for status page updates. Post initial status within 10 minutes of declaration.\nUpdate the status page at https://status.helix.io every 15 minutes minimum until resolution.\nESCALATION",
+    "doc_id": "runbooks/incident-response/p0-incident-response.pdf",
+    "source": "runbooks/incident-response/p0-incident-response.pdf",
+    "category": "runbooks",
+    "doc_type": "pdf",
+    "chunk_index": 0
+  },
+  {
+    "id": "runbooks/incident-response/p0-incident-response.pdf::1",
+    "text": "Update the status page at https://status.helix.io every 15 minutes minimum until resolution.\nESCALATION\nIf the on-call engineer cannot identify root cause within 30 minutes, escalate to the secondary on-call. If\nboth on-calls are unable to make progress within 60 minutes total, page the engineering manager.\nEXTERNAL COMMUNICATION\nFor any P0 lasting longer than 30 minutes, send an email update to all paying customers. Use the\npre-approved template in /docs/incident-templates. CS leadership must approve before sending.\nRESOLUTION\nWhen the incident is resolved: (1) Mark the status page resolved. (2) Send a final email update if\ncustomers were notified. (3) Schedule a postmortem within 5 business days.\nPOSTMORTEM\nPostmortem is required for all P0 incidents. Use the postmortem template. Blameless culture: focus on\nsystems, not individuals.",
+    "doc_id": "runbooks/incident-response/p0-incident-response.pdf",
+    "source": "runbooks/incident-response/p0-incident-response.pdf",
+    "category": "runbooks",
+    "doc_type": "pdf",
+    "chunk_index": 1
+  },
+  {
+    "id": "runbooks/incident-response/rate-limit-spike.pdf::0",
+    "text": "Rate Limit Spike Response\nINTERNAL \u2014 Helix Engineering / CS Operations\nWHEN THIS RUNBOOK APPLIES\nA customer or set of customers is generating API traffic that exceeds platform-wide capacity.\nSymptoms: API p99 latency above 2s, increased 503s, or the rate limiter shedding traffic at the LB.\nSTEP 1 \u2014 Identify the source\nCheck the API analytics dashboard, sorted by workspace requests-per-minute. Identify any workspace\nexceeding 5x its plan's documented limit. Common cause: a customer's bot or integration in a tight\nloop.\nSTEP 2 \u2014 Reach out to the customer\nEmail the workspace owner with the request count, peak RPM, and the API keys involved. Most\ncustomers respond within 15 minutes when alerted.\nSTEP 3 \u2014 Apply temporary throttle\nIf the spike is causing platform-wide impact, apply a temporary per-workspace cap at 50% of the\noffending rate. This is a tighter limit than their plan allows; document this in the audit log and notify the\ncustomer.\nSTEP 4 \u2014 Block specific keys",
+    "doc_id": "runbooks/incident-response/rate-limit-spike.pdf",
+    "source": "runbooks/incident-response/rate-limit-spike.pdf",
+    "category": "runbooks",
+    "doc_type": "pdf",
+    "chunk_index": 0
+  },
+  {
+    "id": "runbooks/incident-response/rate-limit-spike.pdf::1",
+    "text": "offending rate. This is a tighter limit than their plan allows; document this in the audit log and notify the\ncustomer.\nSTEP 4 \u2014 Block specific keys\nIf a single API key is responsible (a runaway script), rotate-and-revoke that key from the admin panel.\nThe customer's other keys continue to work.\nSTEP 5 \u2014 Capacity review\nIf the spike is from legitimate traffic and the platform cannot handle current load, escalate to capacity\nplanning. Do not revoke keys for customers within their documented plan limits.\nPOST-INCIDENT\nIf a customer was throttled below their documented plan limit, follow up within 24 hours and offer a\ncredit. Document the incident in the customer's account record.",
+    "doc_id": "runbooks/incident-response/rate-limit-spike.pdf",
+    "source": "runbooks/incident-response/rate-limit-spike.pdf",
+    "category": "runbooks",
+    "doc_type": "pdf",
+    "chunk_index": 1
+  },
+  {
+    "id": "runbooks/incident-response/webhook-delivery-failure.pdf::0",
+    "text": "Webhook Delivery Failure Response\nINTERNAL \u2014 Helix Engineering / CS Operations\nSYMPTOMS\nCustomers report that their webhooks are not being delivered or are arriving late. Internal alerts:\nwebhook delivery success rate has dropped below 99% for 5+ minutes.\nINITIAL TRIAGE\nCheck the webhook delivery dashboard for the failure pattern: (1) Specific destination URL \u2014 likely a\ncustomer-side issue. (2) All destinations \u2014 likely a Helix-side issue. (3) Specific event type \u2014 likely a\ncode regression in the publisher.\nCUSTOMER-SIDE FAILURE\nIf a single destination is failing, check the response codes: 4xx means the customer's endpoint is\nrejecting our payloads (auth issue, schema change). 5xx means the customer's endpoint is down.\nEmail the workspace owner with the failure rate and last 3 error responses.\nHELIX-SIDE FAILURE\nIf multiple destinations are failing similarly: (1) Check the webhook dispatcher service logs for errors. (2)",
+    "doc_id": "runbooks/incident-response/webhook-delivery-failure.pdf",
+    "source": "runbooks/incident-response/webhook-delivery-failure.pdf",
+    "category": "runbooks",
+    "doc_type": "pdf",
+    "chunk_index": 0
+  },
+  {
+    "id": "runbooks/incident-response/webhook-delivery-failure.pdf::1",
+    "text": "HELIX-SIDE FAILURE\nIf multiple destinations are failing similarly: (1) Check the webhook dispatcher service logs for errors. (2)\nCheck Redis queue depth \u2014 if >10K, dispatcher is overloaded. (3) Check the egress proxy health.\nDISPATCHER OVERLOAD\nIf the queue is overloaded: scale dispatcher pods (`kubectl scale deployment/webhook-dispatcher\n--replicas=20`). This adds capacity. Do not exceed 30 replicas \u2014 Redis becomes the bottleneck.\nBACKLOG PROCESSING\nOnce dispatch is recovering, deliveries will catch up but order is best-effort. Webhooks delivered after\n30 minutes of queueing are marked as delayed in the audit log so customers can detect and reconcile.\nPOST-INCIDENT\nConfirm queue depth is back to baseline (<100 messages). Post a status update if any customer\nnotifications were sent. Review whether autoscaling thresholds need adjustment.",
+    "doc_id": "runbooks/incident-response/webhook-delivery-failure.pdf",
+    "source": "runbooks/incident-response/webhook-delivery-failure.pdf",
+    "category": "runbooks",
+    "doc_type": "pdf",
+    "chunk_index": 1
+  },
+  {
+    "id": "tickets/ticket-1042-sso-redirect-loop.html::0",
+    "text": "HX-1042 \u2014 SSO redirect loop after IdP migration\nTICKET HX-1042\nSSO redirect loop after IdP migration\nStatus:\nResolved\nCategory:\nAuthentication\nPriority:\nP1\nCustomer:\nMaria Chen (Northwind Logistics)\nAgent:\nDevon Park\nMaria Chen\nCustomer\n2024-03-12 09:14 UTC\nWe migrated from Okta to Azure AD over the weekend and now nobody on our team can sign in to Helix. We get redirected to Azure, complete the login, and then bounce back to a 'Sign in with SSO' button that just loops. We're locked out workspace-wide. Can you take a look urgently?\nDevon Park\nHelix Support\n2024-03-12 09:31 UTC\nHi Maria \u2014 sorry for the disruption. A redirect loop after an IdP swap is almost always one of two things: either the new IdP isn't sending the user's email in the SAML NameID field, or the SAML metadata in Helix is still pointing at your old Okta endpoints.\nTwo quick checks:\nIn\nSettings \u2192 Security \u2192 SSO\n, has the metadata been replaced with the Azure AD metadata? It should reference login.microsoftonline.com, not okta.com.\nIn your Azure AD enterprise app, what NameID format is configured? It needs to be\nemailAddress\n, not\npersistent\n.\nMaria Chen\nCustomer\n2024-03-12 09:48 UTC\nChecked both. Metadata is updated to Azure. NameID format was set to persistent \u2014 switching it to emailAddress now. Will re-test.\nMaria Chen\nCustomer\n2024-03-12 09:55 UTC\nThat fixed it. Login working now. Out of curiosity, why does NameID format matter so much?\nDevon Park\nHelix Support\n2024-03-12 10:08 UTC\nGlad it's working. Helix uses the SAML NameID to look up or provision the user account. With\npersistent\n, your IdP sends an opaque ID that doesn't match any email on file, so Helix can't find your user \u2014 and the just-in-time provisioning logic creates a fresh user, but at the next login it tries to look up the same opaque ID, doesn't find a match (because emails were used originally), and bounces you back. The loop is the symptom of that mismatch.\nFor future migrations: always use\nemailAddress\nNameID, and test with one user before flipping the org-wide switch. We document this in the SSO guide. Is there anything else I can help with?\nMaria Chen\nCustomer\n2024-03-12 10:14 UTC\nThat's super helpful context, thanks. All set.\nRESOLUTION\nCustomer's Azure AD enterprise app was configured with NameID format `persistent` instead of `emailAddress`, causing Helix's user lookup to fail and trigger a redirect loop. Switching the NameID format to emailAddress in Azure resolved it. Confirmed working with full team.",
+    "doc_id": "tickets/ticket-1042-sso-redirect-loop.html",
+    "source": "tickets/ticket-1042-sso-redirect-loop.html",
+    "category": "tickets",
+    "doc_type": "html",
+    "chunk_index": 0
+  },
+  {
+    "id": "tickets/ticket-1078-password-reset-not-arriving.html::0",
+    "text": "HX-1078 \u2014 Password reset email never arrives\nTICKET HX-1078\nPassword reset email never arrives\nStatus:\nResolved\nCategory:\nAuthentication\nPriority:\nP2\nCustomer:\nTom Reilly (Bluefin Brewing)\nAgent:\nSandra Liu\nTom Reilly\nCustomer\n2024-03-15 14:22 UTC\nI've been trying to reset my password for the last hour. I click 'forgot password,' enter my email, get the success message, but no email ever arrives. Checked spam. Tried different browsers. Nothing.\nSandra Liu\nHelix Support\n2024-03-15 14:38 UTC\nHi Tom \u2014 let me look into this. Can you confirm the email address you're using? I want to check our delivery logs against it.\nTom Reilly\nCustomer\n2024-03-15 14:41 UTC\n[REDACTED_EMAIL]\nSandra Liu\nHelix Support\n2024-03-15 14:55 UTC\nFound the issue. Your email provider rejected the last 4 password reset emails with a 550 'sender rejected' error. This usually means an SPF/DKIM problem on your end has put helix.io on a tighter filter. The emails left our system but were bounced before delivery.\nTwo paths forward:\nQuick fix \u2014 I can manually trigger a password reset from our admin tool, which uses a different sending path that may slip through. Want me to try that?\nReal fix \u2014 your email administrator needs to check why mail from helix.io is being rejected. If you don't know who that is, I can email you a description of the bounce so you can forward it to your IT team.\nTom Reilly\nCustomer\n2024-03-15 14:58 UTC\nYes please try the manual trigger.\nSandra Liu\nHelix Support\n2024-03-15 15:04 UTC\nDone. Check your inbox in the next 2 minutes.\nTom Reilly\nCustomer\n2024-03-15 15:11 UTC\nGot it, in. Thanks. Will share the bounce info with our IT team so this doesn't happen next time.\nRESOLUTION\nCustomer's email provider was rejecting transactional email from helix.io with 550 sender rejected errors due to inbound filtering. Manual password reset via internal admin tool used a different sending path and was delivered successfully. Customer was advised to have their IT team investigate the bounce reason.",
+    "doc_id": "tickets/ticket-1078-password-reset-not-arriving.html",
+    "source": "tickets/ticket-1078-password-reset-not-arriving.html",
+    "category": "tickets",
+    "doc_type": "html",
+    "chunk_index": 0
+  },
+  {
+    "id": "tickets/ticket-1156-api-rate-limit-confusion.html::0",
+    "text": "HX-1156 \u2014 Hit 429 errors well below the documented rate limit\nTICKET HX-1156\nHit 429 errors well below the documented rate limit\nStatus:\nResolved\nCategory:\nAPI\nPriority:\nP2\nCustomer:\nPriya Singh (DataMesh AI)\nAgent:\nMarcus Webb\nPriya Singh\nCustomer\n2024-03-20 11:02 UTC\nI'm on the Pro plan and your docs say the rate limit is 1000 requests per minute, but my client is getting 429s after only about 400 requests. Something is wrong on your side.\nMarcus Webb\nHelix Support\n2024-03-20 11:18 UTC\nHi Priya \u2014 let me look at your traffic. Two things to check first: (1) are you using a single API key or multiple? Rate limits are per-workspace, so all keys share the budget. (2) What's the burst pattern \u2014 is the client sending 400 in a few seconds, or distributed evenly across the minute?\nPriya Singh\nCustomer\n2024-03-20 11:25 UTC\nSingle key. The client batches and sends ~400 requests in about 3 seconds, then waits, then does it again.\nMarcus Webb\nHelix Support\n2024-03-20 11:34 UTC\nThat's the issue. The 1000/min limit is enforced as a token bucket \u2014 1000 tokens that refill at ~17/second. A 400-request burst in 3 seconds drains the bucket faster than it refills, so once the bucket hits empty you get 429s even though you're under the per-minute number.\nThe fix is to spread requests more evenly. Two options:\nAdd a small delay between batches (a 50ms sleep between requests would smooth the burst).\nUse the\nRetry-After\nheader on 429 responses to back off automatically.\nYou can monitor your bucket state via the\nX-RateLimit-Remaining\nheader on every response.\nPriya Singh\nCustomer\n2024-03-20 11:42 UTC\nAh, that's documented? I missed it. Will adjust the client. Thanks.\nMarcus Webb\nHelix Support\n2024-03-20 11:47 UTC\nIt's in our rate limits doc but I agree the token bucket part is buried \u2014 I'll flag this internally to surface it more clearly. Anything else?\nPriya Singh\nCustomer\n2024-03-20 11:51 UTC\nAll good. Fixed it on my end and the bursts are smoothed out now. Closing.\nRESOLUTION\nCustomer was hitting 429 errors below their plan's documented rate limit because the limit is a token bucket, not a per-minute counter. A burst of 400 requests in 3 seconds drained the bucket faster than it refilled. Customer added per-request delays and used X-RateLimit-Remaining and Retry-After headers to smooth traffic. Resolved.",
+    "doc_id": "tickets/ticket-1156-api-rate-limit-confusion.html",
+    "source": "tickets/ticket-1156-api-rate-limit-confusion.html",
+    "category": "tickets",
+    "doc_type": "html",
+    "chunk_index": 0
+  },
+  {
+    "id": "tickets/ticket-1189-401-with-valid-key.html::0",
+    "text": "HX-1189 \u2014 Getting 401 errors with what should be a valid API key\nTICKET HX-1189\nGetting 401 errors with what should be a valid API key\nStatus:\nResolved\nCategory:\nAPI\nPriority:\nP1\nCustomer:\nJakob Andersen (Skylane Aviation)\nAgent:\nDevon Park\nJakob Andersen\nCustomer\n2024-03-22 08:11 UTC\nMy production integration started failing at 3am UTC with 401 unauthorized. Key hasn't been rotated. Nothing changed on our side. We're partly down.\nDevon Park\nHelix Support\n2024-03-22 08:19 UTC\nHi Jakob \u2014 looking into this immediately. What's the prefix of the key (just the first 12 chars, don't share the full key)?\nJakob Andersen\nCustomer\n2024-03-22 08:21 UTC\nhlx_live_8a3f4...\nDevon Park\nHelix Support\n2024-03-22 08:32 UTC\nFound it. That key was deleted at 02:58 UTC by user [REDACTED_EMAIL]. The deletion is in your audit log. Once a key is deleted it can't be undeleted; you'll need to generate a new one.\nJakob Andersen\nCustomer\n2024-03-22 08:35 UTC\nWHAT. That's our production key. Erin had no business deleting that. Can you restore it?\nDevon Park\nHelix Support\n2024-03-22 08:42 UTC\nI understand the frustration. We genuinely cannot restore deleted keys \u2014 that's a security guarantee, not a tooling limitation. The fastest path back to working: (1) generate a new key in\nSettings \u2192 API Keys\n, (2) deploy it to your production integration. The integration should be back up within minutes of the new key being installed.\nGoing forward, two things I'd suggest: (1) set up scoped keys so production uses a key that's narrower than full-access \u2014 limits blast radius if it happens again. (2) Restrict who can delete API keys via a role policy. Owner/Admin-only is our recommendation.\nJakob Andersen\nCustomer\n2024-03-22 09:14 UTC\nNew key deployed. Production back up. Will follow up with Erin. Closing this out \u2014 thanks for the fast triage.\nRESOLUTION\nCustomer's API key returning 401 because it had been deleted by another user in their workspace at 02:58 UTC. Audit log confirmed the deletion. Deleted keys are unrecoverable by design. Resolved by customer generating a new key. Recommended scoped keys and restricting deletion permissions to Admin/Owner only.",
+    "doc_id": "tickets/ticket-1189-401-with-valid-key.html",
+    "source": "tickets/ticket-1189-401-with-valid-key.html",
+    "category": "tickets",
+    "doc_type": "html",
+    "chunk_index": 0
+  },
+  {
+    "id": "tickets/ticket-1212-webhook-not-firing.html::0",
+    "text": "HX-1212 \u2014 Webhook subscription not delivering events\nTICKET HX-1212\nWebhook subscription not delivering events\nStatus:\nResolved\nCategory:\nAPI\nPriority:\nP2\nCustomer:\nLila Okafor (Pinetree Studios)\nAgent:\nSandra Liu\nLila Okafor\nCustomer\n2024-03-25 16:30 UTC\nI subscribed our endpoint to run.failed events 4 days ago and we haven't received a single delivery, even though I can see failed runs in the dashboard. Endpoint URL is https://api.pinetree.studio/helix-webhook. What's broken?\nSandra Liu\nHelix Support\n2024-03-25 16:51 UTC\nHi Lila \u2014 looking now. I see your subscription. I also see we attempted 47 deliveries to that URL in the last 4 days. Every one returned a 403 Forbidden response from your endpoint, so they're being marked as failed deliveries.\nYou can confirm this yourself in\nSettings \u2192 Webhooks \u2192 {your-subscription} \u2192 Delivery Logs\n. After 3 retries we mark each event permanently failed.\nThe 403 suggests your endpoint is rejecting our requests \u2014 maybe a signature check failing, or an auth middleware blocking unknown clients. Can you check your access logs for what's returning 403?\nLila Okafor\nCustomer\n2024-03-25 17:09 UTC\nYou're right, our middleware is rejecting unsigned requests. We have signature verification on, expecting an HMAC in a custom header. What's the header name and signing algorithm Helix uses?\nSandra Liu\nHelix Support\n2024-03-25 17:14 UTC\nThe header is\nX-Helix-Signature\nand the signing algorithm is\nHMAC-SHA256\nover the raw request body, using the secret from your subscription config. Make sure you're verifying against the raw bytes, not the parsed JSON \u2014 re-serialization will produce different bytes and break signature verification.\nAlso: we don't backfill failed deliveries automatically. Once your endpoint is fixed, only new events going forward will arrive. If you need the events from the last 4 days, let me know and I can help you replay them.\nLila Okafor\nCustomer\n2024-03-25 18:02 UTC\nGot signature verification working. Test event came through. Please replay the missed events from the last 4 days, that would help.\nSandra Liu\nHelix Support\n2024-03-25 18:21 UTC\nReplay queued \u2014 47 events from the last 4 days are being redelivered. They'll trickle in over the next 30 minutes to avoid spiking your endpoint. Closing this out.\nRESOLUTION\nCustomer's webhook endpoint was returning 403 because their middleware required a signed request and signature verification wasn't yet implemented on their side. Helix uses X-Helix-Signature header with HMAC-SHA256 over the raw body. Customer implemented verification correctly, agent replayed 4 days of missed deliveries.",
+    "doc_id": "tickets/ticket-1212-webhook-not-firing.html",
+    "source": "tickets/ticket-1212-webhook-not-firing.html",
+    "category": "tickets",
+    "doc_type": "html",
+    "chunk_index": 0
+  },
+  {
+    "id": "tickets/ticket-1234-workflow-timeout.html::0",
+    "text": "HX-1234 \u2014 Workflow times out after running for 30 minutes\nTICKET HX-1234\nWorkflow times out after running for 30 minutes\nStatus:\nResolved\nCategory:\nWorkflows\nPriority:\nP2\nCustomer:\nKenji Tanaka (Lumen Health)\nAgent:\nMarcus Webb\nKenji Tanaka\nCustomer\n2024-03-27 13:08 UTC\nOne of our workflows runs nightly and processes ~5000 patient records. As of about a week ago it started failing partway through with a timeout. We didn't change the workflow. What's going on?\nMarcus Webb\nHelix Support\n2024-03-27 13:24 UTC\nHi Kenji \u2014 the 30-minute max workflow runtime is a hard platform limit, and your workflow is currently running for ~30m 12s before being killed. So it's not a transient failure \u2014 it's a constraint your workflow is now bumping into.\nWhat probably changed: you mentioned 5000 records. If that grew (say from 4000 to 5500), your runtime stretched past 30 minutes. Looking at the run history, your average run time has been climbing for ~2 weeks.\nThree options:\nSplit the work\n: chunk the 5000 records into batches of, say, 1000, and run the workflow 5 times via schedule.\nParallelize within the workflow\n: use a Parallel Loop step instead of sequential \u2014 gives you up to 10x speedup if iterations are independent.\nMove processing upstream\n: if your data source can pre-process, push the heavy work there and have Helix handle the lighter orchestration.\nOption 2 is usually the lowest-effort if the per-record work is independent. Want me to help model what that would look like?\nKenji Tanaka\nCustomer\n2024-03-27 13:42 UTC\nPer-record work is fully independent (each record is a separate API call). Yes please walk me through Parallel Loop.\nMarcus Webb\nHelix Support\n2024-03-27 13:58 UTC\nGreat, that's the easy case. In your workflow editor, replace the current Loop step with a Parallel Loop step. Configure concurrency to 10 (the max). Helix will run up to 10 iterations simultaneously, so 5000 records at 0.4s each goes from ~33 minutes sequential to ~3.3 minutes parallel.\nOne caveat: your downstream API may rate-limit you. If the API you're hitting has a per-second cap, parallelism can blow through it. Check your downstream's limits before bumping concurrency to the max.\nKenji Tanaka\nCustomer\n2024-03-27 14:51 UTC\nDone. Test run finished in 3m 47s. Going to monitor for a few nights. Thanks Marcus.\nRESOLUTION\nCustomer's nightly workflow grew past the 30-minute platform max-runtime limit as record volume increased. Switched from sequential Loop to Parallel Loop with concurrency=10. Runtime dropped from ~33min to ~4min. Resolved.",
+    "doc_id": "tickets/ticket-1234-workflow-timeout.html",
+    "source": "tickets/ticket-1234-workflow-timeout.html",
+    "category": "tickets",
+    "doc_type": "html",
+    "chunk_index": 0
+  },
+  {
+    "id": "tickets/ticket-1267-integration-disconnect.html::0",
+    "text": "HX-1267 \u2014 Salesforce integration keeps disconnecting\nTICKET HX-1267\nSalesforce integration keeps disconnecting\nStatus:\nResolved\nCategory:\nIntegrations\nPriority:\nP2\nCustomer:\nAisha Bhatt (Coastline Realty)\nAgent:\nSandra Liu\nAisha Bhatt\nCustomer\n2024-03-29 10:15 UTC\nOur Salesforce connection has 'expired' three times this month. Every time I reconnect and it works for a week or two then breaks again. This is killing our pipeline.\nSandra Liu\nHelix Support\n2024-03-29 10:34 UTC\nHi Aisha \u2014 that's frustrating. Repeated OAuth disconnects almost always trace to one of these: (1) the Salesforce user who authorized has expiring credentials in SF (password expiry, MFA challenge changes), (2) Salesforce admin policy is revoking long-lived OAuth grants, or (3) the user account is being deactivated and reactivated.\nWho is the SF user that authorized the connection \u2014 is it a personal account or a service account?\nAisha Bhatt\nCustomer\n2024-03-29 10:42 UTC\nIt's connected as me (the SF admin). Personal account.\nSandra Liu\nHelix Support\n2024-03-29 10:51 UTC\nFound it. Your Salesforce org has a 'Refresh token policy' set to\nexpire on first use\n. That means every time we use the refresh token to get a new access token, the refresh token itself is invalidated. This basically makes the connection one-shot \u2014 works until the access token expires, then dead.\nTwo paths:\nChange the refresh token policy in your SF Connected App settings to\nrefresh until revoked\n. This is the standard setting for integrations.\nSwitch to a service account specifically for Helix. Best practice for integrations anyway \u2014 survives admin role changes, separates audit trails.\nI'd recommend doing both, but option 1 alone fixes the immediate problem.\nAisha Bhatt\nCustomer\n2024-03-29 11:10 UTC\nUpdated the refresh token policy. Reconnecting now.\nAisha Bhatt\nCustomer\n2024-04-12 09:22 UTC\nTwo weeks in, no disconnects. Looks like that did it. Will move to a service account when I have time. Thanks.\nRESOLUTION\nCustomer's Salesforce connected app refresh token policy was set to 'expire on first use,' which invalidated the refresh token every time Helix rotated access tokens. Changed policy to 'refresh until revoked.' Recommended switching to a service account long-term. Stable for 2+ weeks after fix.",
+    "doc_id": "tickets/ticket-1267-integration-disconnect.html",
+    "source": "tickets/ticket-1267-integration-disconnect.html",
+    "category": "tickets",
+    "doc_type": "html",
+    "chunk_index": 0
+  },
+  {
+    "id": "tickets/ticket-1289-schedule-not-running.html::0",
+    "text": "HX-1289 \u2014 Scheduled workflow didn't run last weekend\nTICKET HX-1289\nScheduled workflow didn't run last weekend\nStatus:\nResolved\nCategory:\nWorkflows\nPriority:\nP3\nCustomer:\nGreg Holcomb (Northwoods Outfitters)\nAgent:\nDevon Park\nGreg Holcomb\nCustomer\n2024-04-01 09:14 UTC\nI have a workflow scheduled with cron `0 2 * * 6` \u2014 every Saturday at 2am. It didn't run last Saturday. Run history shows nothing for that day.\nDevon Park\nHelix Support\n2024-04-01 09:31 UTC\nHi Greg \u2014 checking. Your workflow is correctly configured and the trigger is enabled, but the schedule did fire as expected at 02:00 UTC on Saturday. Run was created and ran for 8 seconds before being marked succeeded. I see it in your run history.\nAre you maybe looking at this in your local timezone? All Helix schedules run in\nUTC\n, so 02:00 UTC on Saturday is 22:00 Friday on the US East coast \u2014 the run would show under Friday's date if you're filtering by local time.\nGreg Holcomb\nCustomer\n2024-04-01 09:38 UTC\nOh. Yeah I'm filtering by date and it's Friday in my view. So this is working as intended, I just had the wrong mental model. Is there a way to set it to run at my local 2am instead?\nDevon Park\nHelix Support\n2024-04-01 09:45 UTC\nHelix doesn't currently support per-workflow timezones \u2014 schedules are UTC-only. To run at your local 2am (Eastern), you'd set the cron to `0 6 * * 6` for EST or `0 7 * * 6` for EDT. The downside is you'd need to update the cron when DST shifts, twice a year.\nMost customers either accept the UTC schedule or set the workflow to fire when local time is between 2am-3am over the year (somewhere around 7am UTC).\nGreg Holcomb\nCustomer\n2024-04-01 09:50 UTC\nCool \u2014 UTC is fine. Closing this out.\nRESOLUTION\nWorkflow was actually running correctly. Customer was filtering run history by local timezone and the UTC schedule fire time fell on the previous day in their local time. No bug \u2014 confirmed run executed as expected. Educated customer that all schedules are UTC and DST is not handled.",
+    "doc_id": "tickets/ticket-1289-schedule-not-running.html",
+    "source": "tickets/ticket-1289-schedule-not-running.html",
+    "category": "tickets",
+    "doc_type": "html",
+    "chunk_index": 0
+  },
+  {
+    "id": "tickets/ticket-1301-unexpected-charge.html::0",
+    "text": "HX-1301 \u2014 Unexpected $612 charge on this month's invoice\nTICKET HX-1301\nUnexpected $612 charge on this month's invoice\nStatus:\nResolved\nCategory:\nBilling\nPriority:\nP2\nCustomer:\nRenee Park (Cypress Group)\nAgent:\nMarcus Webb\nRenee Park\nCustomer\n2024-04-03 11:48 UTC\nI'm on Pro at $299/mo and just got an invoice for $911. Where is the extra $612 coming from?\nMarcus Webb\nHelix Support\n2024-04-03 12:09 UTC\nHi Renee \u2014 looking at your invoice now. The breakdown is: $299.00 base subscription + $612.00 in overage charges. Your plan includes 10,000 workflow runs/month and you used 71,200 last month \u2014 that's 61,200 over the included amount, billed at $0.01/run = $612.\nLooking at usage history, your run count climbed sharply starting around March 18. Top contributor is workflow 'Lead enrichment v2' which is doing about 1500 runs/day.\nRenee Park\nCustomer\n2024-04-03 12:16 UTC\nWait, $0.01 per run for overage? That's not on my contract.\nMarcus Webb\nHelix Support\n2024-04-03 12:24 UTC\nOverage pricing for Pro is in the standard plan terms ($0.01 per run beyond included). It applies automatically unless your account has been set to block overages. I can show you the policy in our pricing page. I also see you got the standard 80% / 100% / 125% usage alert emails on March 22, 24, and 27 \u2014 they would have flagged this before billing.\nFor your immediate question: the charge is correct under the plan terms. But there's a few things worth discussing:",
+    "doc_id": "tickets/ticket-1301-unexpected-charge.html",
+    "source": "tickets/ticket-1301-unexpected-charge.html",
+    "category": "tickets",
+    "doc_type": "html",
+    "chunk_index": 0
+  },
+  {
+    "id": "tickets/ticket-1301-unexpected-charge.html::1",
+    "text": "For your immediate question: the charge is correct under the plan terms. But there's a few things worth discussing:\nIf 71K runs/month is your new normal, you'd save significantly by upgrading to Enterprise.\nIf 'Lead enrichment v2' is running more than necessary, we can look at why and reduce it.\nI can apply a one-time 50% credit on this overage as a courtesy since this is the first time you've gone over.\nRenee Park\nCustomer\n2024-04-03 12:31 UTC\nOk, I think I missed those emails \u2014 they probably went to my filtered folder. Yes please apply the credit. And let's talk about why the workflow is firing so much, that doesn't seem right.\nMarcus Webb\nHelix Support\n2024-04-03 13:02 UTC\nCredit of $306 applied. New balance is $605. Looking at the workflow: it's triggered by a webhook from your CRM and it's running 50x more than your other lead workflows. Could be a tight retry loop on the CRM side, or a duplicate webhook subscription. I'd recommend checking your CRM webhook configuration for duplicates and that retries on success are disabled.\nRenee Park\nCustomer\n2024-04-03 14:30 UTC\nFound it \u2014 duplicate webhook firing because we re-pointed the CRM at Helix and didn't remove the old subscription. Fixed. Thanks for the credit and the help finding the root cause.\nRESOLUTION",
+    "doc_id": "tickets/ticket-1301-unexpected-charge.html",
+    "source": "tickets/ticket-1301-unexpected-charge.html",
+    "category": "tickets",
+    "doc_type": "html",
+    "chunk_index": 1
+  },
+  {
+    "id": "tickets/ticket-1301-unexpected-charge.html::2",
+    "text": "Found it \u2014 duplicate webhook firing because we re-pointed the CRM at Helix and didn't remove the old subscription. Fixed. Thanks for the credit and the help finding the root cause.\nRESOLUTION\nCustomer's invoice included $612 overage charge for exceeding 10,000 included runs by 61,200 ($0.01/run). Root cause was a duplicate webhook subscription in customer's CRM causing 'Lead enrichment v2' to fire 50x normal volume. Customer fixed the duplicate subscription. Agent applied 50% goodwill credit ($306). Customer was unaware of pricing because automated usage alerts at 80/100/125% were filtered to a folder.",
+    "doc_id": "tickets/ticket-1301-unexpected-charge.html",
+    "source": "tickets/ticket-1301-unexpected-charge.html",
+    "category": "tickets",
+    "doc_type": "html",
+    "chunk_index": 2
+  },
+  {
+    "id": "tickets/ticket-1322-downgrade-question.html::0",
+    "text": "HX-1322 \u2014 Question about downgrading from Pro to Starter\nTICKET HX-1322\nQuestion about downgrading from Pro to Starter\nStatus:\nResolved\nCategory:\nBilling\nPriority:\nP3\nCustomer:\nVince Marino (Marino Consulting)\nAgent:\nSandra Liu\nVince Marino\nCustomer\n2024-04-05 09:11 UTC\nI'm a solo consultant and only use Helix for a few personal automations. I'm on Pro but barely using it. If I downgrade to Starter, what happens to my existing workflows?\nSandra Liu\nHelix Support\n2024-04-05 09:28 UTC\nHi Vince \u2014 happy to walk through it. A downgrade from Pro to Starter takes effect at the end of your current billing period (so you keep Pro features until then). When the downgrade activates:\nYour workflow definitions are preserved \u2014 nothing gets deleted.\nPlan limits change: max 100 runs/month (down from 10,000), 1 user seat (down from 10), and basic integrations only.\nWorkflows that depend on Pro-only integrations (Salesforce, HubSpot, Stripe, etc.) will start failing because the connections will become unavailable.\nAPI access goes away. If you have anything calling the Helix API, that will stop working.\nIf you want, I can pull a list of which of your workflows depend on Pro-only features so you know what would break. That would help you decide.\nVince Marino\nCustomer\n2024-04-05 09:41 UTC\nYes please, that would be useful.\nSandra Liu\nHelix Support\n2024-04-05 10:02 UTC\nYou have 8 active workflows. Of those:\n5 use only Slack, Email, Webhooks, or Google Sheets \u2014 these would continue working on Starter.\n2 use HubSpot integration \u2014 these would fail on Starter.\n1 uses the Helix API \u2014 this would fail on Starter.\nAlso worth noting: your last 3 months of usage have been 22, 31, and 18 runs/month. Well within the {HELIX['plan_starter_runs']}-run Starter limit.\nSo \u2014 you'd lose 3 of 8 workflows on Starter unless you migrate them. Is the HubSpot work essential?\nVince Marino\nCustomer\n2024-04-05 10:15 UTC\nThe HubSpot ones are nice-to-haves I built and never really used. The API one is more important but I could probably rebuild it as a webhook trigger. Let's schedule the downgrade.\nSandra Liu\nHelix Support\n2024-04-05 10:21 UTC\nDowngrade scheduled \u2014 effective May 5 (end of current period). I disabled the 3 Pro-dependent workflows now so they don't surprise-fail on the changeover. They're saved as drafts. You can reactivate them if you ever go back to Pro.\nVince Marino\nCustomer\n2024-04-05 10:25 UTC\nGreat, thanks for thinking ahead.\nRESOLUTION\nCustomer downgrading from Pro ($299) to Starter ($49). Walked through impact: 5/8 workflows would continue working on Starter, 2 would fail (HubSpot), 1 would fail (API access). Customer was fine losing the failing workflows. Downgrade scheduled for end of billing period, Pro-only workflows pre-emptively disabled to avoid surprise failures.",
+    "doc_id": "tickets/ticket-1322-downgrade-question.html",
+    "source": "tickets/ticket-1322-downgrade-question.html",
+    "category": "tickets",
+    "doc_type": "html",
+    "chunk_index": 0
+  },
+  {
+    "id": "tickets/ticket-1349-export-stuck.html::0",
+    "text": "HX-1349 \u2014 Data export stuck in 'pending' state for 2 days\nTICKET HX-1349\nData export stuck in 'pending' state for 2 days\nStatus:\nResolved\nCategory:\nData\nPriority:\nP2\nCustomer:\nHassan Mubarak (Riverhill Foods)\nAgent:\nDevon Park\nHassan Mubarak\nCustomer\n2024-04-08 13:55 UTC\nI requested a full export of our run history on April 6. It's been 'pending' ever since. No email, no download link. We need this for a compliance review by Friday.\nDevon Park\nHelix Support\n2024-04-08 14:18 UTC\nHi Hassan \u2014 let me look. Found your export job. It's not stuck \u2014 it's running, but slowly. Your workspace has 12.4M run records and the export is processing about 4M/day. Estimated completion: Wednesday April 10.\nFor exports this large we recommend chunking by date range to parallelize. If you can file 4 separate exports each covering 3 months, they would each finish in ~6 hours and you'd have everything by tomorrow morning.\nHassan Mubarak\nCustomer\n2024-04-08 14:24 UTC\nCan I cancel the current one and refile? Or do they conflict?\nDevon Park\nHelix Support\n2024-04-08 14:27 UTC\nYou can cancel the current one in\nSettings \u2192 Data \u2192 Export \u2192 In progress\n. Then file 4 new ones for the date ranges. They run in parallel. Standard 5-active-export limit applies but 4 is under that.\nHassan Mubarak\nCustomer\n2024-04-08 14:51 UTC\nDone. Cancelled, filed 4 new ones. Will report back.\nHassan Mubarak\nCustomer\n2024-04-09 08:14 UTC\nAll 4 finished overnight. Got the emails with download links. Just to flag \u2014 one of the URLs is showing 'expired' but the email arrived less than 24 hours ago.\nDevon Park\nHelix Support\n2024-04-09 08:32 UTC\nExport download URLs expire 24 hours after generation, but each export's clock starts independently. The one showing expired likely finished earliest. Check the timestamp of the email \u2014 if it's >24h, that's expected. I can regenerate the URL on my end; the export file itself is retained for 7 days. Want me to do that?\nHassan Mubarak\nCustomer\n2024-04-09 08:36 UTC\nYes please.\nDevon Park\nHelix Support\n2024-04-09 08:41 UTC\nFresh URL sent to your email. Good for another 24 hours.\nRESOLUTION\nCustomer's full-history export of 12.4M records was running slowly (~4M/day, estimated 3 days). Recommended cancelling and filing 4 parallel exports chunked by 3-month date ranges. All 4 finished within ~18 hours. One signed URL expired (24-hour validity) and was regenerated from the still-retained export file.",
+    "doc_id": "tickets/ticket-1349-export-stuck.html",
+    "source": "tickets/ticket-1349-export-stuck.html",
+    "category": "tickets",
+    "doc_type": "html",
+    "chunk_index": 0
+  },
+  {
+    "id": "tickets/ticket-1378-missing-data-in-export.html::0",
+    "text": "HX-1378 \u2014 Run data missing from export \u2014 older than 90 days?\nTICKET HX-1378\nRun data missing from export \u2014 older than 90 days?\nStatus:\nResolved\nCategory:\nData\nPriority:\nP3\nCustomer:\nEleanor Voss (Tidewater Insurance)\nAgent:\nMarcus Webb\nEleanor Voss\nCustomer\n2024-04-11 15:33 UTC\nI exported all our runs and a chunk of older records seem to be missing. Specifically anything from 2023 isn't in the export. We need this for an audit.\nMarcus Webb\nHelix Support\n2024-04-11 15:51 UTC\nHi Eleanor \u2014 that's expected behavior, unfortunately. On the Pro plan, run logs are retained for 90 days. Anything older has been hard-deleted from the platform and isn't recoverable. Today is April 11, 2024, so anything before about January 11 is gone.\nFor audit purposes going forward, I'd suggest one of: (1) upgrade to Enterprise which gives you 365 days of retention, or (2) run a scheduled export job to push your run data into your own storage on a regular cadence.\nEleanor Voss\nCustomer\n2024-04-11 16:02 UTC\nWait, hard-deleted? There's truly nothing recoverable, even from backups?\nMarcus Webb\nHelix Support\n2024-04-11 16:18 UTC\nCorrect. Backups inherit the same retention policy as production data \u2014 once data ages out in production, the next backup cycle removes it from backups too. Within 35 days of production deletion, it's gone from everywhere. We can't recover it.\nThis is a deliberate design choice for compliance reasons (GDPR, etc.) \u2014 we don't want to be in a position of holding data longer than our policy says we will. I know it's frustrating in your case but it's a guarantee customers expect.\nEleanor Voss\nCustomer\n2024-04-11 16:25 UTC\nUnderstood. Disappointing but I get the reasoning. Let me talk to my team about Enterprise \u2014 we may need it just for the longer retention. Can you connect me with someone?\nMarcus Webb\nHelix Support\n2024-04-11 16:30 UTC\nLooping in your account exec \u2014 they'll reach out today. Marking this ticket resolved on the data question; the upgrade conversation can continue separately.\nRESOLUTION\nCustomer expected to find pre-90-day-old run records in export. On Pro plan, run logs are retained 90 days then hard-deleted including from backups within 35 days. Data is unrecoverable. Customer routed to AE to discuss Enterprise upgrade for 365-day retention.",
+    "doc_id": "tickets/ticket-1378-missing-data-in-export.html",
+    "source": "tickets/ticket-1378-missing-data-in-export.html",
+    "category": "tickets",
+    "doc_type": "html",
+    "chunk_index": 0
+  },
+  {
+    "id": "tickets/ticket-1402-slow-execution.html::0",
+    "text": "HX-1402 \u2014 Workflow runs are taking 4x longer than they used to\nTICKET HX-1402\nWorkflow runs are taking 4x longer than they used to\nStatus:\nResolved\nCategory:\nPerformance\nPriority:\nP2\nCustomer:\nWei Zhang (Aspen Robotics)\nAgent:\nSandra Liu\nWei Zhang\nCustomer\n2024-04-14 10:08 UTC\nOur 'Daily ops sync' workflow used to run in about 90 seconds. Over the last 2 weeks it's been creeping up \u2014 yesterday it took 6 minutes. We didn't change anything. Are there platform issues?\nSandra Liu\nHelix Support\n2024-04-14 10:22 UTC\nHi Wei \u2014 no platform issues on our end. Looking at your workflow's run history, I can confirm the slowdown \u2014 average duration went from 95s to 380s over 14 days. The increase is concentrated in step 4 (the Salesforce SOQL query), which went from 8s to 290s.\nEverything else is fast. Can you tell me about the SOQL query in that step? Is it a query you wrote, and does the size of the result set vary day to day?\nWei Zhang\nCustomer\n2024-04-14 10:35 UTC\nYes, custom SOQL. It pulls all opportunities updated in the last day. We did a backfill in late March that updated about 50K opportunities at once. Could that be related?\nSandra Liu\nHelix Support\n2024-04-14 10:48 UTC\nProbably yes. If your query is `WHERE LastModifiedDate >= YESTERDAY` and the backfill bumped LastModifiedDate on 50K records all on the same date, your query is now matching all 50K every single day until 24 hours after the backfill rolls past your window. So you have about 14-21 days of slow runs depending on exact timing.\nTwo options:\nWait it out\n: the issue self-resolves once your YESTERDAY window moves past the backfill date.\nTighten the query\n: add a filter that excludes the backfill records, e.g., `AND LastActivityDate >= YESTERDAY` or filter on a specific field that the backfill didn't touch.\nOption 2 brings runtime back to baseline immediately.\nWei Zhang\nCustomer\n2024-04-14 11:02 UTC\nGoing with option 2. Updated the SOQL. Test run finished in 84s. Beautiful.\nRESOLUTION\nWorkflow slowdown was caused by a customer-side Salesforce backfill that updated 50K opportunities, causing the workflow's SOQL query (which filtered by LastModifiedDate) to match all 50K records daily for ~21 days. Solution: tightened SOQL with an additional filter that the backfill didn't touch. Runtime returned to ~85s.",
+    "doc_id": "tickets/ticket-1402-slow-execution.html",
+    "source": "tickets/ticket-1402-slow-execution.html",
+    "category": "tickets",
+    "doc_type": "html",
+    "chunk_index": 0
+  },
+  {
+    "id": "tickets/ticket-1421-ios-crash.html::0",
+    "text": "HX-1421 \u2014 iOS app crashes when opening manual approval\nTICKET HX-1421\niOS app crashes when opening manual approval\nStatus:\nResolved\nCategory:\nMobile\nPriority:\nP3\nCustomer:\nFern Adams (Ridgeline Outdoor)\nAgent:\nDevon Park\nFern Adams\nCustomer\n2024-04-17 08:33 UTC\nHelix iOS app crashes every time I tap a manual approval notification. App opens, briefly shows the approval screen, then quits. Other parts of the app work. iPhone 13, iOS 17.4.\nDevon Park\nHelix Support\n2024-04-17 09:01 UTC\nHi Fern \u2014 sorry about that. We have a known crash on the manual approval screen for iOS 17.4 specifically when the approval payload is over a certain size. Fix is shipping in version 4.18.0, currently in TestFlight, public release expected April 20.\nWorkarounds in the meantime: (1) approve from the web app at app.helix.io, which doesn't have this issue, or (2) install the TestFlight build if you'd like the fix sooner \u2014 DM me your Apple ID email if so.\nFor reference, the iOS app supports iOS 15+ so you're well within supported range; this is just a regression we caught late.\nFern Adams\nCustomer\n2024-04-17 09:15 UTC\nWeb app works for now. Will wait for the public release. Thanks.\nDevon Park\nHelix Support\n2024-04-21 10:11 UTC\nHi Fern \u2014 checking back in. Version 4.18.0 hit the App Store yesterday. Update should be available now. Closing this ticket \u2014 please reopen if you see the crash again on the new version.\nRESOLUTION\nKnown iOS app crash on manual approval screen specifically in iOS 17.4 with large approval payloads. Fix shipped in app version 4.18.0 on April 20. Customer used web app as workaround until release. Confirmed resolved post-update.",
+    "doc_id": "tickets/ticket-1421-ios-crash.html",
+    "source": "tickets/ticket-1421-ios-crash.html",
+    "category": "tickets",
+    "doc_type": "html",
+    "chunk_index": 0
+  },
+  {
+    "id": "tickets/ticket-1455-cant-access-billing.html::0",
+    "text": "HX-1455 \u2014 Editor can't see Billing settings \u2014 bug?\nTICKET HX-1455\nEditor can't see Billing settings \u2014 bug?\nStatus:\nResolved\nCategory:\nPermissions\nPriority:\nP3\nCustomer:\nCarlos Mendoza (Cedar Valley Co-op)\nAgent:\nMarcus Webb\nCarlos Mendoza\nCustomer\n2024-04-19 14:08 UTC\nI'm an Editor in our workspace and I need to update our payment method. I don't see Billing under Settings. The owner says he can see it. Is something broken?\nMarcus Webb\nHelix Support\n2024-04-19 14:21 UTC\nHi Carlos \u2014 not a bug. Billing is restricted to the workspace Owner role only. Even Admins don't see it. The four roles are Owner, Admin, Editor, Viewer, and only Owner has billing access.\nIf you need to change the payment method, you have two options: (1) ask the Owner to make the change, or (2) ask the Owner to transfer ownership to you (only one Owner per workspace, so they'd lose Owner status). Most teams go with option 1 unless ownership transfer is a deliberate decision.\nCarlos Mendoza\nCustomer\n2024-04-19 14:28 UTC\nGot it. Will ask our Owner to update it. Question \u2014 is this configurable? Like can I be granted billing access without becoming Owner?\nMarcus Webb\nHelix Support\n2024-04-19 14:36 UTC\nNot on Pro. On Enterprise, custom roles are available, and you could define a role with billing-but-not-owner permissions. If that's something you'd want to explore, I can connect you with your account team.\nCarlos Mendoza\nCustomer\n2024-04-19 14:42 UTC\nNot worth upgrading just for that. Owner can handle it. Thanks for the clear answer.\nRESOLUTION\nCustomer was confused by missing Billing menu. Confirmed not a bug \u2014 billing is restricted to the Owner role only on Pro plan; even Admins can't see it. Custom roles with split permissions are an Enterprise-only feature. Customer asked Owner to make the change.",
+    "doc_id": "tickets/ticket-1455-cant-access-billing.html",
+    "source": "tickets/ticket-1455-cant-access-billing.html",
+    "category": "tickets",
+    "doc_type": "html",
+    "chunk_index": 0
+  }
+]

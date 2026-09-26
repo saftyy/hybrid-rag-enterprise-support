@@ -1,0 +1,114 @@
+================================================================================
+Q001  What's the maximum number of steps allowed in a single workflow?
+REFERENCE: The maximum number of steps in a single Helix workflow is 100.
+NOTES: Answer must include the number 100. Generic 'check the documentation' is not acceptable.
+ANSWER: The maximum number of steps allowed in a single workflow is **100**.
+
+================================================================================
+Q003  How much does the Pro plan cost?
+REFERENCE: The Pro plan costs $299 per month.
+NOTES: Answer must include $299 (or 299/month).
+ANSWER: The Pro plan costs $299 per month.
+
+================================================================================
+Q009  How many user roles does Helix have?
+REFERENCE: Helix has 4 roles: Owner, Admin, Editor, Viewer.
+NOTES: Answer must list all four: Owner, Admin, Editor, Viewer.
+ANSWER: Helix has four user roles: Owner, Admin, Editor, and Viewer.
+
+================================================================================
+Q010  Which plan includes SSO?
+REFERENCE: SSO via SAML 2.0 is available only on the Enterprise plan.
+NOTES: Answer must specify Enterprise.
+ANSWER: SSO via SAML 2.0 is available on the Enterprise plan.
+
+================================================================================
+Q017  What does HTTP 401 mean from the Helix API?
+REFERENCE: HTTP 401 means: Invalid or expired API key.
+NOTES: Answer should explain it's an auth issue (invalid/expired key).
+ANSWER: HTTP 401 means "Invalid or expired API key" in the Helix API.
+
+================================================================================
+Q020  What's the support response SLA on Pro?
+REFERENCE: On Pro, the support response SLA is 8 hours.
+NOTES: Answer must include 8 hours.
+ANSWER: The support response SLA on the Pro plan is 8 hours for email and chat support.
+
+================================================================================
+Q023  What's the difference between Pro and Enterprise plans?
+REFERENCE: Pro is $299/mo with 10,000 runs/month, up to 10 users, all standard integrations, API access at 1000 rpm, and 90-day run log retention. Enterprise is custom-priced with unlimited runs, unlimited users, all integrations plus custom integrations, unlimited API access, 365-day retention, plus Enterprise-only features like SSO, SCIM, IP allowlist, audit log, and a 1-hour support SLA.
+NOTES: Answer should cover at least 4 differences (price, runs, users, Enterprise-only features).
+ANSWER: The Pro plan is priced at $299/month and is best for growing teams, offering 10,000 workflow runs per month and support for up to 10 users. It includes all standard integrations, API access (1000 requests per minute), 90-day run log retention, and email + chat support with an 8-hour response SLA.
+
+In contrast, the Enterprise plan has custom pricing and is designed for organizations with security, compliance, or scale requirements. It offers unlimited workflow runs, unlimited users, all integrations plus custom integrations on request, unlimited API access, 365-day run log retention, and additional features such as SAML 2.0 SSO, SCIM, IP allowlist, audit log, and a dedicated account team with a 1-hour response SLA.
+
+================================================================================
+Q029  What's the GDPR deletion process?
+REFERENCE: Initiate deletion from Settings → Privacy → Data subject requests. After confirmation, deletion happens within 30 days. During the window the request can be cancelled. After the window, deletion is irreversible. Profile, authentication, workflows, run logs, and integrations are deleted; audit log entries are anonymized; financial records are retained per tax law.
+NOTES: Answer must include 30-day window. Should mention deletion is irreversible after window.
+ANSWER: To permanently delete a user and all associated data under GDPR, follow these steps:
+1. Navigate to **Settings → Privacy → Data subject requests → New deletion request**.
+2. Enter the data subject's email and confirm the request.
+3. The deletion will occur within **30 days**. During this 30-day window, the request can be canceled. After the window, deletion is irreversible.
+
+================================================================================
+Q031  What happens if my payment fails?
+REFERENCE: Helix retries failed charges automatically: 1 day later, 3 days later, then 7 days later. After all 3 retries fail, the account is downgraded to read-only — you can view runs but cannot create or trigger new ones — until payment is restored. The workspace is suspended; reactivation happens within 1 hour of a successful payment.
+NOTES: Answer must include the retry schedule (1/3/7 days) and the read-only consequence.
+ANSWER: If a charge fails, Helix retries automatically: 
+- 1st retry: 1 day later
+- 2nd retry: 3 days later
+- 3rd retry: 7 days later
+After all retries fail, your account is downgraded to a read-only state. You can still view runs but cannot create or trigger new ones.
+
+================================================================================
+Q033  How do I rotate an API key safely?
+REFERENCE: Generate a new API key in Settings → API Keys. Update your applications to use the new key. After verifying everything works on the new key, delete the old key. Never delete the old key first — deleted keys cannot be recovered.
+NOTES: Answer must convey: generate new before deleting old. Should warn that deletion is irreversible.
+ANSWER: To rotate an API key safely, follow these steps:
+1. Generate a new key.
+2. Update your applications to use the new key.
+3. Once you've verified that the new key works, delete the old key. 
+
+Note that deleted keys cannot be recovered.
+
+================================================================================
+Q037  How do I send a Helix webhook to a custom URL?
+REFERENCE: For inbound (triggers): in your workflow add a Webhook trigger; Helix generates a unique URL of the form https://hooks.helix.io/wf/<workflow-id>/<token>. Configure your sender to POST to this URL. For sensitive workflows, enable signature verification — Helix issues a secret, sender signs with HMAC-SHA256 and includes the signature in X-Helix-Signature. Helix's endpoint times out after 30 seconds.
+NOTES: Answer should include the URL pattern and the option for signature verification.
+ANSWER: To send a Helix webhook to a custom URL, you can use the **HTTP** action within your workflow. You can also sign outbound webhooks by computing an HMAC over the body and adding it as a header.
+
+================================================================================
+Q038  What's the most efficient way to process a large batch in a workflow?
+REFERENCE: Use a Parallel Loop step with concurrency up to 10 if iterations are independent. Sequential loops process one item at a time and can hit the 30-minute workflow timeout. Parallel loops can give up to 10x speedup. Be cautious of downstream rate limits — running 10 calls in parallel can blow through APIs that throttle aggressively.
+NOTES: Answer must mention Parallel Loop and the concurrency cap.
+ANSWER: The most efficient way to process a large batch in a workflow is to use a **Parallel Loop** step if the iterations are independent. This allows you to process up to 10 items concurrently, significantly reducing the overall runtime compared to sequential processing. For example, if you have 5000 records, using a Parallel Loop can decrease the runtime from approximately 33 minutes (if processed sequentially) to around 3.3 minutes (when processed in parallel). However, be cautious of potential rate limits from any external APIs being called within the loop.
+
+================================================================================
+Q044  We're getting paged at 3am because production is failing on 401s but the API key wasn't rotated. What's the standard runbook?
+REFERENCE: If a key is returning 401 without rotation, check: (1) was the key deleted? Audit log shows deletions with timestamp and actor; deleted keys cannot be restored. (2) was the key's scopes narrowed? A scope reduction can cause 403 (not 401) but worth checking. (3) is auth-service itself degraded? Check status page and synthetic probes. If the key was deleted by another user, the path back is to generate a new key and deploy it. Recommend scoping keys to least-privilege and restricting key deletion permission to Admin/Owner to prevent recurrence.
+NOTES: Answer must consider both the deleted-key scenario AND auth-service degradation as possible causes.
+ANSWER: The provided context doesn't cover this.
+
+================================================================================
+Q045  Our customer just renewed but we're hearing rumblings their champion left. What should we do?
+REFERENCE: Champion departure is a strong churn risk indicator even immediately post-renewal — the relationship that closed the renewal is now at risk for the next renewal cycle. Immediate actions: (1) document the departure and the timing in the account record; (2) reach out within a week with a specific reason (not 'just checking in') to identify the new primary contact; (3) work to transfer relationship knowledge to the new contact via a structured re-onboarding; (4) update health score and renewal forecast based on the change. Loop in CS leadership if the account is over $50K ARR or strategic. The window between renewal and the next renewal is the right time to rebuild — don't wait until 90 days before next renewal to engage.
+NOTES: Answer must call champion departure a major risk and prescribe specific re-engagement actions, not generic advice.
+ANSWER: Since the primary champion has left the customer organization, this is a churn risk indicator. You should take the following actions: (1) Document this change in the account record. (2) Reach out to the customer with a specific reason for the call, not just to check in. (3) Schedule a discovery conversation to understand the underlying cause of the champion's departure and how it may affect the customer's engagement with Helix. (4) If the churn risk is moderate or higher, file a save plan. Additionally, keep an eye on any other churn risk indicators that may arise due to this change.
+
+================================================================================
+Q046  Customer says they were charged for an overage but they're sure they were under their limit. How do we investigate?
+REFERENCE: Pull their invoice and verify the line items: base $299/mo plus overage at $0.01 per run beyond 10,000. Check usage history in Settings → Billing → Usage to see actual run counts and identify the top contributing workflows. If the customer was indeed over, walk through which workflows drove it — common pattern is duplicate webhook subscriptions causing one workflow to fire many times more than expected. Confirm they received the standard 80%/100%/125% usage alert emails (often filtered to a folder). For first-time overages, a goodwill credit (typically 50%) can be offered after CSM judgment. Document in the customer's record per refund policy.
+NOTES: Answer must walk through the diagnosis (verify usage, find root cause workflow) AND the credit option.
+ANSWER: To investigate a customer's claim of being charged for an overage while believing they were under their limit, follow these steps:
+
+1. **Check the Customer's Plan**: Verify the customer's subscription plan and its included run limit.
+
+2. **Review Usage Data**: Access the usage data by navigating to **Settings → Billing → Usage**. This will show the current month's run count compared to the plan limit, a daily run breakdown, and the top workflows by run count.
+
+3. **Identify Overage Charges**: If the run count exceeds the plan limit, calculate the overage charges based on the pricing structure for their plan. For example, for Pro plans, overage runs are billed at $0.01 per additional run.
+
+4. **Check for Alerts**: Determine if the customer received any automated usage alerts regarding their run count. This can help identify if they were informed about nearing or exceeding their limit.
+
+5. **Communicate Findings**: Once you have gathered the necessary information, communicate your findings to the customer, explaining the breakdown of their charges and any relevant usage data.
+

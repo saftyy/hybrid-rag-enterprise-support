@@ -1,0 +1,2091 @@
+{
+  "experiment_name": "v3-d4e9b0dd",
+  "metadata": {
+    "config": "v3",
+    "cfg_name": "v3",
+    "cfg_description": "v2-vector + grounded prompt (no generic steps, filler or extrapolation)",
+    "cfg_chunks_path": "ops/data/chunks_v2.json",
+    "cfg_namespace": "v2",
+    "cfg_retrieval_mode": "vector",
+    "cfg_k": 5,
+    "cfg_merge_min_chars": 400,
+    "cfg_merge_max_chars": 1500,
+    "cfg_redact_pii": true,
+    "cfg_prompt": "grounded",
+    "cfg_index_name": "helix-checkpoint-rag",
+    "git_commit": "f8ac26b",
+    "judge_model": "gpt-4o",
+    "generation_model": "gpt-4o-mini",
+    "dataset": "helix-csm-eval-v1.0",
+    "prompt_hash": "f55c110dac18",
+    "limit": null
+  },
+  "summary": {
+    "n": 50,
+    "overall": {
+      "faithfulness": 0.9875,
+      "answer_relevance": 0.99,
+      "csm_resolution_quality": 0.8168,
+      "source_hit": 1.0,
+      "source_recall": 0.9083,
+      "abstained": 0.04,
+      "citation_valid": 1.0
+    },
+    "scored_n": {
+      "faithfulness": 50,
+      "answer_relevance": 50,
+      "csm_resolution_quality": 50,
+      "source_hit": 50,
+      "source_recall": 50,
+      "abstained": 50,
+      "citation_valid": 50
+    },
+    "by_difficulty": {
+      "easy": {
+        "n": 20,
+        "faithfulness": 1.0,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 1.0
+      },
+      "hard": {
+        "n": 10,
+        "faithfulness": 0.9774,
+        "answer_relevance": 0.95,
+        "csm_resolution_quality": 0.695
+      },
+      "medium": {
+        "n": 20,
+        "faithfulness": 0.98,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 0.6945
+      }
+    },
+    "latency": {
+      "retrieval_p50_ms": 277.5,
+      "retrieval_p95_ms": 548.5,
+      "generation_p50_ms": 1067.2,
+      "generation_p95_ms": 2624.8
+    }
+  },
+  "gates": {
+    "all_examples_scored": true,
+    "custom_judge_gte_0.75": true,
+    "faithfulness_delta": -0.0042,
+    "faithfulness_delta_gte_0.05": false
+  },
+  "rows": [
+    {
+      "qid": "Q001",
+      "difficulty": "easy",
+      "category": "workflows",
+      "question": "What's the maximum number of steps allowed in a single workflow?",
+      "answer": "The maximum number of steps allowed in a single workflow is **100**.",
+      "confidence": "high",
+      "sources": [
+        "product-docs/workflows/creating-workflows.md"
+      ],
+      "retrieved_doc_ids": [
+        "product-docs/workflows/creating-workflows.md",
+        "product-docs/workflows/loops.md",
+        "product-docs/integrations/google-drive.md",
+        "tickets/ticket-1234-workflow-timeout.html",
+        "product-docs/workflows/error-handling.md"
+      ],
+      "expected_sources": [
+        "product-docs/workflows/creating-workflows.md"
+      ],
+      "retrieval_latency_ms": 1498.0,
+      "generation_latency_ms": 1692.9,
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 1.0,
+        "source_hit": 1.0,
+        "source_recall": 1.0,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "1/1 claims supported.",
+        "answer_relevance": "5/5 \u2014 The answer directly addresses the specific question by providing the exact maximum number of steps allowed in a single workflow, which is 100. There are no omissions or unnecessary information included in the response.",
+        "csm_resolution_quality": "facts=all, actionability=not_applicable, commitment=False \u2014 The assistant's answer correctly states that the maximum number of steps allowed in a single workflow is 100, which matches the reference. This is a factual lookup, so the CSM can directly use this information when responding to the customer. There is no commitment implied in the answer."
+      },
+      "evaluator_errors": [],
+      "error": null
+    },
+    {
+      "qid": "Q002",
+      "difficulty": "easy",
+      "category": "workflows",
+      "question": "How long can a workflow run before it times out?",
+      "answer": "A workflow can run for a maximum of **30 minutes** before it times out.",
+      "confidence": "high",
+      "sources": [
+        "product-docs/workflows/creating-workflows.md"
+      ],
+      "retrieved_doc_ids": [
+        "product-docs/workflows/creating-workflows.md",
+        "tickets/ticket-1234-workflow-timeout.html",
+        "tickets/ticket-1402-slow-execution.html",
+        "product-docs/workflows/loops.md",
+        "product-docs/integrations/custom-webhooks.md"
+      ],
+      "expected_sources": [
+        "product-docs/workflows/creating-workflows.md"
+      ],
+      "retrieval_latency_ms": 278.7,
+      "generation_latency_ms": 706.8,
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 1.0,
+        "source_hit": 1.0,
+        "source_recall": 1.0,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "1/1 claims supported.",
+        "answer_relevance": "5/5 \u2014 The answer directly addresses the question by providing a specific duration of 30 minutes for how long a workflow can run before timing out. There are no unnecessary details or omissions in the response, making it complete and directly relevant to the question asked.",
+        "csm_resolution_quality": "facts=all, actionability=not_applicable, commitment=False \u2014 The assistant's answer correctly states that a workflow can run for a maximum of 30 minutes before it times out, which matches the reference. This is a factual lookup, so the CSM can directly use this information when responding to a customer. There is no commitment implied in the answer."
+      },
+      "evaluator_errors": [],
+      "error": null
+    },
+    {
+      "qid": "Q003",
+      "difficulty": "easy",
+      "category": "billing",
+      "question": "How much does the Pro plan cost?",
+      "answer": "The Pro plan costs $299 per month.",
+      "confidence": "high",
+      "sources": [
+        "product-docs/billing/plans.md"
+      ],
+      "retrieved_doc_ids": [
+        "product-docs/billing/plans.md",
+        "product-docs/getting-started/welcome.md",
+        "product-docs/billing/plans.md",
+        "tickets/ticket-1301-unexpected-charge.html",
+        "tickets/ticket-1322-downgrade-question.html"
+      ],
+      "expected_sources": [
+        "product-docs/billing/plans.md"
+      ],
+      "retrieval_latency_ms": 239.2,
+      "generation_latency_ms": 703.4,
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 1.0,
+        "source_hit": 1.0,
+        "source_recall": 1.0,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "1/1 claims supported.",
+        "answer_relevance": "5/5 \u2014 The answer directly addresses the question by providing the specific cost of the Pro plan, which is $299 per month. There is no additional information needed or unnecessary information provided, making it a complete and direct response to the question.",
+        "csm_resolution_quality": "facts=all, actionability=not_applicable, commitment=False \u2014 The assistant's answer matches the reference exactly, stating that the Pro plan costs $299 per month. This is a straightforward factual lookup, so the CSM can directly provide this information to the customer without needing additional context or steps. There is no unauthorized commitment involved as the answer simply states the cost of the plan."
+      },
+      "evaluator_errors": [],
+      "error": null
+    },
+    {
+      "qid": "Q004",
+      "difficulty": "easy",
+      "category": "api",
+      "question": "What's the API rate limit on the Pro plan?",
+      "answer": "The API rate limit on the Pro plan is **1000** requests per minute.",
+      "confidence": "high",
+      "sources": [
+        "product-docs/api/rate-limits.md"
+      ],
+      "retrieved_doc_ids": [
+        "product-docs/api/rate-limits.md",
+        "tickets/ticket-1156-api-rate-limit-confusion.html",
+        "runbooks/incident-response/rate-limit-spike.pdf",
+        "product-docs/billing/plans.md",
+        "product-docs/api/overview.md"
+      ],
+      "expected_sources": [
+        "product-docs/api/rate-limits.md"
+      ],
+      "retrieval_latency_ms": 247.1,
+      "generation_latency_ms": 739.3,
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 1.0,
+        "source_hit": 1.0,
+        "source_recall": 1.0,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "1/1 claims supported.",
+        "answer_relevance": "5/5 \u2014 The answer directly addresses the question by providing the specific API rate limit for the Pro plan, which is 1000 requests per minute. There are no omissions or unnecessary information included in the response.",
+        "csm_resolution_quality": "facts=all, actionability=not_applicable, commitment=False \u2014 The ANSWER correctly states the API rate limit for the Pro plan as 1000 requests per minute, which matches the REFERENCE. This includes all mandatory facts as specified in the GRADING NOTES. Since this is a factual lookup, stating the fact is the complete action, making it not applicable for further actionability. There is no unauthorised commitment made in the answer."
+      },
+      "evaluator_errors": [],
+      "error": null
+    },
+    {
+      "qid": "Q005",
+      "difficulty": "easy",
+      "category": "api",
+      "question": "What HTTP status code does Helix return when you hit a rate limit?",
+      "answer": "Helix returns **429** when you hit a rate limit.",
+      "confidence": "high",
+      "sources": [
+        "product-docs/api/errors.md"
+      ],
+      "retrieved_doc_ids": [
+        "product-docs/api/rate-limits.md",
+        "product-docs/api/rate-limits.md",
+        "product-docs/api/errors.md",
+        "runbooks/incident-response/rate-limit-spike.pdf",
+        "tickets/ticket-1156-api-rate-limit-confusion.html"
+      ],
+      "expected_sources": [
+        "product-docs/api/rate-limits.md"
+      ],
+      "retrieval_latency_ms": 323.3,
+      "generation_latency_ms": 593.2,
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 1.0,
+        "source_hit": 1.0,
+        "source_recall": 1.0,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "1/1 claims supported.",
+        "answer_relevance": "5/5 \u2014 The answer directly addresses the specific question by providing the exact HTTP status code (429) that Helix returns when a rate limit is hit. There are no unnecessary details or omissions in the response.",
+        "csm_resolution_quality": "facts=all, actionability=not_applicable, commitment=False \u2014 The ANSWER correctly states that Helix returns a 429 status code when a rate limit is hit, which matches the REFERENCE. The mention of the Retry-After header is not mandatory, so its absence does not affect the completeness of the answer. This is a factual lookup, so stating the status code is sufficient for actionability. There is no unauthorised commitment in the answer."
+      },
+      "evaluator_errors": [],
+      "error": null
+    },
+    {
+      "qid": "Q006",
+      "difficulty": "easy",
+      "category": "api",
+      "question": "What's the base URL for the Helix API?",
+      "answer": "The base URL for the Helix API is `https://api.helix.io/v2`.",
+      "confidence": "high",
+      "sources": [
+        "product-docs/api/overview.md"
+      ],
+      "retrieved_doc_ids": [
+        "product-docs/api/overview.md",
+        "product-docs/api/errors.md",
+        "product-docs/api/api-versioning.md",
+        "product-docs/api/authentication.md",
+        "product-docs/api/overview.md"
+      ],
+      "expected_sources": [
+        "product-docs/api/overview.md"
+      ],
+      "retrieval_latency_ms": 292.2,
+      "generation_latency_ms": 716.1,
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 1.0,
+        "source_hit": 1.0,
+        "source_recall": 1.0,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "1/1 claims supported.",
+        "answer_relevance": "5/5 \u2014 The answer directly provides the base URL for the Helix API, which is exactly what the question asked for. There are no unnecessary details or omissions in the response.",
+        "csm_resolution_quality": "facts=all, actionability=not_applicable, commitment=False \u2014 The ANSWER correctly provides the base URL for the Helix API as https://api.helix.io/v2, which matches the REFERENCE. This is a straightforward factual lookup, so the CSM can directly use this information when responding to a customer. There are no commitments or additional actions implied in the answer."
+      },
+      "evaluator_errors": [],
+      "error": null
+    },
+    {
+      "qid": "Q007",
+      "difficulty": "easy",
+      "category": "api",
+      "question": "What signing algorithm does Helix use for webhook signatures?",
+      "answer": "Helix uses the HMAC-SHA256 signing algorithm for webhook signatures.",
+      "confidence": "high",
+      "sources": [
+        "product-docs/integrations/custom-webhooks.md",
+        "tickets/ticket-1212-webhook-not-firing.html"
+      ],
+      "retrieved_doc_ids": [
+        "product-docs/integrations/custom-webhooks.md",
+        "product-docs/api/webhooks.md",
+        "product-docs/api/webhooks.md",
+        "tickets/ticket-1212-webhook-not-firing.html",
+        "runbooks/incident-response/webhook-delivery-failure.pdf"
+      ],
+      "expected_sources": [
+        "product-docs/api/webhooks.md"
+      ],
+      "retrieval_latency_ms": 343.9,
+      "generation_latency_ms": 1966.3,
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 1.0,
+        "source_hit": 1.0,
+        "source_recall": 1.0,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "1/1 claims supported.",
+        "answer_relevance": "5/5 \u2014 The question specifically asks about the signing algorithm used by Helix for webhook signatures. The answer directly addresses this by stating that Helix uses the HMAC-SHA256 signing algorithm. There are no unnecessary details or omissions in the response, making it a complete and direct answer to the question.",
+        "csm_resolution_quality": "facts=all, actionability=not_applicable, commitment=False \u2014 The assistant's answer correctly identifies the signing algorithm used by Helix for webhook signatures as HMAC-SHA256, which matches the reference. This is a factual lookup question, so stating the fact is the complete action. There is no unauthorised commitment made in the answer."
+      },
+      "evaluator_errors": [],
+      "error": null
+    },
+    {
+      "qid": "Q008",
+      "difficulty": "easy",
+      "category": "api",
+      "question": "Which header contains the webhook signature?",
+      "answer": "The header that contains the webhook signature is **X-Helix-Signature**.",
+      "confidence": "high",
+      "sources": [
+        "product-docs/api/webhooks.md",
+        "product-docs/integrations/custom-webhooks.md"
+      ],
+      "retrieved_doc_ids": [
+        "product-docs/api/webhooks.md",
+        "product-docs/integrations/custom-webhooks.md",
+        "runbooks/incident-response/webhook-delivery-failure.pdf",
+        "product-docs/api/webhooks.md",
+        "product-docs/integrations/custom-webhooks.md"
+      ],
+      "expected_sources": [
+        "product-docs/api/webhooks.md",
+        "product-docs/integrations/custom-webhooks.md"
+      ],
+      "retrieval_latency_ms": 305.7,
+      "generation_latency_ms": 897.8,
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 1.0,
+        "source_hit": 1.0,
+        "source_recall": 1.0,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "1/1 claims supported.",
+        "answer_relevance": "5/5 \u2014 The answer directly addresses the specific question by identifying the exact header that contains the webhook signature, which is 'X-Helix-Signature'. There are no unnecessary details or omissions in the response.",
+        "csm_resolution_quality": "facts=all, actionability=not_applicable, commitment=False \u2014 The assistant's answer correctly identifies the header containing the webhook signature as X-Helix-Signature, which matches the reference answer. This is a straightforward factual lookup, so the CSM can directly use this information when speaking with a customer."
+      },
+      "evaluator_errors": [],
+      "error": null
+    },
+    {
+      "qid": "Q009",
+      "difficulty": "easy",
+      "category": "admin",
+      "question": "How many user roles does Helix have?",
+      "answer": "Helix has four user roles: Owner, Admin, Editor, and Viewer.",
+      "confidence": "high",
+      "sources": [
+        "product-docs/admin/roles-and-permissions.md"
+      ],
+      "retrieved_doc_ids": [
+        "product-docs/admin/roles-and-permissions.md",
+        "product-docs/getting-started/welcome.md",
+        "product-docs/admin/scim.md",
+        "product-docs/admin/sso.md",
+        "product-docs/integrations/overview.md"
+      ],
+      "expected_sources": [
+        "product-docs/admin/roles-and-permissions.md"
+      ],
+      "retrieval_latency_ms": 314.2,
+      "generation_latency_ms": 623.9,
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 1.0,
+        "source_hit": 1.0,
+        "source_recall": 1.0,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "1/1 claims supported.",
+        "answer_relevance": "5/5 \u2014 The answer directly addresses the question by providing the exact number of user roles in Helix and listing them. There is no unnecessary information or omission, making it a complete and direct response to the question asked.",
+        "csm_resolution_quality": "facts=all, actionability=not_applicable, commitment=False \u2014 The assistant's answer correctly lists all four user roles available in Helix: Owner, Admin, Editor, and Viewer. This matches the reference answer exactly, fulfilling the requirement to list all roles. Since this is a factual lookup, stating the roles is the complete action, and there is no commitment implied in the answer."
+      },
+      "evaluator_errors": [],
+      "error": null
+    },
+    {
+      "qid": "Q010",
+      "difficulty": "easy",
+      "category": "admin",
+      "question": "Which plan includes SSO?",
+      "answer": "SSO via SAML 2.0 is available on the Enterprise plan.",
+      "confidence": "high",
+      "sources": [
+        "product-docs/admin/sso.md"
+      ],
+      "retrieved_doc_ids": [
+        "product-docs/admin/sso.md",
+        "product-docs/admin/sso.md",
+        "runbooks/incident-response/auth-service-degradation.pdf",
+        "product-docs/admin/scim.md",
+        "product-docs/admin/user-provisioning.md"
+      ],
+      "expected_sources": [
+        "product-docs/admin/sso.md"
+      ],
+      "retrieval_latency_ms": 268.8,
+      "generation_latency_ms": 839.0,
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 1.0,
+        "source_hit": 1.0,
+        "source_recall": 1.0,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "1/1 claims supported.",
+        "answer_relevance": "5/5 \u2014 The answer directly addresses the question by specifying that SSO is available on the Enterprise plan. It provides the necessary detail about the availability of SSO, which is exactly what the question asked for.",
+        "csm_resolution_quality": "facts=all, actionability=not_applicable, commitment=False \u2014 The assistant's answer correctly states that SSO via SAML 2.0 is available on the Enterprise plan, which matches the reference answer. The answer is a straightforward factual statement, so the CSM can directly use this information when speaking with a customer. There is no unauthorised commitment made in the answer."
+      },
+      "evaluator_errors": [],
+      "error": null
+    },
+    {
+      "qid": "Q011",
+      "difficulty": "easy",
+      "category": "admin",
+      "question": "How long is the audit log retained?",
+      "answer": "Audit log entries are retained for **365 days**.",
+      "confidence": "high",
+      "sources": [
+        "product-docs/admin/audit-log.md",
+        "product-docs/data/retention-policy.md"
+      ],
+      "retrieved_doc_ids": [
+        "product-docs/admin/audit-log.md",
+        "product-docs/admin/audit-log.md",
+        "product-docs/data/retention-policy.md",
+        "runbooks/customer-ops/account-deletion.pdf",
+        "product-docs/data/retention-policy.md"
+      ],
+      "expected_sources": [
+        "product-docs/admin/audit-log.md"
+      ],
+      "retrieval_latency_ms": 249.5,
+      "generation_latency_ms": 877.1,
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 1.0,
+        "source_hit": 1.0,
+        "source_recall": 1.0,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "1/1 claims supported.",
+        "answer_relevance": "5/5 \u2014 The answer directly addresses the question by providing the specific duration for which the audit log is retained, which is 365 days. There are no omissions or unnecessary information included in the response.",
+        "csm_resolution_quality": "facts=all, actionability=not_applicable, commitment=False \u2014 The ANSWER correctly states that audit log entries are retained for 365 days, which matches the REFERENCE. This is a factual lookup, so stating the retention period is the complete action. There is no unauthorised commitment made in the answer."
+      },
+      "evaluator_errors": [],
+      "error": null
+    },
+    {
+      "qid": "Q012",
+      "difficulty": "easy",
+      "category": "data",
+      "question": "How long are run logs retained on the Pro plan?",
+      "answer": "Run logs are retained for **90 days** on the Pro plan.",
+      "confidence": "high",
+      "sources": [
+        "product-docs/data/retention-policy.md",
+        "product-docs/api/runs-endpoint.md",
+        "product-docs/data/run-logs.md"
+      ],
+      "retrieved_doc_ids": [
+        "product-docs/data/retention-policy.md",
+        "tickets/ticket-1378-missing-data-in-export.html",
+        "product-docs/api/runs-endpoint.md",
+        "product-docs/data/run-logs.md",
+        "product-docs/data/retention-policy.md"
+      ],
+      "expected_sources": [
+        "product-docs/data/retention-policy.md",
+        "product-docs/data/run-logs.md"
+      ],
+      "retrieval_latency_ms": 270.6,
+      "generation_latency_ms": 962.5,
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 1.0,
+        "source_hit": 1.0,
+        "source_recall": 1.0,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "1/1 claims supported.",
+        "answer_relevance": "5/5 \u2014 The answer directly addresses the question by providing the specific duration for which run logs are retained on the Pro plan, which is 90 days. There are no omissions or unnecessary information included in the response.",
+        "csm_resolution_quality": "facts=all, actionability=not_applicable, commitment=False \u2014 The assistant's answer correctly states that run logs are retained for 90 days on the Pro plan, which matches the reference answer. This is a factual lookup, so stating the fact is the complete action. There is no unauthorised commitment made in the answer."
+      },
+      "evaluator_errors": [],
+      "error": null
+    },
+    {
+      "qid": "Q013",
+      "difficulty": "easy",
+      "category": "data",
+      "question": "How long is a download URL for an export valid?",
+      "answer": "The download URL for an export is valid for 24 hours.",
+      "confidence": "high",
+      "sources": [
+        "product-docs/data/exporting-data.md",
+        "runbooks/customer-ops/data-export-requests.pdf"
+      ],
+      "retrieved_doc_ids": [
+        "tickets/ticket-1349-export-stuck.html",
+        "runbooks/customer-ops/data-export-requests.pdf",
+        "product-docs/data/exporting-data.md",
+        "runbooks/customer-ops/data-export-requests.pdf",
+        "tickets/ticket-1378-missing-data-in-export.html"
+      ],
+      "expected_sources": [
+        "product-docs/data/exporting-data.md"
+      ],
+      "retrieval_latency_ms": 440.0,
+      "generation_latency_ms": 840.9,
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 1.0,
+        "source_hit": 1.0,
+        "source_recall": 1.0,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "1/1 claims supported.",
+        "answer_relevance": "5/5 \u2014 The answer directly addresses the question by providing the specific duration for which a download URL for an export remains valid. There are no omissions or unnecessary information included in the response.",
+        "csm_resolution_quality": "facts=all, actionability=not_applicable, commitment=False \u2014 The assistant's answer correctly states that the download URL for an export is valid for 24 hours, which matches the reference. This is a factual lookup, so the CSM can directly use this information when responding to the customer. There is no commitment implied in the answer."
+      },
+      "evaluator_errors": [],
+      "error": null
+    },
+    {
+      "qid": "Q014",
+      "difficulty": "easy",
+      "category": "workflows",
+      "question": "How many workflow versions does Helix retain?",
+      "answer": "Helix retains the last **50 versions** of each workflow.",
+      "confidence": "high",
+      "sources": [
+        "product-docs/workflows/versioning.md"
+      ],
+      "retrieved_doc_ids": [
+        "product-docs/workflows/versioning.md",
+        "product-docs/workflows/versioning.md",
+        "product-docs/data/retention-policy.md",
+        "product-docs/api/sdks.md",
+        "product-docs/getting-started/navigation.md"
+      ],
+      "expected_sources": [
+        "product-docs/workflows/versioning.md"
+      ],
+      "retrieval_latency_ms": 246.5,
+      "generation_latency_ms": 827.5,
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 1.0,
+        "source_hit": 1.0,
+        "source_recall": 1.0,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "1/1 claims supported.",
+        "answer_relevance": "5/5 \u2014 The answer directly addresses the question by providing the specific number of workflow versions that Helix retains, which is 50. There are no omissions or unnecessary information included in the response.",
+        "csm_resolution_quality": "facts=all, actionability=not_applicable, commitment=False \u2014 The assistant's answer correctly states that Helix retains the last 50 versions of each workflow, which matches the reference. There is no additional context or steps required for the CSM to act on this information, as it is a straightforward factual lookup. The answer does not imply any unauthorized commitments."
+      },
+      "evaluator_errors": [],
+      "error": null
+    },
+    {
+      "qid": "Q015",
+      "difficulty": "easy",
+      "category": "workflows",
+      "question": "Are scheduled workflows in UTC or my local time?",
+      "answer": "All schedules run in **UTC**. Helix does not currently support per-workflow timezones.",
+      "confidence": "high",
+      "sources": [
+        "product-docs/workflows/scheduling.md"
+      ],
+      "retrieved_doc_ids": [
+        "product-docs/workflows/scheduling.md",
+        "tickets/ticket-1289-schedule-not-running.html",
+        "product-docs/workflows/scheduling.md",
+        "tickets/ticket-1402-slow-execution.html",
+        "product-docs/workflows/creating-workflows.md"
+      ],
+      "expected_sources": [
+        "product-docs/workflows/scheduling.md"
+      ],
+      "retrieval_latency_ms": 231.8,
+      "generation_latency_ms": 742.0,
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 1.0,
+        "source_hit": 1.0,
+        "source_recall": 1.0,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "2/2 claims supported.",
+        "answer_relevance": "5/5 \u2014 The answer directly addresses the question by stating that all scheduled workflows run in UTC. It also provides additional information that Helix does not support per-workflow timezones, which is relevant and helpful context. There is no unnecessary information or omissions in the response.",
+        "csm_resolution_quality": "facts=all, actionability=high, commitment=False \u2014 The assistant's answer correctly states that all schedules run in UTC, which matches the mandatory fact from the reference. It also correctly notes that Helix does not support per-workflow timezones. The answer does not mention DST, but this is not a mandatory fact according to the grading notes. The answer is clear and provides the necessary information for the CSM to respond to the customer accurately."
+      },
+      "evaluator_errors": [],
+      "error": null
+    },
+    {
+      "qid": "Q016",
+      "difficulty": "easy",
+      "category": "api",
+      "question": "What's the API key format?",
+      "answer": "The API key formats are as follows:\n- **Live keys**: `hlx_live_<32 hex chars>` \u2014 affects production resources.\n- **Test keys**: `hlx_test_<32 hex chars>` \u2014 sandboxed; safe for development.",
+      "confidence": "high",
+      "sources": [
+        "product-docs/api/authentication.md"
+      ],
+      "retrieved_doc_ids": [
+        "product-docs/api/overview.md",
+        "product-docs/api/authentication.md",
+        "product-docs/api/authentication.md",
+        "tickets/ticket-1189-401-with-valid-key.html",
+        "product-docs/api/errors.md"
+      ],
+      "expected_sources": [
+        "product-docs/api/authentication.md",
+        "product-docs/api/overview.md"
+      ],
+      "retrieval_latency_ms": 323.2,
+      "generation_latency_ms": 1051.1,
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 1.0,
+        "source_hit": 1.0,
+        "source_recall": 1.0,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "4/4 claims supported.",
+        "answer_relevance": "5/5 \u2014 The answer directly addresses the question by providing the specific format for both live and test API keys. It includes the prefix and the structure of the key, which is exactly what the question asked for. There are no unnecessary digressions or omissions in the response.",
+        "csm_resolution_quality": "facts=all, actionability=high, commitment=False \u2014 The ANSWER correctly describes the format of both live and test API keys, matching the REFERENCE. It includes the necessary prefixes 'hlx_live_' and 'hlx_test_' and specifies the length of the hexadecimal characters. The additional detail about the purpose of each key type (production vs. sandbox) is accurate and helpful. The CSM can directly use this information to inform the customer about the API key formats without needing further clarification or lookup. There is no unauthorized commitment made in the answer."
+      },
+      "evaluator_errors": [],
+      "error": null
+    },
+    {
+      "qid": "Q017",
+      "difficulty": "easy",
+      "category": "api",
+      "question": "What does HTTP 401 mean from the Helix API?",
+      "answer": "HTTP 401 means \"Invalid or expired API key\" from the Helix API.",
+      "confidence": "high",
+      "sources": [
+        "product-docs/api/errors.md"
+      ],
+      "retrieved_doc_ids": [
+        "product-docs/api/errors.md",
+        "product-docs/integrations/oauth-flow.md",
+        "tickets/ticket-1189-401-with-valid-key.html",
+        "tickets/ticket-1212-webhook-not-firing.html",
+        "product-docs/api/authentication.md"
+      ],
+      "expected_sources": [
+        "product-docs/api/errors.md",
+        "product-docs/api/authentication.md"
+      ],
+      "retrieval_latency_ms": 278.2,
+      "generation_latency_ms": 715.7,
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 1.0,
+        "source_hit": 1.0,
+        "source_recall": 1.0,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "1/1 claims supported.",
+        "answer_relevance": "5/5 \u2014 The question asks for the meaning of HTTP 401 specifically from the Helix API. The answer directly addresses this by stating that it means 'Invalid or expired API key' in the context of the Helix API. There are no unnecessary details or omissions in the response.",
+        "csm_resolution_quality": "facts=all, actionability=not_applicable, commitment=False \u2014 The assistant's answer correctly identifies that HTTP 401 means \"Invalid or expired API key\" from the Helix API, which matches the reference answer. This explanation covers the mandatory fact that it is an authentication issue related to the API key. Since this is a factual lookup, stating the fact is the complete action, and there is no unauthorised commitment involved."
+      },
+      "evaluator_errors": [],
+      "error": null
+    },
+    {
+      "qid": "Q018",
+      "difficulty": "easy",
+      "category": "integrations",
+      "question": "What integrations does Helix support?",
+      "answer": "Helix supports the following integrations:\n- Slack\n- Salesforce\n- HubSpot\n- Stripe\n- Google Drive\n- GitHub\n- Jira\n- Zendesk\n- Notion\n- Asana",
+      "confidence": "high",
+      "sources": [
+        "product-docs/integrations/overview.md"
+      ],
+      "retrieved_doc_ids": [
+        "product-docs/integrations/overview.md",
+        "product-docs/getting-started/welcome.md",
+        "product-docs/integrations/slack.md",
+        "product-docs/integrations/overview.md",
+        "product-docs/api/sdks.md"
+      ],
+      "expected_sources": [
+        "product-docs/integrations/overview.md"
+      ],
+      "retrieval_latency_ms": 271.3,
+      "generation_latency_ms": 919.9,
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 1.0,
+        "source_hit": 1.0,
+        "source_recall": 1.0,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "10/10 claims supported.",
+        "answer_relevance": "5/5 \u2014 The answer directly and completely addresses the question by listing the specific integrations that Helix supports. There are no omissions or unnecessary digressions, as the question specifically asked for the integrations, and the answer provides a clear list of them.",
+        "csm_resolution_quality": "facts=all, actionability=not_applicable, commitment=False \u2014 The ANSWER lists all the integrations mentioned in the REFERENCE, meeting the requirement to list at least 5 of the 10 named integrations. It does not mention custom webhooks, but this is not mandatory according to the GRADING NOTES. The information is complete and accurate, allowing the CSM to confidently inform the customer about the supported integrations. There is no unauthorised commitment made in the answer."
+      },
+      "evaluator_errors": [],
+      "error": null
+    },
+    {
+      "qid": "Q019",
+      "difficulty": "easy",
+      "category": "mobile",
+      "question": "What mobile platforms are supported?",
+      "answer": "The supported mobile platforms for the Helix app are iOS 15+ and Android 9+.",
+      "confidence": "high",
+      "sources": [
+        "product-docs/notifications/mobile-push.md",
+        "product-docs/mobile/mobile-app-overview.md"
+      ],
+      "retrieved_doc_ids": [
+        "product-docs/notifications/mobile-push.md",
+        "product-docs/mobile/mobile-app-overview.md",
+        "product-docs/mobile/mobile-app-overview.md",
+        "product-docs/mobile/mobile-limitations.md",
+        "product-docs/mobile/mobile-limitations.md"
+      ],
+      "expected_sources": [
+        "product-docs/mobile/mobile-app-overview.md"
+      ],
+      "retrieval_latency_ms": 260.4,
+      "generation_latency_ms": 828.8,
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 1.0,
+        "source_hit": 1.0,
+        "source_recall": 1.0,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "1/1 claims supported.",
+        "answer_relevance": "5/5 \u2014 The answer directly addresses the question by specifying the mobile platforms that are supported, namely iOS 15+ and Android 9+. This information is exactly what the question asked for, with no unnecessary details or omissions.",
+        "csm_resolution_quality": "facts=all, actionability=not_applicable, commitment=False \u2014 The assistant's answer correctly identifies the supported mobile platforms as iOS 15+ and Android 9+, which matches the reference. This information is factual and complete, allowing the CSM to confidently inform the customer about the supported platforms without needing further clarification or lookup. There is no unauthorized commitment made in the answer."
+      },
+      "evaluator_errors": [],
+      "error": null
+    },
+    {
+      "qid": "Q020",
+      "difficulty": "easy",
+      "category": "billing",
+      "question": "What's the support response SLA on Pro?",
+      "answer": "The support response SLA on the Pro plan is 8 hours.",
+      "confidence": "high",
+      "sources": [
+        "product-docs/billing/plans.md"
+      ],
+      "retrieved_doc_ids": [
+        "tickets/ticket-1322-downgrade-question.html",
+        "product-docs/billing/plans.md",
+        "runbooks/incident-response/rate-limit-spike.pdf",
+        "tickets/ticket-1378-missing-data-in-export.html",
+        "product-docs/billing/plans.md"
+      ],
+      "expected_sources": [
+        "product-docs/billing/plans.md"
+      ],
+      "retrieval_latency_ms": 249.1,
+      "generation_latency_ms": 845.8,
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 1.0,
+        "source_hit": 1.0,
+        "source_recall": 1.0,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "1/1 claims supported.",
+        "answer_relevance": "5/5 \u2014 The answer directly addresses the specific question asked by providing the exact support response SLA for the Pro plan, which is 8 hours. There are no omissions or unnecessary information included in the response.",
+        "csm_resolution_quality": "facts=all, actionability=not_applicable, commitment=False \u2014 The assistant's answer correctly states that the support response SLA on the Pro plan is 8 hours, which matches the reference. This is a factual lookup, so stating the fact is the complete action. There is no commitment implied beyond providing the correct information."
+      },
+      "evaluator_errors": [],
+      "error": null
+    },
+    {
+      "qid": "Q021",
+      "difficulty": "medium",
+      "category": "workflows",
+      "question": "If a workflow step fails, when does Helix retry it?",
+      "answer": "When a workflow step fails, Helix automatically retries it **3 times** with exponential backoff:  \n- 1st retry: after **1 minute**  \n- 2nd retry: after **5 minutes**  \n- 3rd retry: after **25 minutes**  \nIf all retries fail, the run is marked as **Failed** and the workflow's failure handler runs (if configured).",
+      "confidence": "high",
+      "sources": [
+        "product-docs/workflows/error-handling.md"
+      ],
+      "retrieved_doc_ids": [
+        "product-docs/workflows/error-handling.md",
+        "product-docs/integrations/custom-webhooks.md",
+        "product-docs/workflows/error-handling.md",
+        "product-docs/api/errors.md",
+        "product-docs/notifications/email-notifications.md"
+      ],
+      "expected_sources": [
+        "product-docs/workflows/error-handling.md"
+      ],
+      "retrieval_latency_ms": 548.5,
+      "generation_latency_ms": 1146.1,
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 1.0,
+        "source_hit": 1.0,
+        "source_recall": 1.0,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "5/5 claims supported.",
+        "answer_relevance": "5/5 \u2014 The answer directly addresses the question by specifying the exact conditions under which Helix retries a failed workflow step. It provides detailed information about the number of retries and the timing of each retry, which is exactly what the question asked for. There are no omissions or unnecessary digressions in the response.",
+        "csm_resolution_quality": "facts=all, actionability=high, commitment=False \u2014 The ANSWER correctly states that Helix retries a failed workflow step 3 times with exponential backoff, specifying the intervals of 1 minute, 5 minutes, and 25 minutes. This matches the REFERENCE exactly, including the detail about the workflow being marked as failed and the failure handler running if configured. Therefore, all mandatory facts are present and correct. The CSM can act on this information immediately as it provides clear details about the retry mechanism. There is no unauthorised commitment made in the answer."
+      },
+      "evaluator_errors": [],
+      "error": null
+    },
+    {
+      "qid": "Q022",
+      "difficulty": "medium",
+      "category": "api",
+      "question": "How do I verify the signature on incoming Helix webhooks?",
+      "answer": "To verify the signature on incoming Helix webhooks, follow these steps:\n1. In your webhook trigger settings, enable **Verify signature**.\n2. Helix will generate a webhook secret for you. Copy this secret.\n3. Use the secret to sign the requests with **HMAC-SHA256**.\n4. The signature should be sent in the **X-Helix-Signature** header.\n5. In your code, you can verify the signature using the following Python example:\n   ```python\n   import hmac, hashlib\n   expected = hmac.new(secret.encode(), body, hashlib.sha256).hexdigest()\n   if not hmac.compare_digest(expected, received_signature):\n       raise Exception(\"Invalid signature\")\n   ```\nMake sure to verify against the raw request body, not the parsed JSON, as re-serialization can produce different bytes and break signature verification.",
+      "confidence": "high",
+      "sources": [
+        "product-docs/api/webhooks.md",
+        "product-docs/integrations/custom-webhooks.md"
+      ],
+      "retrieved_doc_ids": [
+        "product-docs/api/webhooks.md",
+        "product-docs/integrations/custom-webhooks.md",
+        "tickets/ticket-1212-webhook-not-firing.html",
+        "runbooks/incident-response/webhook-delivery-failure.pdf",
+        "product-docs/api/webhooks.md"
+      ],
+      "expected_sources": [
+        "product-docs/api/webhooks.md"
+      ],
+      "retrieval_latency_ms": 255.1,
+      "generation_latency_ms": 2081.5,
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 1.0,
+        "source_hit": 1.0,
+        "source_recall": 1.0,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "6/6 claims supported.",
+        "answer_relevance": "5/5 \u2014 The answer provides a detailed step-by-step guide on how to verify the signature on incoming Helix webhooks, which directly addresses the question. It includes enabling the signature verification, using the secret for HMAC-SHA256 signing, and checking the signature in the X-Helix-Signature header. Additionally, it provides a Python code example for implementation, which is highly relevant and useful for someone looking to verify webhook signatures. The answer also includes a crucial tip about verifying against the raw request body, ensuring completeness.",
+        "csm_resolution_quality": "facts=all, actionability=high, commitment=False \u2014 The assistant's answer includes all the mandatory facts: the use of HMAC-SHA256, the X-Helix-Signature header, and the importance of verifying against the raw request body. It also provides a clear Python code example for implementation, which is helpful for practical application. The answer does not make any unauthorized commitments, as it simply explains the verification process without promising any additional features or support."
+      },
+      "evaluator_errors": [],
+      "error": null
+    },
+    {
+      "qid": "Q023",
+      "difficulty": "medium",
+      "category": "billing",
+      "question": "What's the difference between Pro and Enterprise plans?",
+      "answer": "The Pro plan costs $299/month and includes 10,000 workflow runs per month, up to 10 users, all standard integrations, API access (1000 req/min), 90-day run log retention, and email + chat support with an 8-hour response SLA. \n\nThe Enterprise plan has custom pricing and offers unlimited workflow runs, unlimited users, all integrations plus custom integrations on request, unlimited API access, 365-day run log retention, SAML 2.0 SSO, SCIM, IP allowlist, audit log, a dedicated account team, and a 1-hour response SLA.",
+      "confidence": "high",
+      "sources": [
+        "product-docs/billing/plans.md"
+      ],
+      "retrieved_doc_ids": [
+        "product-docs/billing/plans.md",
+        "product-docs/billing/plans.md",
+        "product-docs/getting-started/welcome.md",
+        "product-docs/integrations/overview.md",
+        "product-docs/api/overview.md"
+      ],
+      "expected_sources": [
+        "product-docs/billing/plans.md"
+      ],
+      "retrieval_latency_ms": 318.1,
+      "generation_latency_ms": 1402.3,
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 1.0,
+        "source_hit": 1.0,
+        "source_recall": 1.0,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "16/16 claims supported.",
+        "answer_relevance": "5/5 \u2014 The answer directly addresses the question by providing a detailed comparison between the Pro and Enterprise plans. It lists the features and limitations of each plan, such as the number of workflow runs, user limits, integrations, API access, log retention, and support options. This comprehensive comparison covers all the key differences that a potential customer would need to know when deciding between the two plans.",
+        "csm_resolution_quality": "facts=all, actionability=high, commitment=False \u2014 The ANSWER correctly lists the differences between the Pro and Enterprise plans, including price, workflow runs, user limits, and Enterprise-only features such as SSO, SCIM, IP allowlist, audit log, and support SLA. It also provides additional details like API access limits and support response times, which are accurate and do not contradict the REFERENCE. The CSM can act on this information immediately as it provides clear distinctions between the plans. There is no unauthorised commitment made in the ANSWER."
+      },
+      "evaluator_errors": [],
+      "error": null
+    },
+    {
+      "qid": "Q024",
+      "difficulty": "medium",
+      "category": "admin",
+      "question": "Which roles can manage billing?",
+      "answer": "Only the Owner role can manage billing. Admins, Editors, and Viewers do not have billing management permissions.",
+      "confidence": "high",
+      "sources": [
+        "product-docs/admin/roles-and-permissions.md"
+      ],
+      "retrieved_doc_ids": [
+        "tickets/ticket-1455-cant-access-billing.html",
+        "product-docs/admin/roles-and-permissions.md",
+        "product-docs/billing/invoices.md",
+        "runbooks/customer-ops/refund-processing.pdf",
+        "product-docs/admin/roles-and-permissions.md"
+      ],
+      "expected_sources": [
+        "product-docs/admin/roles-and-permissions.md",
+        "tickets/ticket-1455-cant-access-billing.html"
+      ],
+      "retrieval_latency_ms": 270.4,
+      "generation_latency_ms": 824.8,
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 1.0,
+        "source_hit": 1.0,
+        "source_recall": 1.0,
+        "abstained": 1.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "1/1 claims supported.",
+        "answer_relevance": "5/5 \u2014 The answer directly addresses the question by specifying which role can manage billing, stating that only the Owner role has this capability. It also clarifies that other roles such as Admins, Editors, and Viewers do not have these permissions, which is relevant to understanding the limitations of billing management across different roles.",
+        "csm_resolution_quality": "facts=all, actionability=not_applicable, commitment=False \u2014 The assistant's answer correctly states that only the Owner role can manage billing and that Admins do not have billing management permissions. This aligns with the reference, which specifies that only the workspace Owner can manage billing and that Admins do not have billing access. The answer provides all necessary information for the CSM to act on this query."
+      },
+      "evaluator_errors": [],
+      "error": null
+    },
+    {
+      "qid": "Q025",
+      "difficulty": "medium",
+      "category": "api",
+      "question": "Why am I getting 429 errors when I'm under the rate limit?",
+      "answer": "You may be getting 429 errors even when under the rate limit because Helix enforces rate limits using a token bucket algorithm. This means that while the documented limit for your plan (e.g., 1000 requests per minute for the Pro plan) is in place, the rate limit is enforced based on the rate at which requests are made. If you send a burst of requests (e.g., 400 requests in a short period), it can drain the token bucket faster than it refills, leading to 429 errors. To avoid this, you should spread your requests more evenly over time and consider using the Retry-After header on 429 responses to manage your request rate effectively.",
+      "confidence": "high",
+      "sources": [
+        "product-docs/api/rate-limits.md",
+        "tickets/ticket-1156-api-rate-limit-confusion.html"
+      ],
+      "retrieved_doc_ids": [
+        "product-docs/api/rate-limits.md",
+        "tickets/ticket-1156-api-rate-limit-confusion.html",
+        "product-docs/api/rate-limits.md",
+        "runbooks/incident-response/rate-limit-spike.pdf",
+        "product-docs/api/errors.md"
+      ],
+      "expected_sources": [
+        "product-docs/api/rate-limits.md",
+        "tickets/ticket-1156-api-rate-limit-confusion.html"
+      ],
+      "retrieval_latency_ms": 311.6,
+      "generation_latency_ms": 1559.8,
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 0.53,
+        "source_hit": 1.0,
+        "source_recall": 1.0,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "6/6 claims supported.",
+        "answer_relevance": "5/5 \u2014 The answer directly addresses the question by explaining why 429 errors might occur even when the user is under the documented rate limit. It introduces the concept of the token bucket algorithm, which is relevant to understanding how rate limits are enforced. The explanation includes how a burst of requests can lead to 429 errors and provides a practical suggestion to spread requests more evenly and use the Retry-After header. This directly answers the user's question about the cause of the 429 errors and how to manage them.",
+        "csm_resolution_quality": "facts=partial, actionability=medium, commitment=False \u2014 The assistant's answer correctly explains that Helix uses a token bucket algorithm to enforce rate limits, which can lead to 429 errors if requests are sent in bursts, even if the total number of requests per minute is under the limit. It also advises spreading requests more evenly and using the Retry-After header, which aligns with the reference. However, it does not mention the X-RateLimit-Remaining header, which is part of the reference. Despite this omission, the answer provides sufficient guidance for the CSM to act on the issue."
+      },
+      "evaluator_errors": [],
+      "error": null
+    },
+    {
+      "qid": "Q026",
+      "difficulty": "medium",
+      "category": "billing",
+      "question": "How do I cancel my subscription?",
+      "answer": "To cancel your subscription, you need to follow these steps: \n1. Go to your account settings. \n2. Navigate to the cancellation option. \n\nCancellation takes effect at the end of the current billing period, and you will retain full access until then. After cancellation, workflows will continue running through the end of the period, and after that, the workspace will be paused and read-only for 90 days. If you do not reactivate within those 90 days, the workspace will be permanently deleted.",
+      "confidence": "medium",
+      "sources": [
+        "product-docs/billing/plan-changes.md"
+      ],
+      "retrieved_doc_ids": [
+        "product-docs/billing/plan-changes.md",
+        "runbooks/customer-ops/refund-processing.pdf",
+        "runbooks/customer-ops/account-deletion.pdf",
+        "runbooks/customer-ops/refund-processing.pdf",
+        "tickets/ticket-1301-unexpected-charge.html"
+      ],
+      "expected_sources": [
+        "product-docs/billing/plan-changes.md"
+      ],
+      "retrieval_latency_ms": 247.0,
+      "generation_latency_ms": 1423.9,
+      "scores": {
+        "faithfulness": 0.8,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 0.18,
+        "source_hit": 1.0,
+        "source_recall": 1.0,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "4/5 claims supported. Unsupported: To cancel your subscription, you need to follow these steps: 1. Go to your account settings. 2. Navigate to the cancellation option.",
+        "answer_relevance": "5/5 \u2014 The answer directly addresses the question by providing a clear step-by-step process on how to cancel the subscription. It also includes additional relevant information about what happens after cancellation, such as the retention of access until the end of the billing period and the status of the workspace post-cancellation. This additional information is useful and related to the question, enhancing the completeness of the response.",
+        "csm_resolution_quality": "facts=contradicted, actionability=medium, commitment=False \u2014 The ANSWER provides the necessary steps to cancel a subscription, including the end-of-period effective date and the 90-day read-only window, which are mandatory facts. However, it incorrectly states the navigation path as 'account settings' instead of 'Settings \u2192 Billing \u2192 Plan'. This discrepancy affects the key facts as it contradicts the correct navigation path. The actionability is medium because the CSM would need to verify the correct navigation path before guiding the customer. There is no unauthorised commitment made in the answer."
+      },
+      "evaluator_errors": [],
+      "error": null
+    },
+    {
+      "qid": "Q027",
+      "difficulty": "medium",
+      "category": "billing",
+      "question": "What happens when I downgrade from Pro to Starter?",
+      "answer": "When you downgrade from Pro to Starter, the downgrade takes effect at the end of your current billing period, so you keep Pro features until then. When the downgrade activates:\n- Your workflow definitions are preserved \u2014 nothing gets deleted.\n- New plan limits apply: max 100 runs/month (down from 10,000), 1 user seat (down from 10), and basic integrations only.\n- Workflows that depend on Pro-only integrations will start failing because those connections will become unavailable.\n- API access goes away, meaning any calls to the Helix API will stop working.",
+      "confidence": "high",
+      "sources": [
+        "product-docs/billing/plan-changes.md",
+        "product-docs/billing/plans.md",
+        "tickets/ticket-1322-downgrade-question.html"
+      ],
+      "retrieved_doc_ids": [
+        "tickets/ticket-1322-downgrade-question.html",
+        "product-docs/billing/plan-changes.md",
+        "product-docs/billing/plan-changes.md",
+        "product-docs/billing/plans.md",
+        "product-docs/workflows/versioning.md"
+      ],
+      "expected_sources": [
+        "product-docs/billing/plan-changes.md",
+        "tickets/ticket-1322-downgrade-question.html"
+      ],
+      "retrieval_latency_ms": 246.1,
+      "generation_latency_ms": 1512.4,
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 1.0,
+        "source_hit": 1.0,
+        "source_recall": 1.0,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "5/5 claims supported.",
+        "answer_relevance": "5/5 \u2014 The answer directly addresses the question by explaining what happens when downgrading from Pro to Starter. It covers the timing of the downgrade, the preservation of workflow definitions, the changes in plan limits, the impact on workflows using Pro-only integrations, and the loss of API access. These details comprehensively cover the implications of downgrading, leaving no important aspect unaddressed.",
+        "csm_resolution_quality": "facts=all, actionability=high, commitment=False \u2014 The ANSWER correctly states that the downgrade takes effect at the end of the current billing period and that workflow definitions are preserved. It also accurately describes the new plan limits, the loss of Pro-only integrations, and the removal of API access. All mandatory facts from the GRADING NOTES are present and correct. The CSM can confidently communicate these details to the customer without needing additional information. There is no unauthorised commitment made in the ANSWER."
+      },
+      "evaluator_errors": [],
+      "error": null
+    },
+    {
+      "qid": "Q028",
+      "difficulty": "medium",
+      "category": "data",
+      "question": "How do I export my data for compliance?",
+      "answer": "To export your data for compliance, you can follow these steps:\n\n1. **Self-service exports**: Go to **Settings \u2192 Data \u2192 Export**. Choose the data type, date range, and format. Helix will generate the export asynchronously and email you a signed URL, which is valid for 24 hours.\n\n2. **GDPR / DSAR exports**: For GDPR data subject access requests, follow the privacy procedure and compile the data within 7 days. This includes profile data, workspace memberships, workflows authored, and audit log entries. If requested, delete the source data per the GDPR deletion procedure within a 30-day window.\n\n3. **Bulk exports**: If your workspace has more than 10 million run records, self-service exports may time out. In this case, a Customer Success Manager (CSM) can file a backend export job via the internal admin tool, providing the workspace ID, date range, and formats. The backend will complete the export within 24 hours and email the customer directly.",
+      "confidence": "high",
+      "sources": [
+        "runbooks/customer-ops/data-export-requests.pdf",
+        "product-docs/data/exporting-data.md"
+      ],
+      "retrieved_doc_ids": [
+        "runbooks/customer-ops/data-export-requests.pdf",
+        "runbooks/customer-ops/data-export-requests.pdf",
+        "product-docs/data/exporting-data.md",
+        "tickets/ticket-1378-missing-data-in-export.html",
+        "tickets/ticket-1349-export-stuck.html"
+      ],
+      "expected_sources": [
+        "product-docs/data/exporting-data.md",
+        "tickets/ticket-1349-export-stuck.html"
+      ],
+      "retrieval_latency_ms": 272.2,
+      "generation_latency_ms": 2328.8,
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 1.0,
+        "source_hit": 1.0,
+        "source_recall": 1.0,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "9/9 claims supported.",
+        "answer_relevance": "5/5 \u2014 The answer directly addresses the question by providing detailed steps on how to export data for compliance purposes. It covers different scenarios such as self-service exports, GDPR/DSAR exports, and bulk exports, which are relevant to compliance needs. The answer is comprehensive and does not omit any important information related to the question.",
+        "csm_resolution_quality": "facts=all, actionability=high, commitment=False \u2014 The answer provides a comprehensive guide on how to export data for compliance, including self-service exports, GDPR/DSAR exports, and bulk exports. It correctly mentions the starting point (Settings \u2192 Data \u2192 Export), the formats (though it doesn't specify JSON or CSV), and the 24-hour URL expiry. However, it includes additional details about GDPR/DSAR exports and bulk exports that are not mentioned in the reference. These details do not contradict the reference but are not required. The answer is actionable with clear steps for the CSM to follow, and there are no unauthorized commitments made."
+      },
+      "evaluator_errors": [],
+      "error": null
+    },
+    {
+      "qid": "Q029",
+      "difficulty": "medium",
+      "category": "data",
+      "question": "What's the GDPR deletion process?",
+      "answer": "To permanently delete a user and all associated data under GDPR, follow these steps:\n1. Go to **Settings \u2192 Privacy \u2192 Data subject requests \u2192 New deletion request**.\n2. Enter the data subject's email and confirm the request.\n3. The deletion will occur within **30 days**. This 30-day window allows for the request to be canceled. After this period, deletion is irreversible.",
+      "confidence": "high",
+      "sources": [
+        "product-docs/data/gdpr-exports.md"
+      ],
+      "retrieved_doc_ids": [
+        "runbooks/customer-ops/account-deletion.pdf",
+        "product-docs/data/gdpr-exports.md",
+        "runbooks/customer-ops/data-export-requests.pdf",
+        "runbooks/customer-ops/account-deletion.pdf",
+        "product-docs/data/gdpr-exports.md"
+      ],
+      "expected_sources": [
+        "product-docs/data/gdpr-exports.md",
+        "runbooks/customer-ops/account-deletion.pdf"
+      ],
+      "retrieval_latency_ms": 245.5,
+      "generation_latency_ms": 1930.5,
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 0.88,
+        "source_hit": 1.0,
+        "source_recall": 1.0,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "6/6 claims supported.",
+        "answer_relevance": "5/5 \u2014 The answer directly addresses the question by outlining the GDPR deletion process in a step-by-step manner. It specifies where to initiate the deletion request, what information is needed, and the timeframe for the deletion process. This provides a complete and clear explanation of the GDPR deletion process, with no significant omissions or unnecessary information.",
+        "csm_resolution_quality": "facts=all, actionability=medium, commitment=False \u2014 The ANSWER correctly outlines the steps for initiating a GDPR deletion request, including the 30-day window for cancellation and the irreversibility of the deletion after this period. However, it omits details about what specific data is deleted or retained, such as the anonymization of audit logs and retention of financial records. These details are not mandatory according to the GRADING NOTES, which focus on the 30-day window and irreversibility. The CSM can act on this information, but might need to look up additional details if the customer asks about specific data types."
+      },
+      "evaluator_errors": [],
+      "error": null
+    },
+    {
+      "qid": "Q030",
+      "difficulty": "medium",
+      "category": "admin",
+      "question": "How do I set up SCIM provisioning?",
+      "answer": "To set up SCIM provisioning, follow these steps:\n\n1. Enable SCIM in **Settings \u2192 Security \u2192 SCIM**.\n2. Helix issues a SCIM token. Copy it.\n3. In your IdP, create a SCIM provisioning app pointing to:\n   - **SCIM URL**: `https://api.helix.io/v2/scim/v2`\n   - **Token**: the token from step 2.\n4. Map your IdP attributes to Helix attributes (email, displayName, role).\n5. Enable provisioning and select which IdP groups sync to Helix.",
+      "confidence": "high",
+      "sources": [
+        "product-docs/admin/scim.md"
+      ],
+      "retrieved_doc_ids": [
+        "product-docs/admin/user-provisioning.md",
+        "product-docs/admin/scim.md",
+        "product-docs/admin/scim.md",
+        "product-docs/admin/user-provisioning.md",
+        "product-docs/admin/sso.md"
+      ],
+      "expected_sources": [
+        "product-docs/admin/scim.md"
+      ],
+      "retrieval_latency_ms": 360.5,
+      "generation_latency_ms": 1577.1,
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 0.53,
+        "source_hit": 1.0,
+        "source_recall": 1.0,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "6/6 claims supported.",
+        "answer_relevance": "5/5 \u2014 The answer provides a step-by-step guide on how to set up SCIM provisioning, which directly addresses the question asked. It includes enabling SCIM, obtaining a token, configuring the IdP with the SCIM URL and token, mapping attributes, and enabling provisioning. This comprehensive response covers all necessary steps without any significant omissions or irrelevant information.",
+        "csm_resolution_quality": "facts=partial, actionability=medium, commitment=False \u2014 The answer correctly outlines the steps to set up SCIM provisioning, including enabling SCIM in the settings, obtaining a SCIM token, and configuring the IdP with the correct URL and token. It also mentions mapping IdP attributes to Helix attributes and enabling provisioning for selected groups. However, it omits the detail that SCIM is available only on the Enterprise plan and the default role assignment for SCIM-provisioned users. The answer does not make any unauthorized commitments."
+      },
+      "evaluator_errors": [],
+      "error": null
+    },
+    {
+      "qid": "Q031",
+      "difficulty": "medium",
+      "category": "billing",
+      "question": "What happens if my payment fails?",
+      "answer": "If a charge fails, Helix retries automatically: \n- 1st retry: 1 day later\n- 2nd retry: 3 days later\n- 3rd retry: 7 days later\nAfter all retries fail, your account is downgraded to a read-only state. You can still view runs but cannot create or trigger new ones.",
+      "confidence": "high",
+      "sources": [
+        "product-docs/billing/payment-methods.md"
+      ],
+      "retrieved_doc_ids": [
+        "runbooks/customer-ops/account-suspension.pdf",
+        "product-docs/billing/payment-methods.md",
+        "product-docs/billing/payment-methods.md",
+        "product-docs/integrations/stripe.md",
+        "runbooks/customer-ops/refund-processing.pdf"
+      ],
+      "expected_sources": [
+        "product-docs/billing/payment-methods.md",
+        "runbooks/customer-ops/account-suspension.pdf"
+      ],
+      "retrieval_latency_ms": 282.5,
+      "generation_latency_ms": 1644.4,
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 0.53,
+        "source_hit": 1.0,
+        "source_recall": 1.0,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "5/5 claims supported.",
+        "answer_relevance": "5/5 \u2014 The answer directly addresses the question by explaining the process that occurs when a payment fails. It details the automatic retry schedule and the consequences if all retries fail, specifically mentioning the downgrade to a read-only state. This provides a complete and relevant response to the question asked.",
+        "csm_resolution_quality": "facts=partial, actionability=medium, commitment=False \u2014 The ANSWER correctly outlines the retry schedule (1, 3, and 7 days) and the consequence of the account being downgraded to read-only if all retries fail. However, it omits the detail about the workspace suspension and the reactivation time frame after a successful payment, which is mentioned in the REFERENCE. Despite this omission, the CSM can still act on the information provided, as the key facts about retries and read-only status are present. There is no unauthorised commitment made in the ANSWER."
+      },
+      "evaluator_errors": [],
+      "error": null
+    },
+    {
+      "qid": "Q032",
+      "difficulty": "medium",
+      "category": "mobile",
+      "question": "Can I edit workflows from the mobile app?",
+      "answer": "No, you cannot edit workflows from the mobile app. The workflow builder is web-only, and to edit a workflow on mobile, you would need to use an external browser; Helix does not redirect to the builder from the mobile app.",
+      "confidence": "high",
+      "sources": [
+        "product-docs/mobile/mobile-limitations.md",
+        "product-docs/mobile/mobile-app-overview.md"
+      ],
+      "retrieved_doc_ids": [
+        "product-docs/mobile/mobile-limitations.md",
+        "product-docs/mobile/mobile-app-overview.md",
+        "product-docs/mobile/mobile-app-overview.md",
+        "product-docs/mobile/mobile-limitations.md",
+        "product-docs/workflows/creating-workflows.md"
+      ],
+      "expected_sources": [
+        "product-docs/mobile/mobile-app-overview.md",
+        "product-docs/mobile/mobile-limitations.md"
+      ],
+      "retrieval_latency_ms": 286.0,
+      "generation_latency_ms": 1044.3,
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 0.18,
+        "source_hit": 1.0,
+        "source_recall": 1.0,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "4/4 claims supported.",
+        "answer_relevance": "5/5 \u2014 The answer directly addresses the question by stating that workflows cannot be edited from the mobile app. It further explains that the workflow builder is only available on the web and provides additional information about the limitations of the mobile app in redirecting to the builder. This additional detail enhances the completeness of the answer without digressing from the main question.",
+        "csm_resolution_quality": "facts=contradicted, actionability=medium, commitment=False \u2014 The assistant's answer correctly states that workflows cannot be edited from the mobile app, aligning with the reference's explanation that the app is read-and-approve only. However, the assistant's answer does not mention the read-only design of the mobile app, which is a mandatory fact according to the grading notes. The assistant's answer also incorrectly suggests using an external browser to edit workflows on mobile, which is not supported by the reference. Therefore, the answer is partially correct but contains a contradiction regarding the use of an external browser. The actionability is medium because the CSM would need to verify the read-only design aspect. There is no unauthorised commitment made in the answer."
+      },
+      "evaluator_errors": [],
+      "error": null
+    },
+    {
+      "qid": "Q033",
+      "difficulty": "medium",
+      "category": "api",
+      "question": "How do I rotate an API key safely?",
+      "answer": "To rotate an API key safely, follow these steps:\n1. Generate a new key.\n2. Update your applications to use the new key.\n3. Once you've verified the new key works, delete the old key. \n\nNote that deleted keys cannot be recovered.",
+      "confidence": "high",
+      "sources": [
+        "product-docs/api/authentication.md"
+      ],
+      "retrieved_doc_ids": [
+        "product-docs/api/authentication.md",
+        "product-docs/api/authentication.md",
+        "tickets/ticket-1189-401-with-valid-key.html",
+        "product-docs/api/overview.md",
+        "runbooks/incident-response/rate-limit-spike.pdf"
+      ],
+      "expected_sources": [
+        "product-docs/api/authentication.md",
+        "tickets/ticket-1189-401-with-valid-key.html"
+      ],
+      "retrieval_latency_ms": 308.9,
+      "generation_latency_ms": 1155.4,
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 0.88,
+        "source_hit": 1.0,
+        "source_recall": 1.0,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "5/5 claims supported.",
+        "answer_relevance": "5/5 \u2014 The answer directly addresses the question by providing a clear, step-by-step process for safely rotating an API key. It includes generating a new key, updating applications, and deleting the old key after verification. This covers all necessary aspects of the process without any unnecessary information or omissions.",
+        "csm_resolution_quality": "facts=all, actionability=medium, commitment=False \u2014 The ANSWER correctly outlines the steps to rotate an API key safely: generating a new key, updating applications, and then deleting the old key. It also includes the important warning that deleted keys cannot be recovered. The REFERENCE provides additional detail about where to generate the new key (Settings \u2192 API Keys), but this does not affect the correctness of the ANSWER. The key facts are present, and there is no unauthorised commitment made."
+      },
+      "evaluator_errors": [],
+      "error": null
+    },
+    {
+      "qid": "Q034",
+      "difficulty": "medium",
+      "category": "api",
+      "question": "What's idempotency and how do I use it with the Helix API?",
+      "answer": "Idempotency in the Helix API refers to the ability to safely retry mutating requests without causing unintended side effects. You can use it by including an optional `Idempotency-Key` header in your requests. This key should be a unique string. If you send multiple requests with the same `Idempotency-Key`, Helix will return the same response for those repeated requests, allowing for safe retries.",
+      "confidence": "high",
+      "sources": [
+        "product-docs/api/errors.md"
+      ],
+      "retrieved_doc_ids": [
+        "product-docs/api/errors.md",
+        "product-docs/api/authentication.md",
+        "product-docs/api/errors.md",
+        "product-docs/api/overview.md",
+        "product-docs/admin/scim.md"
+      ],
+      "expected_sources": [
+        "product-docs/api/errors.md",
+        "product-docs/workflows/error-handling.md"
+      ],
+      "retrieval_latency_ms": 477.4,
+      "generation_latency_ms": 1051.4,
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 1.0,
+        "source_hit": 1.0,
+        "source_recall": 0.5,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "4/4 claims supported.",
+        "answer_relevance": "5/5 \u2014 The answer directly addresses the question by explaining what idempotency is in the context of the Helix API and how to use it. It mentions the purpose of idempotency, which is to safely retry requests without unintended side effects, and provides specific instructions on using the `Idempotency-Key` header. This covers both the definition and practical application, leaving no important details out.",
+        "csm_resolution_quality": "facts=all, actionability=high, commitment=False \u2014 The ANSWER correctly explains the concept of idempotency in the context of the Helix API, including the use of the Idempotency-Key header and its purpose. It aligns with the REFERENCE by stating that the key should be a unique string and that Helix will return the same response for requests with the same key, thus allowing safe retries. The explanation is clear and actionable, providing the necessary details for the CSM to explain this feature to a customer. There is no unauthorised commitment made in the answer.",
+        "source_recall": "missing: ['product-docs/workflows/error-handling.md']"
+      },
+      "evaluator_errors": [],
+      "error": null
+    },
+    {
+      "qid": "Q035",
+      "difficulty": "medium",
+      "category": "admin",
+      "question": "What do I do if I'm locked out by IP allowlist?",
+      "answer": "If you accidentally lock yourself out due to the IP allowlist, you should contact support@helix.io from the email of any Owner or Admin. Helix can disable enforcement after identity verification.",
+      "confidence": "high",
+      "sources": [
+        "product-docs/admin/ip-allowlist.md"
+      ],
+      "retrieved_doc_ids": [
+        "product-docs/admin/ip-allowlist.md",
+        "product-docs/admin/ip-allowlist.md",
+        "runbooks/incident-response/rate-limit-spike.pdf",
+        "runbooks/incident-response/auth-service-degradation.pdf",
+        "tickets/ticket-1078-password-reset-not-arriving.html"
+      ],
+      "expected_sources": [
+        "product-docs/admin/ip-allowlist.md"
+      ],
+      "retrieval_latency_ms": 280.9,
+      "generation_latency_ms": 886.3,
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 1.0,
+        "source_hit": 1.0,
+        "source_recall": 1.0,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "2/2 claims supported.",
+        "answer_relevance": "5/5 \u2014 The answer directly addresses the question by providing a clear course of action if someone is locked out due to the IP allowlist. It specifies contacting support and mentions the necessary condition of using an email from an Owner or Admin, as well as the step of identity verification. This response is complete and directly relevant to the question asked.",
+        "csm_resolution_quality": "facts=all, actionability=high, commitment=False \u2014 The ANSWER correctly states the email address to contact (support@helix.io) and the requirement to use the email of an Owner or Admin, which aligns with the REFERENCE. It also mentions that Helix can disable enforcement after identity verification, which is consistent with the REFERENCE. However, it omits the preventive advice about including an emergency CIDR and preferring VPN ranges, which is additional but not mandatory information. The ANSWER provides clear next steps for the CSM to act on, and there is no unauthorized commitment made."
+      },
+      "evaluator_errors": [],
+      "error": null
+    },
+    {
+      "qid": "Q036",
+      "difficulty": "medium",
+      "category": "integrations",
+      "question": "Why does my Salesforce connection keep expiring?",
+      "answer": "Your Salesforce connection may keep expiring due to one of the following reasons: (1) the Salesforce user who authorized the connection has expiring credentials in Salesforce (such as password expiry or changes in MFA challenges), (2) the Salesforce admin policy is revoking long-lived OAuth grants, or (3) the user account is being deactivated and reactivated. In a specific case, a refresh token policy set to 'expire on first use' can also cause the connection to become invalid after the first use of the refresh token.",
+      "confidence": "high",
+      "sources": [
+        "tickets/ticket-1267-integration-disconnect.html"
+      ],
+      "retrieved_doc_ids": [
+        "tickets/ticket-1267-integration-disconnect.html",
+        "product-docs/integrations/salesforce.md",
+        "product-docs/integrations/connection-management.md",
+        "tickets/ticket-1301-unexpected-charge.html",
+        "product-docs/integrations/overview.md"
+      ],
+      "expected_sources": [
+        "product-docs/integrations/salesforce.md",
+        "product-docs/integrations/oauth-flow.md",
+        "tickets/ticket-1267-integration-disconnect.html"
+      ],
+      "retrieval_latency_ms": 368.9,
+      "generation_latency_ms": 1933.5,
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 0.53,
+        "source_hit": 1.0,
+        "source_recall": 0.6667,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "4/4 claims supported.",
+        "answer_relevance": "5/5 \u2014 The answer directly addresses the question by providing several potential reasons why a Salesforce connection might keep expiring. It covers various scenarios such as expiring credentials, admin policies, and specific token policies, which are all relevant to the issue of connection expiration. The answer is comprehensive and does not omit any key aspects of the question.",
+        "csm_resolution_quality": "facts=partial, actionability=medium, commitment=False \u2014 The assistant's answer provides several potential reasons for the Salesforce connection expiring, but it does not emphasize the most common cause as specified in the reference: the refresh token policy set to 'expire on first use.' This is a critical omission as it is the primary issue that needs to be addressed. The answer does mention the refresh token policy but not as the main cause, and it lacks the recommended solution of changing the policy to 'refresh until revoked.' Therefore, the key facts are only partially covered. The actionability is medium because the CSM would need to verify the refresh token policy setting and adjust it accordingly, which is not directly instructed in the answer. There is no unauthorized commitment made in the answer.",
+        "source_recall": "missing: ['product-docs/integrations/oauth-flow.md']"
+      },
+      "evaluator_errors": [],
+      "error": null
+    },
+    {
+      "qid": "Q037",
+      "difficulty": "medium",
+      "category": "integrations",
+      "question": "How do I send a Helix webhook to a custom URL?",
+      "answer": "To send a Helix webhook to a custom URL, you need to use the **HTTP** action in your workflow. You can also sign outbound webhooks by computing an HMAC over the body and adding it as a header.",
+      "confidence": "high",
+      "sources": [
+        "product-docs/integrations/custom-webhooks.md"
+      ],
+      "retrieved_doc_ids": [
+        "product-docs/integrations/custom-webhooks.md",
+        "product-docs/api/webhooks.md",
+        "product-docs/integrations/custom-webhooks.md",
+        "product-docs/integrations/custom-webhooks.md",
+        "runbooks/incident-response/webhook-delivery-failure.pdf"
+      ],
+      "expected_sources": [
+        "product-docs/integrations/custom-webhooks.md"
+      ],
+      "retrieval_latency_ms": 277.5,
+      "generation_latency_ms": 1408.6,
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 0.06,
+        "source_hit": 1.0,
+        "source_recall": 1.0,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "2/2 claims supported.",
+        "answer_relevance": "5/5 \u2014 The answer directly addresses the question by explaining that to send a Helix webhook to a custom URL, one should use the HTTP action in their workflow. It also provides additional relevant information about signing outbound webhooks, which is a useful detail for ensuring secure communication. This additional information does not detract from the answer's relevance to the question.",
+        "csm_resolution_quality": "facts=none, actionability=low, commitment=False \u2014 The assistant's answer does not address the question correctly. It describes how to send a webhook using an HTTP action, which is not relevant to the question about sending a Helix webhook to a custom URL. The reference answer provides details on configuring a webhook trigger and the URL pattern, which are missing from the assistant's response. Additionally, the assistant's answer does not mention the option for signature verification, which is a mandatory fact. Therefore, the answer is not actionable as it does not provide the correct steps or information needed to address the customer's query."
+      },
+      "evaluator_errors": [],
+      "error": null
+    },
+    {
+      "qid": "Q038",
+      "difficulty": "medium",
+      "category": "workflows",
+      "question": "What's the most efficient way to process a large batch in a workflow?",
+      "answer": "The most efficient way to process a large batch in a workflow is to use a **Parallel Loop** step, which allows you to process up to 10 items concurrently. This is particularly effective if your loop iterations are independent, as it can significantly reduce the overall runtime compared to processing items sequentially. For example, if you have 5000 records, using a Parallel Loop can decrease the runtime from approximately 33 minutes (sequentially) to about 3.3 minutes (in parallel).",
+      "confidence": "high",
+      "sources": [
+        "product-docs/workflows/loops.md",
+        "tickets/ticket-1234-workflow-timeout.html"
+      ],
+      "retrieved_doc_ids": [
+        "product-docs/workflows/loops.md",
+        "product-docs/integrations/google-drive.md",
+        "tickets/ticket-1234-workflow-timeout.html",
+        "tickets/ticket-1402-slow-execution.html",
+        "product-docs/workflows/creating-workflows.md"
+      ],
+      "expected_sources": [
+        "product-docs/workflows/loops.md",
+        "product-docs/workflows/parallel-execution.md",
+        "tickets/ticket-1234-workflow-timeout.html"
+      ],
+      "retrieval_latency_ms": 250.5,
+      "generation_latency_ms": 1413.4,
+      "scores": {
+        "faithfulness": 0.8,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 0.53,
+        "source_hit": 1.0,
+        "source_recall": 0.6667,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "4/5 claims supported. Unsupported: The most efficient way to process a large batch in a workflow is to use a Parallel Loop step.",
+        "answer_relevance": "5/5 \u2014 The answer directly addresses the question by suggesting the use of a 'Parallel Loop' step as the most efficient method for processing a large batch in a workflow. It explains the benefit of processing items concurrently and provides a specific example to illustrate the potential time savings. This response is complete and directly relevant to the question asked.",
+        "csm_resolution_quality": "facts=partial, actionability=medium, commitment=False \u2014 The ANSWER correctly identifies the use of a Parallel Loop step as the most efficient way to process a large batch in a workflow, which aligns with the REFERENCE. It also mentions the concurrency cap of 10, which is a mandatory fact. However, the ANSWER does not mention the potential issue of downstream rate limits, which is an important consideration when using parallel processing. Despite this omission, the CSM could still act on the information provided, but they would need to be aware of the rate limit issue separately. There is no unauthorised commitment in the ANSWER.",
+        "source_recall": "missing: ['product-docs/workflows/parallel-execution.md']"
+      },
+      "evaluator_errors": [],
+      "error": null
+    },
+    {
+      "qid": "Q039",
+      "difficulty": "medium",
+      "category": "billing",
+      "question": "How is overage usage billed on the Pro plan?",
+      "answer": "On the Pro plan, overage runs are allowed at a rate of $0.01 per additional run, which is billed at the end of the month.",
+      "confidence": "high",
+      "sources": [
+        "product-docs/billing/usage-and-overages.md"
+      ],
+      "retrieved_doc_ids": [
+        "product-docs/billing/usage-and-overages.md",
+        "tickets/ticket-1301-unexpected-charge.html",
+        "tickets/ticket-1301-unexpected-charge.html",
+        "tickets/ticket-1301-unexpected-charge.html",
+        "product-docs/billing/plans.md"
+      ],
+      "expected_sources": [
+        "product-docs/billing/usage-and-overages.md",
+        "tickets/ticket-1301-unexpected-charge.html"
+      ],
+      "retrieval_latency_ms": 229.3,
+      "generation_latency_ms": 801.8,
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 0.53,
+        "source_hit": 1.0,
+        "source_recall": 1.0,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "2/2 claims supported.",
+        "answer_relevance": "5/5 \u2014 The answer directly addresses the question by specifying how overage usage is billed on the Pro plan. It mentions the cost per additional run and the billing cycle, which are the key components needed to understand the billing process for overage usage.",
+        "csm_resolution_quality": "facts=partial, actionability=medium, commitment=False \u2014 The ANSWER correctly states the overage rate of $0.01 per additional run and that it is billed at the end of the month, which aligns with the REFERENCE. However, it omits the mandatory detail about email alerts firing at 80%, 100%, and 125% of monthly usage. This omission means not all key facts are present. The CSM would need to look up the alert thresholds to provide a complete answer to the customer, so the actionability is medium. There is no unauthorised commitment in the ANSWER."
+      },
+      "evaluator_errors": [],
+      "error": null
+    },
+    {
+      "qid": "Q040",
+      "difficulty": "medium",
+      "category": "api",
+      "question": "What does Helix do when a webhook delivery fails?",
+      "answer": "When a webhook delivery fails, Helix retries the delivery up to 3 times with exponential backoff. If all retries fail, the delivery is marked as permanently failed, and a notification is sent to the workspace owner.",
+      "confidence": "high",
+      "sources": [
+        "product-docs/api/webhooks.md"
+      ],
+      "retrieved_doc_ids": [
+        "runbooks/incident-response/webhook-delivery-failure.pdf",
+        "product-docs/api/webhooks.md",
+        "tickets/ticket-1212-webhook-not-firing.html",
+        "runbooks/incident-response/webhook-delivery-failure.pdf",
+        "product-docs/integrations/custom-webhooks.md"
+      ],
+      "expected_sources": [
+        "product-docs/api/webhooks.md",
+        "tickets/ticket-1212-webhook-not-firing.html"
+      ],
+      "retrieval_latency_ms": 284.9,
+      "generation_latency_ms": 894.3,
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 0.53,
+        "source_hit": 1.0,
+        "source_recall": 1.0,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "3/3 claims supported.",
+        "answer_relevance": "5/5 \u2014 The answer directly addresses the question by explaining the specific actions Helix takes when a webhook delivery fails. It mentions the retry mechanism with exponential backoff, the number of retries, and the final outcome if all retries fail, including notifying the workspace owner. This provides a complete and direct response to the question asked.",
+        "csm_resolution_quality": "facts=partial, actionability=medium, commitment=False \u2014 The ANSWER correctly states that Helix retries failed webhook deliveries up to 3 times with exponential backoff and that a notification is sent to the workspace owner if all retries fail. However, it omits the important detail that Helix does not automatically backfill missed deliveries once the endpoint recovers, which is a mandatory fact according to the grading notes. The CSM would need to look up this additional information to provide a complete response to the customer. There is no unauthorised commitment made in the ANSWER."
+      },
+      "evaluator_errors": [],
+      "error": null
+    },
+    {
+      "qid": "Q041",
+      "difficulty": "hard",
+      "category": "admin",
+      "question": "Our team is migrating from Okta to Azure AD this weekend. What do we need to know to avoid a redirect loop?",
+      "answer": "To avoid a redirect loop when migrating from Okta to Azure AD, ensure the following:\n1. In **Settings \u2192 Security \u2192 SSO**, replace the SAML metadata with the Azure AD metadata. It should reference `login.microsoftonline.com`, not `okta.com`.\n2. In your Azure AD enterprise app, configure the NameID format to `emailAddress`, not `persistent`. Using `persistent` will cause Helix to fail to find the user account, leading to a redirect loop.\n3. It is recommended to test with one user before rolling out the changes to the entire team.",
+      "confidence": "high",
+      "sources": [
+        "product-docs/admin/sso.md",
+        "tickets/ticket-1042-sso-redirect-loop.html"
+      ],
+      "retrieved_doc_ids": [
+        "tickets/ticket-1042-sso-redirect-loop.html",
+        "runbooks/incident-response/auth-service-degradation.pdf",
+        "product-docs/admin/sso.md",
+        "product-docs/admin/sso.md",
+        "product-docs/integrations/oauth-flow.md"
+      ],
+      "expected_sources": [
+        "product-docs/admin/sso.md",
+        "tickets/ticket-1042-sso-redirect-loop.html"
+      ],
+      "retrieval_latency_ms": 334.9,
+      "generation_latency_ms": 1609.0,
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 1.0,
+        "source_hit": 1.0,
+        "source_recall": 1.0,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "5/5 claims supported.",
+        "answer_relevance": "5/5 \u2014 The answer directly addresses the question by providing specific steps to avoid a redirect loop during the migration from Okta to Azure AD. It mentions replacing SAML metadata, configuring the NameID format, and testing with one user before a full rollout. These points are relevant and directly related to preventing a redirect loop, which was the core concern of the question.",
+        "csm_resolution_quality": "facts=all, actionability=high, commitment=False \u2014 The answer correctly identifies the two main causes of redirect loops: incorrect SAML metadata and the wrong NameID format. It also provides the correct settings paths and values, such as using 'emailAddress' for NameID and ensuring the metadata points to Azure AD. Additionally, it suggests testing with one user before a full rollout, which is a recommended practice. There are no unauthorized commitments made in the answer."
+      },
+      "evaluator_errors": [],
+      "error": null
+    },
+    {
+      "qid": "Q042",
+      "difficulty": "hard",
+      "category": "workflows",
+      "question": "I'm seeing my workflow run time slowly creep up over the last two weeks even though I haven't changed anything. What should I look at?",
+      "answer": "You should look at the specific steps in your workflow to identify any that may be taking longer to execute. For example, in a similar case, a customer experienced a significant slowdown due to a specific step (a Salesforce SOQL query) that became slower over time. It is important to check the run history of your workflow to see if there are any particular steps that have increased in duration. Additionally, consider any external factors that may have changed, such as data volume or the performance of external systems your workflow interacts with.",
+      "confidence": "medium",
+      "sources": [
+        "tickets/ticket-1402-slow-execution.html"
+      ],
+      "retrieved_doc_ids": [
+        "tickets/ticket-1402-slow-execution.html",
+        "tickets/ticket-1234-workflow-timeout.html",
+        "tickets/ticket-1301-unexpected-charge.html",
+        "product-docs/workflows/creating-workflows.md",
+        "product-docs/billing/usage-and-overages.md"
+      ],
+      "expected_sources": [
+        "tickets/ticket-1402-slow-execution.html",
+        "product-docs/workflows/creating-workflows.md",
+        "product-docs/integrations/salesforce.md"
+      ],
+      "retrieval_latency_ms": 252.3,
+      "generation_latency_ms": 1328.6,
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 0.65,
+        "source_hit": 1.0,
+        "source_recall": 0.6667,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "3/3 claims supported.",
+        "answer_relevance": "5/5 \u2014 The answer directly addresses the question by suggesting specific areas to investigate, such as examining the steps in the workflow for increased execution time and considering external factors like data volume or performance of external systems. It also provides a relevant example of a similar issue, which adds context and depth to the advice given. This response is comprehensive and directly related to the question asked.",
+        "csm_resolution_quality": "facts=partial, actionability=high, commitment=False \u2014 The answer correctly identifies that the CSM should examine specific steps in the workflow for increased execution time, which aligns with the reference's focus on customer-side data growth. It also provides an example of a Salesforce SOQL query slowdown, which matches the reference's mention of the SOQL backfill pattern. However, it does not explicitly mention checking for data volume growth or other potential contributors like integration partner latency or concurrency limits. The answer provides a clear direction for the CSM to investigate, making it actionable, and does not make any unauthorized commitments.",
+        "source_recall": "missing: ['product-docs/integrations/salesforce.md']"
+      },
+      "evaluator_errors": [],
+      "error": null
+    },
+    {
+      "qid": "Q043",
+      "difficulty": "hard",
+      "category": "data",
+      "question": "Our auditor is asking for 18 months of run history. How do we get that?",
+      "answer": "The provided context indicates that run records are retained for 90 days on Pro plans and 365 days on Enterprise plans. Since 18 months exceeds the retention period of both plans, it is not possible to obtain 18 months of run history directly from the platform. You may consider upgrading to the Enterprise plan for 365 days of retention, but even that would not cover the full 18 months required.",
+      "confidence": "high",
+      "sources": [
+        "product-docs/api/runs-endpoint.md"
+      ],
+      "retrieved_doc_ids": [
+        "tickets/ticket-1378-missing-data-in-export.html",
+        "tickets/ticket-1349-export-stuck.html",
+        "product-docs/admin/audit-log.md",
+        "product-docs/api/runs-endpoint.md",
+        "runbooks/customer-ops/data-export-requests.pdf"
+      ],
+      "expected_sources": [
+        "product-docs/data/retention-policy.md",
+        "product-docs/data/run-logs.md",
+        "product-docs/data/exporting-data.md",
+        "tickets/ticket-1378-missing-data-in-export.html"
+      ],
+      "retrieval_latency_ms": 218.0,
+      "generation_latency_ms": 1069.6,
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 0.53,
+        "source_hit": 1.0,
+        "source_recall": 0.25,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "6/6 claims supported.",
+        "answer_relevance": "5/5 \u2014 The answer directly addresses the question by explaining the retention limits of the Pro and Enterprise plans, which are 90 days and 365 days respectively. It clearly states that obtaining 18 months of run history is not possible directly from the platform due to these limitations. The answer also suggests upgrading to the Enterprise plan for a longer retention period, although it acknowledges that this still won't meet the 18-month requirement. This response is complete and directly relevant to the question asked.",
+        "csm_resolution_quality": "facts=partial, actionability=medium, commitment=False \u2014 The answer correctly states that 18 months of run history is not directly available due to retention limits, and suggests upgrading to the Enterprise plan for longer retention. However, it fails to mention that retroactive data is unrecoverable and does not propose setting up a scheduled export job as a solution for future data retention. These omissions mean the answer does not fully align with the reference requirements.",
+        "source_recall": "missing: ['product-docs/data/exporting-data.md', 'product-docs/data/retention-policy.md', 'product-docs/data/run-logs.md']"
+      },
+      "evaluator_errors": [],
+      "error": null
+    },
+    {
+      "qid": "Q044",
+      "difficulty": "hard",
+      "category": "api",
+      "question": "We're getting paged at 3am because production is failing on 401s but the API key wasn't rotated. What's the standard runbook?",
+      "answer": "The provided context doesn't cover a specific runbook for handling 401 errors related to API keys. However, based on a resolved ticket (HX-1189), a 401 error can occur if an API key has been deleted. In that case, the recommended steps are to generate a new key in Settings \u2192 API Keys and deploy it to your production integration. This should restore functionality quickly. \n\nFor further details on handling API issues, you may need to refer to other internal resources not provided in the context.",
+      "confidence": "medium",
+      "sources": [
+        "tickets/ticket-1189-401-with-valid-key.html"
+      ],
+      "retrieved_doc_ids": [
+        "runbooks/engineering/on-call-rotation.pdf",
+        "tickets/ticket-1189-401-with-valid-key.html",
+        "runbooks/incident-response/rate-limit-spike.pdf",
+        "runbooks/incident-response/auth-service-degradation.pdf",
+        "runbooks/incident-response/rate-limit-spike.pdf"
+      ],
+      "expected_sources": [
+        "product-docs/api/authentication.md",
+        "product-docs/admin/audit-log.md",
+        "runbooks/incident-response/auth-service-degradation.pdf",
+        "tickets/ticket-1189-401-with-valid-key.html"
+      ],
+      "retrieval_latency_ms": 362.8,
+      "generation_latency_ms": 1503.4,
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevance": 0.5,
+        "csm_resolution_quality": 0.53,
+        "source_hit": 1.0,
+        "source_recall": 0.5,
+        "abstained": 1.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "4/4 claims supported.",
+        "answer_relevance": "3/5 \u2014 The answer partially addresses the question by suggesting a possible cause for the 401 error (deleted API key) and providing a solution (generate a new key and deploy it). However, it does not provide a comprehensive runbook or standard procedure for handling 401 errors in production, which was the specific request. The answer also mentions the lack of context for a specific runbook, indicating that the response is somewhat generic and not fully tailored to the question.",
+        "csm_resolution_quality": "facts=partial, actionability=medium, commitment=False \u2014 The ANSWER correctly identifies the scenario where a 401 error can occur if an API key has been deleted and suggests generating a new key as a solution. However, it misses the mandatory check for auth-service degradation, which is a critical part of the standard runbook according to the REFERENCE. Therefore, the key facts are only partially covered. The actionability is medium because the CSM would need to verify the auth-service status, which is not mentioned in the ANSWER. There is no unauthorised commitment made in the ANSWER.",
+        "source_recall": "missing: ['product-docs/admin/audit-log.md', 'product-docs/api/authentication.md']"
+      },
+      "evaluator_errors": [],
+      "error": null
+    },
+    {
+      "qid": "Q045",
+      "difficulty": "hard",
+      "category": "csm",
+      "question": "Our customer just renewed but we're hearing rumblings their champion left. What should we do?",
+      "answer": "Since the primary champion has left the customer organization, you should document this in the account record and reach out to the customer with a specific reason for the call, not just to check in. Additionally, schedule a discovery conversation to understand the underlying cause of the change and assess any potential impact on the renewal. If the churn risk is moderate or higher, file a save plan. It's also advisable to loop in CS leadership and the account team if there are multiple strong indicators of churn risk.",
+      "confidence": "high",
+      "sources": [
+        "runbooks/csm/churn-risk-indicators.pdf"
+      ],
+      "retrieved_doc_ids": [
+        "runbooks/customer-ops/renewal-at-risk.pdf",
+        "runbooks/csm/churn-risk-indicators.pdf",
+        "runbooks/csm/renewal-forecasting.pdf",
+        "runbooks/csm/expansion-playbook.pdf",
+        "runbooks/csm/churn-risk-indicators.pdf"
+      ],
+      "expected_sources": [
+        "runbooks/csm/churn-risk-indicators.pdf",
+        "runbooks/customer-ops/renewal-at-risk.pdf",
+        "runbooks/csm/health-score-methodology.pdf"
+      ],
+      "retrieval_latency_ms": 777.8,
+      "generation_latency_ms": 1339.8,
+      "scores": {
+        "faithfulness": 0.8571,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 0.53,
+        "source_hit": 1.0,
+        "source_recall": 0.6667,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "6/7 claims supported. Unsupported: Assess any potential impact on the renewal.",
+        "answer_relevance": "5/5 \u2014 The answer directly addresses the question by providing specific steps to take in response to the customer's champion leaving. It suggests documenting the change, reaching out to the customer with a purpose, scheduling a discovery conversation, assessing churn risk, and involving leadership if necessary. These actions are relevant to the situation described in the question, which is about handling the departure of a champion after a renewal. The answer is comprehensive and directly related to the question asked.",
+        "csm_resolution_quality": "facts=partial, actionability=medium, commitment=False \u2014 The ANSWER correctly identifies the departure of the champion as a significant risk and suggests documenting the change and reaching out with a specific reason, which aligns with the REFERENCE. It also advises scheduling a discovery conversation and filing a save plan if churn risk is moderate or higher, which is a reasonable extension of the REFERENCE's advice to update health scores and forecasts. However, it misses the specific action of identifying and re-onboarding a new primary contact and updating the renewal forecast. The suggestion to loop in CS leadership is conditional on churn risk rather than ARR or strategic importance, which slightly deviates from the REFERENCE. Overall, the ANSWER provides a good direction but lacks some specific steps from the REFERENCE.",
+        "source_recall": "missing: ['runbooks/csm/health-score-methodology.pdf']"
+      },
+      "evaluator_errors": [],
+      "error": null
+    },
+    {
+      "qid": "Q046",
+      "difficulty": "hard",
+      "category": "billing",
+      "question": "Customer says they were charged for an overage but they're sure they were under their limit. How do we investigate?",
+      "answer": "To investigate a customer's claim of being charged for an overage while believing they were under their limit, follow these steps:\n1. **Check the customer's plan**: Confirm the plan type and the included run limit.\n2. **Review usage history**: Access the usage details by navigating to **Settings \u2192 Billing \u2192 Usage**. This will show the current month's run count versus the plan limit, daily run breakdown, and top workflows by run count.\n3. **Calculate overages**: If the run count exceeds the plan limit, calculate the overage charges based on the applicable rate for their plan (e.g., $0.01 per additional run for Pro).\n4. **Communicate findings**: Inform the customer of the findings, including any overage charges and the reasons for them, such as excessive usage or specific workflows contributing to the overage.\n5. **Check for alerts**: Verify if the customer received any automated usage alerts regarding their run count, as this may indicate they were informed of their usage before billing.",
+      "confidence": "high",
+      "sources": [
+        "product-docs/billing/usage-and-overages.md"
+      ],
+      "retrieved_doc_ids": [
+        "tickets/ticket-1301-unexpected-charge.html",
+        "tickets/ticket-1301-unexpected-charge.html",
+        "tickets/ticket-1301-unexpected-charge.html",
+        "runbooks/incident-response/rate-limit-spike.pdf",
+        "product-docs/billing/usage-and-overages.md"
+      ],
+      "expected_sources": [
+        "product-docs/billing/usage-and-overages.md",
+        "product-docs/billing/invoices.md",
+        "runbooks/customer-ops/refund-processing.pdf",
+        "tickets/ticket-1301-unexpected-charge.html"
+      ],
+      "retrieval_latency_ms": 265.1,
+      "generation_latency_ms": 1886.1,
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 0.65,
+        "source_hit": 1.0,
+        "source_recall": 0.5,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "6/6 claims supported.",
+        "answer_relevance": "5/5 \u2014 The answer provides a detailed step-by-step process for investigating the customer's claim about being charged for an overage. It covers checking the customer's plan, reviewing usage history, calculating overages, communicating findings, and checking for alerts. These steps directly address the question of how to investigate the issue, ensuring that all relevant aspects are considered. The answer is comprehensive and directly related to the question, with no significant omissions or unnecessary information.",
+        "csm_resolution_quality": "facts=partial, actionability=high, commitment=False \u2014 The ANSWER provides a comprehensive guide on how to investigate the overage charge, including checking the customer's plan, reviewing usage history, calculating overages, and communicating findings. It also mentions checking for alerts, which aligns with the REFERENCE. However, it misses the option of offering a goodwill credit for first-time overages, which is a key part of the REFERENCE. Therefore, the key facts are only partially covered. The actionability is high as the steps are clear and actionable. There is no unauthorised commitment made in the ANSWER.",
+        "source_recall": "missing: ['product-docs/billing/invoices.md', 'runbooks/customer-ops/refund-processing.pdf']"
+      },
+      "evaluator_errors": [],
+      "error": null
+    },
+    {
+      "qid": "Q047",
+      "difficulty": "hard",
+      "category": "incident-response",
+      "question": "We need to fail over to our Postgres replica. What's the procedure and what are the gotchas?",
+      "answer": "The procedure to manually fail over to the Postgres replica is as follows:\n\n1. **Stop writes**: From the bastion, run `kubectl scale deployment/api-server --replicas=0` to stop new writes from reaching the primary. Workflow runs in flight will fail; this is acceptable for the duration of failover.\n2. **Wait for replication to catch up**: Run `psql -c 'SELECT pg_last_wal_receive_lsn(), pg_last_wal_replay_lsn();'` on the replica until both values match. This confirms all writes have replicated.\n3. **Promote replica**: Run `pg_ctl promote -D /var/lib/postgresql/data` on the replica. The replica is now a primary.\n4. **Update DNS**: Update the `db-primary.helix.io` DNS record to point at the new primary's IP. The TTL is 60 seconds; allow 90 seconds for propagation.\n5. **Resume writes**: Scale the API server back up by running `kubectl scale deployment/api-server --replicas=20`. Monitor error rates closely for the next 15 minutes.\n6. **Provision new replica**: The promoted replica is now the primary; you have no replica. Provision a new replica from the latest snapshot. Until the new replica is in sync, you have no failover capacity.\n\n**Gotchas**:\n- Ensure that the replica is healthy and that the replication lag is under 5 seconds before starting the failover procedure.\n- If the failover fails or causes more impact, you can fail back by stopping writes again and pointing DNS back to the original primary if it is still healthy. If the original primary is unhealthy, restore from the most recent backup (RPO is 5 minutes).",
+      "confidence": "high",
+      "sources": [
+        "runbooks/incident-response/database-failover.pdf"
+      ],
+      "retrieved_doc_ids": [
+        "runbooks/incident-response/database-failover.pdf",
+        "runbooks/incident-response/database-failover.pdf",
+        "runbooks/engineering/deploy-rollback.pdf",
+        "runbooks/incident-response/auth-service-degradation.pdf",
+        "runbooks/engineering/deploy-rollback.pdf"
+      ],
+      "expected_sources": [
+        "runbooks/incident-response/database-failover.pdf"
+      ],
+      "retrieval_latency_ms": 308.9,
+      "generation_latency_ms": 3525.6,
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 1.0,
+        "source_hit": 1.0,
+        "source_recall": 1.0,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "11/11 claims supported.",
+        "answer_relevance": "5/5 \u2014 The answer provides a detailed step-by-step procedure for failing over to a Postgres replica, which directly addresses the question. It includes specific commands and actions to take, such as stopping writes, promoting the replica, updating DNS, and resuming writes. Additionally, it covers the 'gotchas' by mentioning the importance of ensuring the replica's health and replication lag, as well as what to do if the failover fails. This comprehensive response covers both the procedure and potential pitfalls, leaving no important aspect unaddressed.",
+        "csm_resolution_quality": "facts=all, actionability=high, commitment=False \u2014 The ANSWER includes all the mandatory steps for failing over to a Postgres replica, including stopping writes, waiting for replication to catch up, promoting the replica, updating DNS, resuming writes, and provisioning a new replica. It also mentions the critical post-failover capacity gap, which is the lack of a replica until a new one is provisioned. The gotchas and rollback path are also correctly described. The ANSWER does not make any unauthorized commitments."
+      },
+      "evaluator_errors": [],
+      "error": null
+    },
+    {
+      "qid": "Q048",
+      "difficulty": "hard",
+      "category": "incident-response",
+      "question": "We've decided to roll back a bad deploy mid-incident. Walk me through it.",
+      "answer": "1. **Identify the bad deploy**: From the deploys dashboard, identify the deploy that correlates with the symptom. Helix records every deploy with its commit SHA, deployer, and timestamp.\n\n2. **Confirm rollback is safe**: Check if the bad deploy ran a migration that is not backward-compatible. If so, rolling back the code will not roll back the schema. Stop and engage the on-call DBA if this is the case.\n\n3. **Execute rollback**: Run `helix deploy rollback ` from the deploy CLI, specifying the service name. The CLI will confirm the target version (the previous successful deploy) and proceed on confirmation.\n\n4. **Monitor**: Watch error rates and latency dashboards. The rollback should reduce error rates within 60 seconds. If not, check pod status as the rollback may have failed.\n\n5. **Communicate**: Update #incidents with the rollback action. If customers were impacted, update the status page.\n\n6. **Block re-deploy**: Lock the service in the deploy CLI using `helix deploy lock `. This prevents re-deploys until manually unlocked. Do not unlock until the root cause is fixed and verified.\n\n7. **Postmortem**: Every rollback triggers a postmortem within 5 business days to capture why the bug got past CI.",
+      "confidence": "high",
+      "sources": [
+        "runbooks/engineering/deploy-rollback.pdf"
+      ],
+      "retrieved_doc_ids": [
+        "runbooks/engineering/deploy-rollback.pdf",
+        "runbooks/engineering/deploy-rollback.pdf",
+        "runbooks/engineering/emergency-hotfix.pdf",
+        "runbooks/incident-response/auth-service-degradation.pdf",
+        "runbooks/engineering/emergency-hotfix.pdf"
+      ],
+      "expected_sources": [
+        "runbooks/engineering/deploy-rollback.pdf",
+        "runbooks/engineering/postmortem-template.pdf"
+      ],
+      "retrieval_latency_ms": 238.5,
+      "generation_latency_ms": 2624.8,
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 1.0,
+        "source_hit": 1.0,
+        "source_recall": 0.5,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "7/7 claims supported.",
+        "answer_relevance": "5/5 \u2014 The answer provides a detailed step-by-step guide on how to roll back a bad deploy mid-incident, which directly addresses the question. It covers all necessary steps from identifying the bad deploy, confirming the rollback is safe, executing the rollback, monitoring the system, communicating the action, blocking re-deploys, and conducting a postmortem. Each step is relevant to the process of rolling back a deploy, ensuring that the question is fully addressed without any significant omissions or unnecessary digressions.",
+        "csm_resolution_quality": "facts=all, actionability=high, commitment=False \u2014 The ANSWER includes all the mandatory steps outlined in the REFERENCE: identifying the bad deploy, confirming rollback safety with a migration check, executing the rollback, monitoring the system, communicating the rollback, locking the service to prevent re-deploys, and conducting a postmortem. The steps are detailed and provide clear instructions, making it actionable for the CSM. There are no unauthorized commitments made in the ANSWER.",
+        "source_recall": "missing: ['runbooks/engineering/postmortem-template.pdf']"
+      },
+      "evaluator_errors": [],
+      "error": null
+    },
+    {
+      "qid": "Q049",
+      "difficulty": "hard",
+      "category": "api",
+      "question": "Customer's webhooks aren't being delivered to their endpoint and we suspect signature verification is failing. What's the diagnostic flow and what's the most common gotcha?",
+      "answer": "To diagnose webhook delivery issues related to signature verification, follow this flow:\n1. Check the webhook delivery dashboard for the failure pattern:\n   - If a specific destination URL is failing, it is likely a customer-side issue.\n   - If all destinations are failing, it is likely a Helix-side issue.\n   - If a specific event type is failing, it may indicate a code regression in the publisher.\n\n2. If a single destination is failing, check the response codes:\n   - A 4xx response indicates the customer's endpoint is rejecting the payloads, which could be due to an authentication issue or a schema change.\n   - A 5xx response indicates the customer's endpoint is down.\n   - Email the workspace owner with the failure rate and the last 3 error responses.\n\nThe most common gotcha is that the customer's middleware may be rejecting unsigned requests. Ensure that the customer has implemented signature verification correctly, using the **X-Helix-Signature** header and the **HMAC-SHA256** signing algorithm over the raw request body, not the parsed JSON. This is crucial because re-serialization can produce different bytes and break signature verification.",
+      "confidence": "high",
+      "sources": [
+        "runbooks/incident-response/webhook-delivery-failure.pdf",
+        "product-docs/integrations/custom-webhooks.md",
+        "product-docs/api/webhooks.md"
+      ],
+      "retrieved_doc_ids": [
+        "runbooks/incident-response/webhook-delivery-failure.pdf",
+        "product-docs/integrations/custom-webhooks.md",
+        "tickets/ticket-1212-webhook-not-firing.html",
+        "runbooks/incident-response/webhook-delivery-failure.pdf",
+        "product-docs/api/webhooks.md"
+      ],
+      "expected_sources": [
+        "product-docs/api/webhooks.md",
+        "tickets/ticket-1212-webhook-not-firing.html"
+      ],
+      "retrieval_latency_ms": 277.0,
+      "generation_latency_ms": 3394.2,
+      "scores": {
+        "faithfulness": 0.9167,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 0.53,
+        "source_hit": 1.0,
+        "source_recall": 1.0,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "11/12 claims supported. Unsupported: To diagnose webhook delivery issues related to signature verification, follow this flow:",
+        "answer_relevance": "5/5 \u2014 The answer provides a detailed diagnostic flow for addressing webhook delivery issues related to signature verification, which directly addresses the question. It outlines steps to check the webhook delivery dashboard, analyze response codes, and communicate with the customer. Additionally, it identifies the most common gotcha, which is the customer's middleware potentially rejecting unsigned requests due to incorrect implementation of signature verification. This directly answers both parts of the question: the diagnostic flow and the common gotcha. There are no significant omissions or unnecessary digressions.",
+        "csm_resolution_quality": "facts=partial, actionability=medium, commitment=False \u2014 The answer correctly identifies the diagnostic flow for webhook delivery issues and highlights the most common gotcha regarding signature verification using the raw request body. However, it misses the important detail that missed deliveries are not automatically backfilled and that customers need to request a replay. This omission affects the completeness of the answer. The actionability is medium because the CSM has a clear diagnostic flow but would need to look up the backfill policy. There is no unauthorised commitment made in the answer."
+      },
+      "evaluator_errors": [],
+      "error": null
+    },
+    {
+      "qid": "Q050",
+      "difficulty": "hard",
+      "category": "incident-response",
+      "question": "A customer is escalating because they hit a P0-level outage on our side but haven't seen any communication from us. What's our obligation?",
+      "answer": "For any P0 incident lasting longer than 30 minutes, you are obligated to send an email update to all paying customers using the pre-approved template in /docs/incident-templates. CS leadership must approve the email before sending.",
+      "confidence": "high",
+      "sources": [
+        "runbooks/incident-response/p0-incident-response.pdf"
+      ],
+      "retrieved_doc_ids": [
+        "runbooks/incident-response/p0-incident-response.pdf",
+        "runbooks/incident-response/p0-incident-response.pdf",
+        "runbooks/csm/churn-risk-indicators.pdf",
+        "runbooks/incident-response/rate-limit-spike.pdf",
+        "runbooks/incident-response/webhook-delivery-failure.pdf"
+      ],
+      "expected_sources": [
+        "runbooks/incident-response/p0-incident-response.pdf",
+        "runbooks/customer-ops/custom-sla-handling.pdf"
+      ],
+      "retrieval_latency_ms": 251.1,
+      "generation_latency_ms": 1067.2,
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 0.53,
+        "source_hit": 1.0,
+        "source_recall": 0.5,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "3/3 claims supported.",
+        "answer_relevance": "5/5 \u2014 The answer directly addresses the question by specifying the obligation in the event of a P0-level outage. It states the requirement to send an email update to all paying customers if the incident lasts longer than 30 minutes, using a pre-approved template. Additionally, it mentions the need for CS leadership approval before sending the email. This response covers the necessary actions and obligations in the situation described by the question.",
+        "csm_resolution_quality": "facts=partial, actionability=medium, commitment=False \u2014 The assistant's answer correctly mentions the obligation to send an email update for P0 incidents lasting longer than 30 minutes and the need for CS leadership approval. However, it misses several key facts: the timing obligations for status updates (5 minutes for paging, 10 minutes for status page update, and 15-minute intervals), and the potential for SLA breach credits. These omissions mean the answer does not fully cover the obligations and potential customer impacts. The CSM would need to look up the specific timing obligations and the SLA breach credit policy to fully address the customer's concerns.",
+        "source_recall": "missing: ['runbooks/customer-ops/custom-sla-handling.pdf']"
+      },
+      "evaluator_errors": [],
+      "error": null
+    }
+  ]
+}

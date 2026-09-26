@@ -49,10 +49,11 @@ def git_commit() -> str:
 def prompt_hash() -> str:
     import importlib
     from src.generate import SYSTEM_PROMPT
+    from ops.generation import GROUNDED_SYSTEM_PROMPT
     # importlib, because the package __init__ re-exports functions with the module names
     mods = [importlib.import_module(f"ops.langsmith.evaluators.{m}")
             for m in ("faithfulness", "answer_relevance", "custom_judge")]
-    blob = "\n".join([SYSTEM_PROMPT] + [m.SYSTEM for m in mods])
+    blob = "\n".join([SYSTEM_PROMPT, GROUNDED_SYSTEM_PROMPT] + [m.SYSTEM for m in mods])
     return hashlib.sha256(blob.encode()).hexdigest()[:12]
 
 
@@ -70,6 +71,7 @@ def _pct(vals: list[float], p: float) -> float | None:
 
 def aggregate(rows: list[dict]) -> dict:
     overall = {k: _mean([r["scores"].get(k) for r in rows]) for k in SCORE_KEYS}
+    scored_n = {k: sum(r["scores"].get(k) is not None for r in rows) for k in SCORE_KEYS}
     by_difficulty = {}
     for d in sorted({r["difficulty"] for r in rows}):
         sub = [r for r in rows if r["difficulty"] == d]
@@ -79,14 +81,18 @@ def aggregate(rows: list[dict]) -> dict:
     gen = [r["generation_latency_ms"] for r in rows]
     latency = {"retrieval_p50_ms": _pct(ret, 50), "retrieval_p95_ms": _pct(ret, 95),
                "generation_p50_ms": _pct(gen, 50), "generation_p95_ms": _pct(gen, 95)}
-    return {"n": len(rows), "overall": overall, "by_difficulty": by_difficulty, "latency": latency}
+    return {"n": len(rows), "overall": overall, "scored_n": scored_n,
+            "by_difficulty": by_difficulty, "latency": latency}
 
 
 def row_from_result(res: dict) -> dict:
     run, example = res["run"], res["example"]
     out = run.outputs or {}
-    scores, comments = {}, {}
+    scores, comments, errors = {}, {}, []
     for er in res["evaluation_results"]["results"]:
+        if (getattr(er, "extra", None) or {}).get("error"):
+            errors.append(er.key)          # evaluator crashed (e.g. rate limit): no score
+            continue
         scores[er.key] = er.score
         if er.comment:
             comments[er.key] = er.comment
@@ -105,13 +111,16 @@ def row_from_result(res: dict) -> dict:
         "generation_latency_ms": out.get("generation_latency_ms"),
         "scores": scores,
         "comments": comments,
+        "evaluator_errors": errors,
         "error": str(run.error) if run.error else None,
     }
 
 
 def gates(summary: dict, baseline: dict | None) -> dict:
     o = summary["overall"]
-    g = {"custom_judge_gte_0.75": (o["csm_resolution_quality"] or 0) >= CUSTOM_JUDGE_GATE}
+    complete = all(v == summary["n"] for v in summary.get("scored_n", {}).values())
+    g = {"all_examples_scored": complete,
+         "custom_judge_gte_0.75": (o["csm_resolution_quality"] or 0) >= CUSTOM_JUDGE_GATE}
     if baseline:
         delta = (o["faithfulness"] or 0) - (baseline["overall"]["faithfulness"] or 0)
         g["faithfulness_delta"] = round(delta, 4)
@@ -135,8 +144,8 @@ def render_markdown(p: dict) -> str:
              f"Experiment: `{p.get('experiment_name')}` · dataset `{m['dataset']}` · "
              f"commit `{m['git_commit']}` · judge `{m['judge_model']}` · n={s['n']}", "",
              "| Metric | Score |", "|---|---|"]
-    lines += [f"| {k} | {v:.3f} |" if v is not None else f"| {k} | n/a |"
-              for k, v in s["overall"].items()]
+    lines += [f"| {k} | {v:.3f} ({s['scored_n'][k]}/{s['n']}) |" if v is not None
+              else f"| {k} | n/a |" for k, v in s["overall"].items()]
     lines += ["", "| Latency | ms |", "|---|---|"]
     lines += [f"| {k} | {v} |" for k, v in s["latency"].items()]
     lines += ["", "| Difficulty | n | faithfulness | relevance | csm_quality |", "|---|---|---|---|---|"]
@@ -163,7 +172,8 @@ def main(argv: list[str] | None = None):
     ap.add_argument("--config", default="v1")
     ap.add_argument("--limit", type=int, default=None, help="first N queries only (smoke test)")
     ap.add_argument("--compare-to", default=None, help="config whose latest results are the baseline")
-    ap.add_argument("--concurrency", type=int, default=4)
+    ap.add_argument("--concurrency", type=int, default=2,
+                    help="parallel examples; keep low on low OpenAI rate-limit tiers")
     ap.add_argument("--strict", action="store_true", help="exit 1 if a checkpoint gate fails")
     args = ap.parse_args(argv)
 
@@ -214,11 +224,13 @@ def main(argv: list[str] | None = None):
                "summary": summary, "gates": gates(summary, baseline), "rows": rows}
     path = write_outputs(cfg.name, payload)
 
-    print("\n=== Overall ===")
+    print("\n=== Overall ===  (scored / total)")
     for k, v in summary["overall"].items():
         b = baseline["overall"].get(k) if baseline else None
         delta = f"  (Δ {v - b:+.3f} vs {args.compare_to})" if (b is not None and v is not None) else ""
-        print(f"  {k:<24} {v if v is None else f'{v:.3f}'}{delta}")
+        n_ok = summary["scored_n"][k]
+        flag = "" if n_ok == summary["n"] else "   <-- INCOMPLETE, re-run"
+        print(f"  {k:<24} {v if v is None else f'{v:.3f}'}  ({n_ok}/{summary['n']}){delta}{flag}")
     print("=== Gates ===")
     for k, v in payload["gates"].items():
         print(f"  {k:<30} {v}")

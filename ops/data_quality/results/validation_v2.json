@@ -1,0 +1,265 @@
+{
+  "config": "v2",
+  "stage": "standalone",
+  "passed": true,
+  "n_chunks": 176,
+  "embeddings_checked": true,
+  "results": [
+    {
+      "group": "chunk_length",
+      "expectation": "expect_column_value_lengths_to_be_between",
+      "column": "text",
+      "kwargs": {
+        "mostly": 0.95,
+        "min_value": 200,
+        "max_value": 3000
+      },
+      "success": true,
+      "observed_value": null,
+      "unexpected_count": 0,
+      "unexpected_percent": 0.0,
+      "element_count": 176,
+      "exception": null
+    },
+    {
+      "group": "chunk_length",
+      "expectation": "expect_column_value_lengths_to_be_between",
+      "column": "text",
+      "kwargs": {
+        "min_value": 20,
+        "max_value": 4000
+      },
+      "success": true,
+      "observed_value": null,
+      "unexpected_count": 0,
+      "unexpected_percent": 0.0,
+      "element_count": 176,
+      "exception": null
+    },
+    {
+      "group": "metadata",
+      "expectation": "expect_column_values_to_not_be_null",
+      "column": "text",
+      "kwargs": {},
+      "success": true,
+      "observed_value": null,
+      "unexpected_count": 0,
+      "unexpected_percent": 0.0,
+      "element_count": 176,
+      "exception": null
+    },
+    {
+      "group": "pii",
+      "expectation": "expect_column_values_to_not_match_regex_list",
+      "column": "text",
+      "kwargs": {},
+      "success": true,
+      "observed_value": null,
+      "unexpected_count": 0,
+      "unexpected_percent": 0.0,
+      "element_count": 176,
+      "exception": null
+    },
+    {
+      "group": "chunk_length",
+      "expectation": "expect_column_median_to_be_between",
+      "column": "text_len",
+      "kwargs": {
+        "min_value": 300.0,
+        "max_value": 1500.0
+      },
+      "success": true,
+      "observed_value": 637.5,
+      "unexpected_count": null,
+      "unexpected_percent": null,
+      "element_count": null,
+      "exception": null
+    },
+    {
+      "group": "metadata",
+      "expectation": "expect_column_values_to_not_be_null",
+      "column": "id",
+      "kwargs": {},
+      "success": true,
+      "observed_value": null,
+      "unexpected_count": 0,
+      "unexpected_percent": 0.0,
+      "element_count": 176,
+      "exception": null
+    },
+    {
+      "group": "metadata",
+      "expectation": "expect_column_values_to_be_unique",
+      "column": "id",
+      "kwargs": {},
+      "success": true,
+      "observed_value": null,
+      "unexpected_count": 0,
+      "unexpected_percent": 0.0,
+      "element_count": 176,
+      "exception": null
+    },
+    {
+      "group": "metadata",
+      "expectation": "expect_column_values_to_not_be_null",
+      "column": "doc_id",
+      "kwargs": {},
+      "success": true,
+      "observed_value": null,
+      "unexpected_count": 0,
+      "unexpected_percent": 0.0,
+      "element_count": 176,
+      "exception": null
+    },
+    {
+      "group": "metadata",
+      "expectation": "expect_column_values_to_match_regex",
+      "column": "doc_id",
+      "kwargs": {
+        "regex": "^(product-docs|runbooks|tickets)/.+\\.(md|pdf|html)$"
+      },
+      "success": true,
+      "observed_value": null,
+      "unexpected_count": 0,
+      "unexpected_percent": 0.0,
+      "element_count": 176,
+      "exception": null
+    },
+    {
+      "group": "metadata",
+      "expectation": "expect_column_unique_value_count_to_be_between",
+      "column": "doc_id",
+      "kwargs": {
+        "min_value": 90
+      },
+      "success": true,
+      "observed_value": 95,
+      "unexpected_count": null,
+      "unexpected_percent": null,
+      "element_count": null,
+      "exception": null
+    },
+    {
+      "group": "metadata",
+      "expectation": "expect_column_values_to_not_be_null",
+      "column": "source",
+      "kwargs": {},
+      "success": true,
+      "observed_value": null,
+      "unexpected_count": 0,
+      "unexpected_percent": 0.0,
+      "element_count": 176,
+      "exception": null
+    },
+    {
+      "group": "metadata",
+      "expectation": "expect_column_values_to_not_be_null",
+      "column": "category",
+      "kwargs": {},
+      "success": true,
+      "observed_value": null,
+      "unexpected_count": 0,
+      "unexpected_percent": 0.0,
+      "element_count": 176,
+      "exception": null
+    },
+    {
+      "group": "metadata",
+      "expectation": "expect_column_values_to_be_in_set",
+      "column": "category",
+      "kwargs": {
+        "value_set": [
+          "product-docs",
+          "runbooks",
+          "tickets"
+        ]
+      },
+      "success": true,
+      "observed_value": null,
+      "unexpected_count": 0,
+      "unexpected_percent": 0.0,
+      "element_count": 176,
+      "exception": null
+    },
+    {
+      "group": "metadata",
+      "expectation": "expect_column_values_to_not_be_null",
+      "column": "doc_type",
+      "kwargs": {},
+      "success": true,
+      "observed_value": null,
+      "unexpected_count": 0,
+      "unexpected_percent": 0.0,
+      "element_count": 176,
+      "exception": null
+    },
+    {
+      "group": "metadata",
+      "expectation": "expect_column_values_to_be_in_set",
+      "column": "doc_type",
+      "kwargs": {
+        "value_set": [
+          "markdown",
+          "pdf",
+          "html"
+        ]
+      },
+      "success": true,
+      "observed_value": null,
+      "unexpected_count": 0,
+      "unexpected_percent": 0.0,
+      "element_count": 176,
+      "exception": null
+    },
+    {
+      "group": "metadata",
+      "expectation": "expect_column_values_to_not_be_null",
+      "column": "chunk_index",
+      "kwargs": {},
+      "success": true,
+      "observed_value": null,
+      "unexpected_count": 0,
+      "unexpected_percent": 0.0,
+      "element_count": 176,
+      "exception": null
+    },
+    {
+      "group": "embeddings",
+      "expectation": "expect_column_values_to_be_in_set",
+      "column": "embedding_dim",
+      "kwargs": {
+        "value_set": [
+          1536
+        ]
+      },
+      "success": true,
+      "observed_value": null,
+      "unexpected_count": 0,
+      "unexpected_percent": 0.0,
+      "element_count": 176,
+      "exception": null
+    },
+    {
+      "group": "embeddings",
+      "expectation": "expect_column_values_to_be_in_set",
+      "column": "embedding_has_nan",
+      "kwargs": {
+        "value_set": [
+          false
+        ]
+      },
+      "success": true,
+      "observed_value": null,
+      "unexpected_count": 0,
+      "unexpected_percent": 0.0,
+      "element_count": 176,
+      "exception": null
+    }
+  ],
+  "offenders": {
+    "short_chunks": [],
+    "short_chunk_count": 0,
+    "hard_bound_violations": [],
+    "pii_chunks": {}
+  }
+}

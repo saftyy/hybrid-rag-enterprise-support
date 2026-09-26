@@ -1,0 +1,581 @@
+{
+  "stats": {
+    "config": "v2-vector",
+    "project": "helix-rag-v2-vector",
+    "queries": 15,
+    "source_hit_rate": 1,
+    "abstention_rate": 0.067,
+    "retrieved_chunks": 75,
+    "retrieved_chunk_len_median": 736,
+    "retrieved_chunks_under_200_pct": 0.0,
+    "client_retrieval_ms": {
+      "p50": 364.1,
+      "p95": 1469.2
+    },
+    "client_generation_ms": {
+      "p50": 1200.6,
+      "p95": 2619.5
+    },
+    "phoenix_spans": {
+      "retrieval_latency_ms": {
+        "n": 15,
+        "p50": 359.6,
+        "p95": 1461.2,
+        "max": 2545.0
+      },
+      "llm_latency_ms": {
+        "n": 15,
+        "p50": 1029.1,
+        "p95": 2584.2,
+        "max": 3423.1
+      },
+      "end_to_end_latency_ms": {
+        "n": 15,
+        "p50": 1603.3,
+        "p95": 3688.6,
+        "max": 7121.3
+      },
+      "tokens_per_llm_call": {
+        "prompt": {
+          "mean": 1551.7,
+          "p95": 2039.0
+        },
+        "completion": {
+          "mean": 111.8,
+          "p95": 289.0
+        },
+        "total": {
+          "mean": 1663.5,
+          "p95": 2180.0
+        }
+      },
+      "est_cost_per_query_usd": 0.0003
+    }
+  },
+  "rows": [
+    {
+      "qid": "Q001",
+      "question": "What's the maximum number of steps allowed in a single workflow?",
+      "answer": "The maximum number of steps allowed in a single workflow is **100**.",
+      "confidence": "high",
+      "retrieved_chunk_ids": [
+        "product-docs/workflows/creating-workflows.md::1",
+        "product-docs/workflows/loops.md::1",
+        "product-docs/integrations/google-drive.md::2",
+        "tickets/ticket-1234-workflow-timeout.html::0",
+        "product-docs/workflows/error-handling.md::0"
+      ],
+      "retrieved_doc_ids": [
+        "product-docs/workflows/creating-workflows.md",
+        "product-docs/workflows/loops.md",
+        "product-docs/integrations/google-drive.md",
+        "tickets/ticket-1234-workflow-timeout.html",
+        "product-docs/workflows/error-handling.md"
+      ],
+      "expected_sources": [
+        "product-docs/workflows/creating-workflows.md"
+      ],
+      "chunk_lengths": [
+        822,
+        685,
+        400,
+        2547,
+        419
+      ],
+      "source_hit": true,
+      "abstained": false,
+      "retrieval_ms": 4738.9,
+      "generation_ms": 2381.5
+    },
+    {
+      "qid": "Q003",
+      "question": "How much does the Pro plan cost?",
+      "answer": "The Pro plan costs $299 per month.",
+      "confidence": "high",
+      "retrieved_chunk_ids": [
+        "product-docs/billing/plans.md::0",
+        "product-docs/getting-started/welcome.md::0",
+        "product-docs/billing/plans.md::1",
+        "tickets/ticket-1301-unexpected-charge.html::0",
+        "tickets/ticket-1322-downgrade-question.html::0"
+      ],
+      "retrieved_doc_ids": [
+        "product-docs/billing/plans.md",
+        "product-docs/getting-started/welcome.md",
+        "product-docs/billing/plans.md",
+        "tickets/ticket-1301-unexpected-charge.html",
+        "tickets/ticket-1322-downgrade-question.html"
+      ],
+      "expected_sources": [
+        "product-docs/billing/plans.md"
+      ],
+      "chunk_lengths": [
+        601,
+        851,
+        519,
+        1447,
+        2790
+      ],
+      "source_hit": true,
+      "abstained": false,
+      "retrieval_ms": 1469.2,
+      "generation_ms": 893.5
+    },
+    {
+      "qid": "Q010",
+      "question": "Which plan includes SSO?",
+      "answer": "SSO via SAML 2.0 is available on the Enterprise plan.",
+      "confidence": "high",
+      "retrieved_chunk_ids": [
+        "product-docs/admin/sso.md::0",
+        "product-docs/admin/sso.md::1",
+        "runbooks/incident-response/auth-service-degradation.pdf::1",
+        "product-docs/admin/scim.md::0",
+        "product-docs/admin/user-provisioning.md::0"
+      ],
+      "retrieved_doc_ids": [
+        "product-docs/admin/sso.md",
+        "product-docs/admin/sso.md",
+        "runbooks/incident-response/auth-service-degradation.pdf",
+        "product-docs/admin/scim.md",
+        "product-docs/admin/user-provisioning.md"
+      ],
+      "expected_sources": [
+        "product-docs/admin/sso.md"
+      ],
+      "chunk_lengths": [
+        629,
+        819,
+        716,
+        433,
+        578
+      ],
+      "source_hit": true,
+      "abstained": false,
+      "retrieval_ms": 387.6,
+      "generation_ms": 765.9
+    },
+    {
+      "qid": "Q017",
+      "question": "What does HTTP 401 mean from the Helix API?",
+      "answer": "HTTP 401 means \"Invalid or expired API key\" in the Helix API.",
+      "confidence": "high",
+      "retrieved_chunk_ids": [
+        "product-docs/api/errors.md::0",
+        "product-docs/integrations/oauth-flow.md::1",
+        "tickets/ticket-1189-401-with-valid-key.html::0",
+        "tickets/ticket-1212-webhook-not-firing.html::0",
+        "product-docs/api/authentication.md::0"
+      ],
+      "retrieved_doc_ids": [
+        "product-docs/api/errors.md",
+        "product-docs/integrations/oauth-flow.md",
+        "tickets/ticket-1189-401-with-valid-key.html",
+        "tickets/ticket-1212-webhook-not-firing.html",
+        "product-docs/api/authentication.md"
+      ],
+      "expected_sources": [
+        "product-docs/api/errors.md",
+        "product-docs/api/authentication.md"
+      ],
+      "chunk_lengths": [
+        482,
+        995,
+        2152,
+        2616,
+        433
+      ],
+      "source_hit": true,
+      "abstained": false,
+      "retrieval_ms": 435.3,
+      "generation_ms": 762.2
+    },
+    {
+      "qid": "Q020",
+      "question": "What's the support response SLA on Pro?",
+      "answer": "The support response SLA on the Pro plan is 8 hours for email and chat support.",
+      "confidence": "high",
+      "retrieved_chunk_ids": [
+        "tickets/ticket-1322-downgrade-question.html::0",
+        "product-docs/billing/plans.md::0",
+        "runbooks/incident-response/rate-limit-spike.pdf::0",
+        "tickets/ticket-1378-missing-data-in-export.html::0",
+        "product-docs/billing/plans.md::1"
+      ],
+      "retrieved_doc_ids": [
+        "tickets/ticket-1322-downgrade-question.html",
+        "product-docs/billing/plans.md",
+        "runbooks/incident-response/rate-limit-spike.pdf",
+        "tickets/ticket-1378-missing-data-in-export.html",
+        "product-docs/billing/plans.md"
+      ],
+      "expected_sources": [
+        "product-docs/billing/plans.md"
+      ],
+      "chunk_lengths": [
+        2790,
+        601,
+        979,
+        2287,
+        519
+      ],
+      "source_hit": true,
+      "abstained": false,
+      "retrieval_ms": 364.1,
+      "generation_ms": 823.0
+    },
+    {
+      "qid": "Q023",
+      "question": "What's the difference between Pro and Enterprise plans?",
+      "answer": "The Pro plan is priced at $299/month and is best for growing teams, offering 10,000 workflow runs per month and support for up to 10 users. It includes all standard integrations, API access (1000 requests per minute), 90-day run log retention, and email + chat support with an 8-hour response SLA.\n\nIn contrast, the Enterprise plan has custom pricing and is designed for organizations with security, compliance, or scale requirements. It offers unlimited workflow runs, unlimited users, all integrations plus custom integrations on request, unlimited API access, 365-day run log retention, and additional features such as SAML 2.0 SSO, SCIM, IP allowlist, audit log, and a dedicated account team with a 1-hour response SLA.",
+      "confidence": "high",
+      "retrieved_chunk_ids": [
+        "product-docs/billing/plans.md::1",
+        "product-docs/billing/plans.md::0",
+        "product-docs/getting-started/welcome.md::0",
+        "product-docs/integrations/overview.md::1",
+        "product-docs/api/overview.md::1"
+      ],
+      "retrieved_doc_ids": [
+        "product-docs/billing/plans.md",
+        "product-docs/billing/plans.md",
+        "product-docs/getting-started/welcome.md",
+        "product-docs/integrations/overview.md",
+        "product-docs/api/overview.md"
+      ],
+      "expected_sources": [
+        "product-docs/billing/plans.md"
+      ],
+      "chunk_lengths": [
+        519,
+        601,
+        851,
+        693,
+        415
+      ],
+      "source_hit": true,
+      "abstained": false,
+      "retrieval_ms": 329.8,
+      "generation_ms": 1883.9
+    },
+    {
+      "qid": "Q029",
+      "question": "What's the GDPR deletion process?",
+      "answer": "To permanently delete a user and all associated data under GDPR, follow these steps:\n1. Navigate to **Settings \u2192 Privacy \u2192 Data subject requests \u2192 New deletion request**.\n2. Enter the data subject's email and confirm the request.\n3. The deletion will occur within **30 days**. During this 30-day window, the request can be canceled. After the window, deletion is irreversible.",
+      "confidence": "high",
+      "retrieved_chunk_ids": [
+        "runbooks/customer-ops/account-deletion.pdf::0",
+        "product-docs/data/gdpr-exports.md::1",
+        "runbooks/customer-ops/data-export-requests.pdf::1",
+        "runbooks/customer-ops/account-deletion.pdf::1",
+        "product-docs/data/gdpr-exports.md::0"
+      ],
+      "retrieved_doc_ids": [
+        "runbooks/customer-ops/account-deletion.pdf",
+        "product-docs/data/gdpr-exports.md",
+        "runbooks/customer-ops/data-export-requests.pdf",
+        "runbooks/customer-ops/account-deletion.pdf",
+        "product-docs/data/gdpr-exports.md"
+      ],
+      "expected_sources": [
+        "product-docs/data/gdpr-exports.md",
+        "runbooks/customer-ops/account-deletion.pdf"
+      ],
+      "chunk_lengths": [
+        938,
+        844,
+        538,
+        779,
+        657
+      ],
+      "source_hit": true,
+      "abstained": false,
+      "retrieval_ms": 342.7,
+      "generation_ms": 1200.6
+    },
+    {
+      "qid": "Q033",
+      "question": "How do I rotate an API key safely?",
+      "answer": "To rotate an API key safely, follow these steps:\n1. Generate a new key.\n2. Update your applications to use the new key.\n3. Once you've verified that the new key works, delete the old key. \n\nNote that deleted keys cannot be recovered.",
+      "confidence": "high",
+      "retrieved_chunk_ids": [
+        "product-docs/api/authentication.md::1",
+        "product-docs/api/authentication.md::0",
+        "tickets/ticket-1189-401-with-valid-key.html::0",
+        "product-docs/api/overview.md::0",
+        "runbooks/incident-response/rate-limit-spike.pdf::1"
+      ],
+      "retrieved_doc_ids": [
+        "product-docs/api/authentication.md",
+        "product-docs/api/authentication.md",
+        "tickets/ticket-1189-401-with-valid-key.html",
+        "product-docs/api/overview.md",
+        "runbooks/incident-response/rate-limit-spike.pdf"
+      ],
+      "expected_sources": [
+        "product-docs/api/authentication.md",
+        "tickets/ticket-1189-401-with-valid-key.html"
+      ],
+      "chunk_lengths": [
+        736,
+        433,
+        2152,
+        613,
+        686
+      ],
+      "source_hit": true,
+      "abstained": false,
+      "retrieval_ms": 344.4,
+      "generation_ms": 1115.4
+    },
+    {
+      "qid": "Q037",
+      "question": "How do I send a Helix webhook to a custom URL?",
+      "answer": "To send a Helix webhook to a custom URL, you can use the **HTTP** action within your workflow. You can also sign outbound webhooks by computing an HMAC over the body and adding it as a header.",
+      "confidence": "high",
+      "retrieved_chunk_ids": [
+        "product-docs/integrations/custom-webhooks.md::0",
+        "product-docs/api/webhooks.md::0",
+        "product-docs/integrations/custom-webhooks.md::1",
+        "product-docs/integrations/custom-webhooks.md::2",
+        "runbooks/incident-response/webhook-delivery-failure.pdf::0"
+      ],
+      "retrieved_doc_ids": [
+        "product-docs/integrations/custom-webhooks.md",
+        "product-docs/api/webhooks.md",
+        "product-docs/integrations/custom-webhooks.md",
+        "product-docs/integrations/custom-webhooks.md",
+        "runbooks/incident-response/webhook-delivery-failure.pdf"
+      ],
+      "expected_sources": [
+        "product-docs/integrations/custom-webhooks.md"
+      ],
+      "chunk_lengths": [
+        564,
+        420,
+        489,
+        583,
+        933
+      ],
+      "source_hit": true,
+      "abstained": false,
+      "retrieval_ms": 618.7,
+      "generation_ms": 1032.7
+    },
+    {
+      "qid": "Q038",
+      "question": "What's the most efficient way to process a large batch in a workflow?",
+      "answer": "The most efficient way to process a large batch in a workflow is to use a **Parallel Loop** step if the iterations are independent. This allows you to process up to 10 items concurrently, significantly reducing the overall runtime compared to sequential processing. For example, if you have 5000 records, using a Parallel Loop can decrease the runtime from approximately 33 minutes (if processed sequentially) to around 3.3 minutes (when processed in parallel). However, be cautious of potential rate limits from any external APIs being called within the loop.",
+      "confidence": "high",
+      "retrieved_chunk_ids": [
+        "product-docs/workflows/loops.md::1",
+        "product-docs/integrations/google-drive.md::2",
+        "tickets/ticket-1234-workflow-timeout.html::0",
+        "tickets/ticket-1402-slow-execution.html::0",
+        "product-docs/workflows/creating-workflows.md::1"
+      ],
+      "retrieved_doc_ids": [
+        "product-docs/workflows/loops.md",
+        "product-docs/integrations/google-drive.md",
+        "tickets/ticket-1234-workflow-timeout.html",
+        "tickets/ticket-1402-slow-execution.html",
+        "product-docs/workflows/creating-workflows.md"
+      ],
+      "expected_sources": [
+        "product-docs/workflows/loops.md",
+        "product-docs/workflows/parallel-execution.md",
+        "tickets/ticket-1234-workflow-timeout.html"
+      ],
+      "chunk_lengths": [
+        685,
+        400,
+        2547,
+        2297,
+        822
+      ],
+      "source_hit": true,
+      "abstained": false,
+      "retrieval_ms": 275.9,
+      "generation_ms": 1425.0
+    },
+    {
+      "qid": "Q044",
+      "question": "We're getting paged at 3am because production is failing on 401s but the API key wasn't rotated. What's the standard runbook?",
+      "answer": "The provided context doesn't cover this.",
+      "confidence": "low",
+      "retrieved_chunk_ids": [
+        "runbooks/engineering/on-call-rotation.pdf::0",
+        "tickets/ticket-1189-401-with-valid-key.html::0",
+        "runbooks/incident-response/rate-limit-spike.pdf::0",
+        "runbooks/incident-response/auth-service-degradation.pdf::0",
+        "runbooks/incident-response/rate-limit-spike.pdf::1"
+      ],
+      "retrieved_doc_ids": [
+        "runbooks/engineering/on-call-rotation.pdf",
+        "tickets/ticket-1189-401-with-valid-key.html",
+        "runbooks/incident-response/rate-limit-spike.pdf",
+        "runbooks/incident-response/auth-service-degradation.pdf",
+        "runbooks/incident-response/rate-limit-spike.pdf"
+      ],
+      "expected_sources": [
+        "product-docs/api/authentication.md",
+        "product-docs/admin/audit-log.md",
+        "runbooks/incident-response/auth-service-degradation.pdf",
+        "tickets/ticket-1189-401-with-valid-key.html"
+      ],
+      "chunk_lengths": [
+        955,
+        2152,
+        979,
+        905,
+        686
+      ],
+      "source_hit": true,
+      "abstained": true,
+      "retrieval_ms": 311.9,
+      "generation_ms": 667.3
+    },
+    {
+      "qid": "Q045",
+      "question": "Our customer just renewed but we're hearing rumblings their champion left. What should we do?",
+      "answer": "Since the primary champion has left the customer organization, this is a churn risk indicator. You should document this change in the account record and reach out to the customer with a specific reason for the call, rather than just checking in. Schedule a discovery conversation to understand the underlying cause of the change and assess the situation further. If the churn risk is moderate or higher, consider filing a save plan. Additionally, keep an eye on any other churn risk indicators that may arise.",
+      "confidence": "high",
+      "retrieved_chunk_ids": [
+        "runbooks/customer-ops/renewal-at-risk.pdf::0",
+        "runbooks/csm/churn-risk-indicators.pdf::0",
+        "runbooks/csm/renewal-forecasting.pdf::0",
+        "runbooks/csm/expansion-playbook.pdf::1",
+        "runbooks/csm/churn-risk-indicators.pdf::1"
+      ],
+      "retrieved_doc_ids": [
+        "runbooks/customer-ops/renewal-at-risk.pdf",
+        "runbooks/csm/churn-risk-indicators.pdf",
+        "runbooks/csm/renewal-forecasting.pdf",
+        "runbooks/csm/expansion-playbook.pdf",
+        "runbooks/csm/churn-risk-indicators.pdf"
+      ],
+      "expected_sources": [
+        "runbooks/csm/churn-risk-indicators.pdf",
+        "runbooks/customer-ops/renewal-at-risk.pdf",
+        "runbooks/csm/health-score-methodology.pdf"
+      ],
+      "chunk_lengths": [
+        995,
+        961,
+        965,
+        808,
+        633
+      ],
+      "source_hit": true,
+      "abstained": false,
+      "retrieval_ms": 403.6,
+      "generation_ms": 1210.4
+    },
+    {
+      "qid": "Q046",
+      "question": "Customer says they were charged for an overage but they're sure they were under their limit. How do we investigate?",
+      "answer": "To investigate a customer's claim of being charged for an overage while believing they were under their limit, follow these steps:\n\n1. **Check the Customer's Plan**: Verify the customer's subscription plan and its included run limit.\n\n2. **Review Usage Data**: Access the usage data by navigating to **Settings \u2192 Billing \u2192 Usage**. This will show the current month's run count compared to the plan limit, a daily run breakdown, and the top workflows by run count.\n\n3. **Identify Overage Charges**: If the run count exceeds the plan limit, calculate the overage charges based on the pricing structure for their plan. For example, for Pro plans, overage runs are billed at $0.01 per additional run.\n\n4. **Check for Alerts**: Determine if the customer received any automated usage alerts regarding their run count. This can help confirm whether they were informed about approaching or exceeding their limit.\n\n5. **Communicate Findings**: Share the findings with the customer, including the breakdown of their usage and any applicable charges. If there was a misunderstanding or error, discuss potential resolutions, such as applying a credit if warranted.\n\n6. **Document the Incident**: Ensure to document the investigation and findings in the customer's account record for future reference.",
+      "confidence": "high",
+      "retrieved_chunk_ids": [
+        "tickets/ticket-1301-unexpected-charge.html::0",
+        "tickets/ticket-1301-unexpected-charge.html::2",
+        "tickets/ticket-1301-unexpected-charge.html::1",
+        "runbooks/incident-response/rate-limit-spike.pdf::1",
+        "product-docs/billing/usage-and-overages.md::0"
+      ],
+      "retrieved_doc_ids": [
+        "tickets/ticket-1301-unexpected-charge.html",
+        "tickets/ticket-1301-unexpected-charge.html",
+        "tickets/ticket-1301-unexpected-charge.html",
+        "runbooks/incident-response/rate-limit-spike.pdf",
+        "product-docs/billing/usage-and-overages.md"
+      ],
+      "expected_sources": [
+        "product-docs/billing/usage-and-overages.md",
+        "product-docs/billing/invoices.md",
+        "runbooks/customer-ops/refund-processing.pdf",
+        "tickets/ticket-1301-unexpected-charge.html"
+      ],
+      "chunk_lengths": [
+        1447,
+        609,
+        1280,
+        686,
+        571
+      ],
+      "source_hit": true,
+      "abstained": false,
+      "retrieval_ms": 551.3,
+      "generation_ms": 2619.5
+    },
+    {
+      "qid": "Q047",
+      "question": "We need to fail over to our Postgres replica. What's the procedure and what are the gotchas?",
+      "answer": "To manually fail over to your Postgres replica, follow these steps:\n\n1. **Stop writes**: From the bastion, run `kubectl scale deployment/api-server --replicas=0`. This will stop new writes from reaching the primary database. Note that any workflow runs in flight will fail during this time, which is acceptable for the duration of the failover.\n\n2. **Wait for replication to catch up**: Execute `psql -c 'SELECT pg_last_wal_receive_lsn(), pg_last_wal_replay_lsn();'` on the replica until both values match. This ensures that all writes have been replicated.\n\n3. **Promote the replica**: Run `pg_ctl promote -D /var/lib/postgresql/data` on the replica. This action promotes the replica to primary.\n\n4. **Update DNS**: Change the `db-primary.helix.io` DNS record to point to the new primary's IP address. The TTL is 60 seconds, and you should allow 90 seconds for propagation.\n\n5. **Resume writes**: Scale the API server back up by running `kubectl scale deployment/api-server --replicas=20`. Monitor error rates closely for the next 15 minutes.\n\n6. **Provision a new replica**: Since the promoted replica is now the primary, you need to provision a new replica from the latest snapshot. Until the new replica is in sync, you will not have failover capacity.\n\n**Gotchas**:\n- Ensure that the replica is healthy and that the replication lag is under 5 seconds before starting the failover process.\n- If the failover fails or causes more impact, you can fail back by stopping writes again and pointing the DNS back to the original primary if it is still healthy. If the original primary is unhealthy, you will need to restore from the most recent backup (RPO is 5 minutes).",
+      "confidence": "high",
+      "retrieved_chunk_ids": [
+        "runbooks/incident-response/database-failover.pdf::0",
+        "runbooks/incident-response/database-failover.pdf::1",
+        "runbooks/engineering/deploy-rollback.pdf::1",
+        "runbooks/incident-response/auth-service-degradation.pdf::1",
+        "runbooks/engineering/deploy-rollback.pdf::0"
+      ],
+      "retrieved_doc_ids": [
+        "runbooks/incident-response/database-failover.pdf",
+        "runbooks/incident-response/database-failover.pdf",
+        "runbooks/engineering/deploy-rollback.pdf",
+        "runbooks/incident-response/auth-service-degradation.pdf",
+        "runbooks/engineering/deploy-rollback.pdf"
+      ],
+      "expected_sources": [
+        "runbooks/incident-response/database-failover.pdf"
+      ],
+      "chunk_lengths": [
+        979,
+        874,
+        717,
+        716,
+        924
+      ],
+      "source_hit": true,
+      "abstained": false,
+      "retrieval_ms": 228.6,
+      "generation_ms": 3458.9
+    },
+    {
+      "qid": "Q050",
+      "question": "A customer is escalating because they hit a P0-level outage on our side but haven't seen any communication from us. What's our obligation?",
+      "answer": "For a P0 incident lasting longer than 30 minutes, we are obligated to send an email update to all paying customers using a pre-approved template. Additionally, the status page must be updated every 15 minutes until resolution. If the customer has not seen any communication, it is important to ensure that these protocols are followed immediately.",
+      "confidence": "high",
+      "retrieved_chunk_ids": [
+        "runbooks/incident-response/p0-incident-response.pdf::1",
+        "runbooks/incident-response/p0-incident-response.pdf::0",
+        "runbooks/csm/churn-risk-indicators.pdf::1",
+        "runbooks/incident-response/rate-limit-spike.pdf::1",
+        "runbooks/incident-response/webhook-delivery-failure.pdf::1"
+      ],
+      "retrieved_doc_ids": [
+        "runbooks/incident-response/p0-incident-response.pdf",
+        "runbooks/incident-response/p0-incident-response.pdf",
+        "runbooks/csm/churn-risk-indicators.pdf",
+        "runbooks/incident-response/rate-limit-spike.pdf",
+        "runbooks/incident-response/webhook-delivery-failure.pdf"
+      ],
+      "expected_sources": [
+        "runbooks/incident-response/p0-incident-response.pdf",
+        "runbooks/customer-ops/custom-sla-handling.pdf"
+      ],
+      "chunk_lengths": [
+        846,
+        998,
+        633,
+        686,
+        848
+      ],
+      "source_hit": true,
+      "abstained": false,
+      "retrieval_ms": 298.6,
+      "generation_ms": 1293.8
+    }
+  ]
+}

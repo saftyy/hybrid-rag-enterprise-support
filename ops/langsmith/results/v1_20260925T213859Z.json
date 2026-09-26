@@ -1,0 +1,168 @@
+{
+  "experiment_name": "v1-17488316",
+  "metadata": {
+    "config": "v1",
+    "cfg_name": "v1",
+    "cfg_description": "Module 1 baseline (header-split chunks, hybrid RRF, k=5)",
+    "cfg_chunks_path": "evals/results/chunks.json",
+    "cfg_namespace": "",
+    "cfg_retrieval_mode": "hybrid",
+    "cfg_k": 5,
+    "cfg_merge_min_chars": 0,
+    "cfg_merge_max_chars": 1500,
+    "cfg_redact_pii": false,
+    "cfg_index_name": "helix-checkpoint-rag",
+    "git_commit": "f8ac26b",
+    "judge_model": "gpt-4o",
+    "generation_model": "gpt-4o-mini",
+    "dataset": "helix-csm-eval-v1.0",
+    "prompt_hash": "c0deda6eba02",
+    "limit": 3
+  },
+  "summary": {
+    "n": 3,
+    "overall": {
+      "faithfulness": 1.0,
+      "answer_relevance": 1.0,
+      "csm_resolution_quality": 1.0,
+      "source_hit": 0.6667,
+      "source_recall": 0.6667,
+      "abstained": 0.0,
+      "citation_valid": 1.0
+    },
+    "by_difficulty": {
+      "easy": {
+        "n": 3,
+        "faithfulness": 1.0,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 1.0
+      }
+    },
+    "latency": {
+      "retrieval_p50_ms": 1681.0,
+      "retrieval_p95_ms": 1689.8,
+      "generation_p50_ms": 2335.4,
+      "generation_p95_ms": 2369.4
+    }
+  },
+  "gates": {
+    "custom_judge_gte_0.75": true
+  },
+  "rows": [
+    {
+      "qid": "Q001",
+      "difficulty": "easy",
+      "category": "workflows",
+      "question": "What's the maximum number of steps allowed in a single workflow?",
+      "answer": "The maximum number of steps allowed in a single workflow is 100.",
+      "confidence": "high",
+      "sources": [
+        "product-docs/workflows/creating-workflows.md"
+      ],
+      "retrieved_doc_ids": [
+        "product-docs/workflows/creating-workflows.md",
+        "product-docs/workflows/loops.md",
+        "product-docs/billing/usage-and-overages.md",
+        "product-docs/getting-started/first-workflow.md",
+        "product-docs/workflows/creating-workflows.md"
+      ],
+      "expected_sources": [
+        "product-docs/workflows/creating-workflows.md"
+      ],
+      "retrieval_latency_ms": 1689.8,
+      "generation_latency_ms": 2369.4,
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 1.0,
+        "source_hit": 1.0,
+        "source_recall": 1.0,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "1/1 claims supported.",
+        "answer_relevance": "5/5 \u2014 The answer directly addresses the question by providing the specific maximum number of steps allowed in a single workflow, which is 100. There are no omissions or unnecessary information included in the response.",
+        "csm_resolution_quality": "facts=all, actionability=not_applicable, commitment=False \u2014 The assistant's answer correctly states that the maximum number of steps allowed in a single workflow is 100, which matches the reference. This is a factual lookup, so the CSM can directly use this information when responding to the customer. There is no commitment implied in the answer."
+      },
+      "error": null
+    },
+    {
+      "qid": "Q002",
+      "difficulty": "easy",
+      "category": "workflows",
+      "question": "How long can a workflow run before it times out?",
+      "answer": "A workflow can run for a maximum of 30 minutes before it times out.",
+      "confidence": "high",
+      "sources": [
+        "tickets/ticket-1234-workflow-timeout.html"
+      ],
+      "retrieved_doc_ids": [
+        "tickets/ticket-1234-workflow-timeout.html",
+        "product-docs/notifications/email-notifications.md",
+        "product-docs/workflows/creating-workflows.md",
+        "product-docs/workflows/error-handling.md",
+        "product-docs/workflows/creating-workflows.md"
+      ],
+      "expected_sources": [
+        "product-docs/workflows/creating-workflows.md"
+      ],
+      "retrieval_latency_ms": 1674.3,
+      "generation_latency_ms": 2335.4,
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 1.0,
+        "source_hit": 1.0,
+        "source_recall": 1.0,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "1/1 claims supported.",
+        "answer_relevance": "5/5 \u2014 The answer directly addresses the question by providing a specific duration (30 minutes) for how long a workflow can run before it times out. There are no unnecessary details or omissions in the response, making it complete and directly relevant to the question asked.",
+        "csm_resolution_quality": "facts=all, actionability=not_applicable, commitment=False \u2014 The assistant's answer correctly states that a workflow can run for a maximum of 30 minutes before it times out, which matches the reference. This is a factual lookup, so the CSM can directly use this information when responding to the customer. There is no commitment implied in the answer."
+      },
+      "error": null
+    },
+    {
+      "qid": "Q003",
+      "difficulty": "easy",
+      "category": "billing",
+      "question": "How much does the Pro plan cost?",
+      "answer": "The Pro plan costs $299 per month.",
+      "confidence": "high",
+      "sources": [
+        "product-docs/getting-started/welcome.md"
+      ],
+      "retrieved_doc_ids": [
+        "product-docs/getting-started/welcome.md",
+        "product-docs/api/overview.md",
+        "product-docs/api/rate-limits.md",
+        "tickets/ticket-1301-unexpected-charge.html",
+        "product-docs/billing/plan-changes.md"
+      ],
+      "expected_sources": [
+        "product-docs/billing/plans.md"
+      ],
+      "retrieval_latency_ms": 1681.0,
+      "generation_latency_ms": 2305.1,
+      "scores": {
+        "faithfulness": 1.0,
+        "answer_relevance": 1.0,
+        "csm_resolution_quality": 1.0,
+        "source_hit": 0.0,
+        "source_recall": 0.0,
+        "abstained": 0.0,
+        "citation_valid": 1.0
+      },
+      "comments": {
+        "faithfulness": "1/1 claims supported.",
+        "answer_relevance": "5/5 \u2014 The answer directly addresses the question by providing the specific cost of the Pro plan, which is $299 per month. There are no omissions or unnecessary information included in the response.",
+        "csm_resolution_quality": "facts=all, actionability=not_applicable, commitment=False \u2014 The assistant's answer matches the reference exactly, stating that the Pro plan costs $299 per month. This is a straightforward factual lookup, so the CSM can directly provide this information to the customer without needing further details or actions. There is no unauthorized commitment involved as the answer simply states the cost.",
+        "source_recall": "missing: ['product-docs/billing/plans.md']"
+      },
+      "error": null
+    }
+  ]
+}

@@ -16,22 +16,10 @@ judge score drops you can immediately tell *which stage* broke:
 
 from __future__ import annotations
 
-import re
-
+from ops.langsmith.evaluators._judge import ABSTAIN_RE, is_abstention  # noqa: F401
 from ops.langsmith.evaluators.answer_relevance import answer_relevance
 from ops.langsmith.evaluators.custom_judge import csm_resolution_quality
 from ops.langsmith.evaluators.faithfulness import faithfulness
-
-ABSTAIN_RE = re.compile(
-    r"(doesn't|does not|do not|don't) (cover|contain|include|mention|provide|have)"
-    r"|not enough information|no information|unable to (find|answer)|cannot answer",
-    re.IGNORECASE,
-)
-
-
-def is_abstention(answer: str) -> bool:
-    return bool(ABSTAIN_RE.search(answer or ""))
-
 
 def source_hit(inputs: dict, outputs: dict, reference_outputs: dict) -> dict:
     expected = set(reference_outputs.get("expected_sources", []))
@@ -42,7 +30,7 @@ def source_hit(inputs: dict, outputs: dict, reference_outputs: dict) -> dict:
 def source_recall(inputs: dict, outputs: dict, reference_outputs: dict) -> dict:
     expected = set(reference_outputs.get("expected_sources", []))
     got = set(outputs.get("retrieved_doc_ids", []))
-    score = len(expected & got) / len(expected) if expected else 1.0
+    score = round(len(expected & got) / len(expected), 4) if expected else 1.0
     return {"key": "source_recall", "score": score,
             "comment": f"missing: {sorted(expected - got)}" if expected - got else None}
 

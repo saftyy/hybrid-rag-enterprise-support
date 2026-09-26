@@ -1,16 +1,16 @@
 qid,difficulty,question,human_score,human_note
-Q001,easy,What's the maximum number of steps allowed in a single workflow?,,
-Q003,easy,How much does the Pro plan cost?,,
-Q009,easy,How many user roles does Helix have?,,
-Q010,easy,Which plan includes SSO?,,
-Q017,easy,What does HTTP 401 mean from the Helix API?,,
-Q020,easy,What's the support response SLA on Pro?,,
-Q023,medium,What's the difference between Pro and Enterprise plans?,,
-Q029,medium,What's the GDPR deletion process?,,
-Q031,medium,What happens if my payment fails?,,
-Q033,medium,How do I rotate an API key safely?,,
-Q037,medium,How do I send a Helix webhook to a custom URL?,,
-Q038,medium,What's the most efficient way to process a large batch in a workflow?,,
-Q044,hard,We're getting paged at 3am because production is failing on 401s but the API key wasn't rotated. What's the standard runbook?,,
-Q045,hard,Our customer just renewed but we're hearing rumblings their champion left. What should we do?,,
-Q046,hard,Customer says they were charged for an overage but they're sure they were under their limit. How do we investigate?,,
+Q001,easy,What's the maximum number of steps allowed in a single workflow?, 1, correct - states 100
+Q003,easy,How much does the Pro plan cost?, 1,correct - $299/month
+Q009,easy,How many user roles does Helix have?, 1,all four roles listed
+Q010,easy,Which plan includes SSO?, 1,Enterprise - correct
+Q017,easy,What does HTTP 401 mean from the Helix API?, 1,invalid or expired key - correct
+Q020,easy,What's the support response SLA on Pro?, 1,8 hours - correct
+Q023,medium,What's the difference between Pro and Enterprise plans?, 1,covers price/runs/users/retention/Enterprise-only features
+Q029,medium,What's the GDPR deletion process?, 0.75,path + 30 days + irreversible; missing what data is deleted vs anonymized vs retained
+Q031,medium,What happens if my payment fails?, 0.75,retry schedule + read-only correct; missing suspension and 1-hour reactivation
+Q033,medium,How do I rotate an API key safely?, 0.75,correct order + irreversibility warning; missing Settings -> API Keys path
+Q037,medium,How do I send a Helix webhook to a custom URL?, 0.25,describes outbound HTTP action; customer likely needs the webhook trigger URL + signature setup
+Q038,medium,What's the most efficient way to process a large batch in a workflow?, 1,Parallel Loop + 10 concurrency + rate-limit caution
+Q044,hard,We're getting paged at 3am because production is failing on 401s but the API key wasn't rotated. What's the standard runbook?, 0,abstained although ticket HX-1189 with the answer was retrieved
+Q045,hard,Our customer just renewed but we're hearing rumblings their champion left. What should we do?, 0.75,specific actions a CSM can take; missing health-score update and leadership escalation for large accounts
+Q046,hard,Customer says they were charged for an overage but they're sure they were under their limit. How do we investigate?, 0.5,good diagnosis steps; missing the goodwill-credit option which the notes require

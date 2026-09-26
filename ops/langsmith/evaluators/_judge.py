@@ -15,6 +15,7 @@ Design decisions (worth saying out loud in the Loom):
 from __future__ import annotations
 
 import os
+import re
 from functools import lru_cache
 from typing import Callable, TypeVar
 
@@ -36,7 +37,9 @@ def judge_model_name() -> str:
 def _structured_llm(schema: type[BaseModel]):
     from langchain_openai import ChatOpenAI
 
-    llm = ChatOpenAI(model=judge_model_name(), temperature=0, seed=42)
+    # max_retries: the OpenAI client backs off exponentially on 429s. Low-tier accounts have a
+    # 30k tokens/min cap on gpt-4o, which three judges x several parallel examples exceed.
+    llm = ChatOpenAI(model=judge_model_name(), temperature=0, seed=42, max_retries=10)
     return llm.with_structured_output(schema)
 
 
@@ -50,3 +53,16 @@ def format_contexts(contexts: list[str], max_chars_each: int = 4000) -> str:
     return "\n\n".join(
         f"[Context {i + 1}]\n{c[:max_chars_each]}" for i, c in enumerate(contexts)
     )
+
+
+# Phrases the generator uses to say the context lacks the answer. Shared by the faithfulness
+# evaluator (to drop abstention "claims") and the deterministic `abstained` evaluator.
+ABSTAIN_RE = re.compile(
+    r"(doesn't|does not|do not|don't) (cover|contain|include|mention|provide|have)"
+    r"|not enough information|no information|unable to (find|answer)|cannot answer",
+    re.IGNORECASE,
+)
+
+
+def is_abstention(text: str) -> bool:
+    return bool(ABSTAIN_RE.search(text or ""))

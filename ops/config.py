@@ -14,6 +14,9 @@ so any number in the report can be traced back to exactly what produced it.
                Retrieval unchanged (hybrid) so the chunking fix is measured in isolation.
     v2-vector  v2 chunks + vector-only retrieval (Module 1's own compare_retrieval.py showed
                vector-only had better Hit@5 than hybrid on this corpus).
+    v3         v2-vector + stricter grounding prompt. Added after the v2 eval: the judge's
+               unsupported claims were generic filler / invented procedure steps /
+               extrapolations (Q026, Q043, Q045) — a generation problem, not retrieval.
 
 v2 / v2-vector live in a separate Pinecone *namespace* of the same index, so the
 v1 baseline vectors are never overwritten and no extra index is needed.
@@ -40,6 +43,7 @@ class PipelineConfig:
     merge_min_chars: int = 0                        # 0 = no merging (Module 1 behaviour)
     merge_max_chars: int = 1500
     redact_pii: bool = False
+    prompt: Literal["module1", "grounded"] = "module1"   # see ops/generation.py
 
     @property
     def index_name(self) -> str:
@@ -77,6 +81,16 @@ CONFIGS: dict[str, PipelineConfig] = {
         retrieval_mode="vector",
         merge_min_chars=400,
         redact_pii=True,
+    ),
+    "v3": PipelineConfig(
+        name="v3",
+        description="v2-vector + grounded prompt (no generic steps, filler or extrapolation)",
+        chunks_path=REPO_ROOT / "ops" / "data" / "chunks_v2.json",
+        namespace="v2",
+        retrieval_mode="vector",
+        merge_min_chars=400,
+        redact_pii=True,
+        prompt="grounded",
     ),
 }
 

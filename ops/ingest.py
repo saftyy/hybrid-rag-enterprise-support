@@ -36,7 +36,10 @@ def load_and_chunk(corpus_dir: str) -> dict:
     from pathlib import Path
     from src.ingest import chunk_documents, load_html_docs, load_markdown_docs, load_pdf_docs
 
-    root = Path(corpus_dir)
+    root = Path(corpus_dir).resolve()
+    if not (root / "product-docs").is_dir():
+        raise SystemExit(f"Corpus not found at {root} (expected product-docs/, runbooks/, "
+                         f"tickets/ inside). Pass the correct --corpus path.")
     docs = load_markdown_docs(root)
     pdf_docs, skipped = load_pdf_docs(root)
     docs += pdf_docs + load_html_docs(root)

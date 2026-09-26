@@ -91,7 +91,7 @@ def set_retrieval_attributes(span, chunks: list[dict]) -> None:
 
 def traced_query(tracer, retriever, q: dict, config_name: str) -> dict:
     from openinference.semconv.trace import SpanAttributes as S
-    from src.generate import generate
+    from ops.generation import generate_for
 
     with tracer.start_as_current_span("rag_query") as root:
         root.set_attribute(S.OPENINFERENCE_SPAN_KIND, "CHAIN")
@@ -107,7 +107,8 @@ def traced_query(tracer, retriever, q: dict, config_name: str) -> dict:
         t1 = time.perf_counter()
         with tracer.start_as_current_span("generate") as gs:
             gs.set_attribute(S.OPENINFERENCE_SPAN_KIND, "CHAIN")
-            result = generate(q["query"], [{"doc_id": c["doc_id"], "text": c["text"]} for c in chunks])
+            result = generate_for(get_config(config_name).prompt, q["query"],
+                                  [{"doc_id": c["doc_id"], "text": c["text"]} for c in chunks])
             gs.set_attribute(S.OUTPUT_VALUE, result.answer)
         t2 = time.perf_counter()
 
@@ -205,8 +206,9 @@ def main(argv=None):
     base_url = f"http://localhost:{args.port}"
 
     if not args.no_launch:
+        os.environ["PHOENIX_PORT"] = str(args.port)
         import phoenix as px
-        session = px.launch_app(port=args.port)
+        session = px.launch_app()
         print(f"Phoenix UI: {session.url}")
 
     tp = build_tracer_provider(project, f"{base_url}/v1/traces")
@@ -247,6 +249,8 @@ def main(argv=None):
     print(f"\nWrote {RESULTS_DIR / f'phoenix_stats_{cfg.name}.md'}")
 
     if not args.no_launch and not args.no_wait:
+        # (On Windows, a PermissionError about phoenix.db may print after you press Enter:
+        #  Phoenix's temp database is still locked during interpreter shutdown. Harmless.)
         input(f"\nPhoenix is running at {base_url} (project '{project}'). Take your screenshots "
               "into ops/phoenix/screenshots/, then press Enter to exit...")
 

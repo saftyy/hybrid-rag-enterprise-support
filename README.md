@@ -6,6 +6,7 @@
 
 **LangSmith project:** `hybrid-rag-enterprise-support` · ⟨https://smith.langchain.com/o/2bff5f56-5da3-41c4-a2c7-0087998fc5ca/projects/p/82ca0481-aeb6-40a2-885d-1cd868667859⟩
 **Eval dataset:** [`helix-csm-eval-v1.0`](https://smith.langchain.com/o/2bff5f56-5da3-41c4-a2c7-0087998fc5ca/datasets/52d9f6b8-dde7-41e4-a8a0-bd47c47f0a62) (50 queries)
+**Public eval trace (v2-vector):** https://smith.langchain.com/public/1a2f357a-cd99-4f44-a6ea-8f298f3847ec/r/96286ac8-4d96-4d44-a8ed-80fb862bac91
 **Loom walkthrough:** ⟨paste public/unlisted Loom link⟩
 
 ## Operational maturity summary
